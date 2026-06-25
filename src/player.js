@@ -20,6 +20,25 @@ class Player {
     this.dead = false;
     this.hurtFlash = 0;      // feedback visual al recibir daño
     this.flicker = 0;        // parpadeo de la llama (estético)
+
+    // --- Espada ---
+    this.aimAngle = 0;       // hacia dónde apuntás (radianes), lo setea el game
+    this.attackCd = 0;       // cooldown entre golpes
+    this.swingTimer = 0;     // >0 mientras se anima el golpe
+    this.swingDur = 0.18;
+    this.swingAngle = 0;     // ángulo del golpe en curso
+    this.swordRange = 62;
+    this.swordArc = 1.7;     // ancho del arco (radianes)
+    this.swordDamage = 6;
+  }
+
+  // Intenta dar un golpe. Devuelve true si efectivamente swingó (cooldown listo).
+  attack() {
+    if (this.attackCd > 0 || this.dead) return false;
+    this.attackCd = 0.32;
+    this.swingTimer = this.swingDur;
+    this.swingAngle = this.aimAngle;
+    return true;
   }
 
   // Radio de luz actual: cuanta menos antorcha, más se cierra el mundo.
@@ -51,6 +70,10 @@ class Player {
     if (this.torch <= 0) this.dead = true;
     this.flicker += dt * 9;
     if (this.hurtFlash > 0) this.hurtFlash = Math.max(0, this.hurtFlash - dt * 3);
+    if (this.attackCd > 0) this.attackCd -= dt;
+    if (this.swingTimer > 0) this.swingTimer -= dt;
+    // La dirección de mirada sigue al apuntado.
+    this.facing = Math.cos(this.aimAngle) >= 0 ? 1 : -1;
 
     const dir = Input.moveVector();
 

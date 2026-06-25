@@ -25,6 +25,29 @@ const Input = (() => {
     }
   });
 
+  // --- Mouse: apuntar (posición) y atacar (click) ---
+  const mouse = { x: 0, y: 0, down: false, pressed: false };
+
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  window.addEventListener("mousedown", () => {
+    mouse.down = true;
+    mouse.pressed = true; // "edge": se consume una vez por click
+  });
+  window.addEventListener("mouseup", () => { mouse.down = false; });
+  // Espacio / J también atacan (por si no querés usar mouse).
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "Space" || e.code === "KeyJ") mouse.pressed = true;
+  });
+
+  // Devuelve true una sola vez por pulsación (para el swing de espada).
+  function consumeAttack() {
+    if (mouse.pressed) { mouse.pressed = false; return true; }
+    return false;
+  }
+
   // Vector de movimiento normalizado segun las teclas apretadas.
   function moveVector() {
     let x = 0, y = 0;
@@ -41,5 +64,5 @@ const Input = (() => {
     return { x, y };
   }
 
-  return { keys, moveVector };
+  return { keys, moveVector, mouse, consumeAttack };
 })();

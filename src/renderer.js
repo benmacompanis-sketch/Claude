@@ -155,6 +155,95 @@ class Renderer {
     ctx.fill();
   }
 
+  drawEnemies(enemies, cam) {
+    const ctx = this.ctx;
+    for (const e of enemies) {
+      const ex = Math.round(e.x - cam.offsetX);
+      const ey = Math.round(e.y - cam.offsetY);
+      const wob = Math.sin(e.wobble) * 2;
+
+      // Aura de humo: más densa en penumbra, se "quema" bajo la luz (exposure).
+      const aura = ctx.createRadialGradient(ex, ey + wob, 2, ex, ey + wob, e.radius + 10);
+      aura.addColorStop(0, `rgba(20,10,30,${0.85 - e.exposure * 0.3})`);
+      aura.addColorStop(1, "rgba(20,10,30,0)");
+      ctx.fillStyle = aura;
+      ctx.fillRect(ex - 30, ey - 30, 60, 60);
+
+      // Cuerpo: negro humo que vira a violeta pálido al ser revelado.
+      const reveal = e.exposure;
+      const cr = Math.floor(14 + reveal * 130);
+      const cg = Math.floor(8 + reveal * 70);
+      const cb = Math.floor(22 + reveal * 120);
+      ctx.fillStyle = e.hurtFlash > 0.3
+        ? "rgba(255,255,255,0.9)"
+        : `rgb(${cr},${cg},${cb})`;
+      ctx.beginPath();
+      ctx.arc(ex, ey + wob, e.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Ojos: dos brasas frías que se intensifican al revelarse.
+      const eg = 0.4 + reveal * 0.6;
+      ctx.fillStyle = `rgba(190,160,255,${eg})`;
+      ctx.beginPath();
+      ctx.arc(ex - 5, ey - 3 + wob, 2.4, 0, Math.PI * 2);
+      ctx.arc(ex + 5, ey - 3 + wob, 2.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Barra de "luz absorbida" (vida) cuando está dañada.
+      if (e.hp < e.maxHp) {
+        const t = Math.max(0, e.hp / e.maxHp);
+        ctx.fillStyle = "rgba(0,0,0,0.6)";
+        ctx.fillRect(ex - 14, ey - e.radius - 9, 28, 4);
+        ctx.fillStyle = "rgba(200,170,255,0.9)";
+        ctx.fillRect(ex - 14, ey - e.radius - 9, 28 * t, 4);
+      }
+    }
+  }
+
+  // Arco de la espada mientras dura el swing.
+  drawSword(player, cam) {
+    if (player.swingTimer <= 0) return;
+    const ctx = this.ctx;
+    const px = player.x - cam.offsetX;
+    const py = player.y - cam.offsetY;
+    const t = player.swingTimer / player.swingDur; // 1 -> 0
+    const a = player.swingAngle;
+    const arc = player.swordArc;
+    const r = player.swordRange;
+
+    // El arco "barre" de un lado al otro durante el golpe.
+    const sweep = (1 - t) * arc - arc / 2;
+    const mid = a + sweep;
+
+    ctx.save();
+    ctx.globalAlpha = 0.5 + t * 0.5;
+    const grad = ctx.createRadialGradient(px, py, r * 0.3, px, py, r);
+    grad.addColorStop(0, "rgba(255,240,200,0.0)");
+    grad.addColorStop(1, "rgba(255,225,150,0.55)");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.arc(px, py, r, mid - 0.35, mid + 0.35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // El destello de recuerdo al vencer una Sombra (lore jugable).
+  drawMemory(memory, w, h) {
+    const ctx = this.ctx;
+    const a = Math.min(1, memory.timer / 1.2) * Math.min(1, (4.5 - memory.timer) / 0.4);
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, a);
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#e8e0ff";
+    ctx.font = "italic 22px Georgia, 'Times New Roman', serif";
+    ctx.shadowColor = "rgba(150,120,220,0.8)";
+    ctx.shadowBlur = 18;
+    ctx.fillText(memory.text, w / 2, h * 0.28);
+    ctx.restore();
+  }
+
   // Medidor de llama + profundidad actual.
   drawHUD(player, depth, w, h) {
     const ctx = this.ctx;
