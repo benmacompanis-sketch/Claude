@@ -5,12 +5,96 @@ class Renderer {
     // Buffer emisivo para el bloom (se dibuja desenfocado y se compone aditivo).
     this.glow = document.createElement("canvas");
     this.gctx = this.glow.getContext("2d");
+    this.titleEmbers = []; // brasas que flotan en la pantalla de título
   }
 
   resize(w, h) {
     // El bloom se renderiza a media resolución: más barato y más "suave".
     this.glow.width = Math.max(1, Math.floor(w / 2));
     this.glow.height = Math.max(1, Math.floor(h / 2));
+  }
+
+  // Pantalla de título: brasas que ascienden, título con resplandor y enganche.
+  drawTitle(time, w, h) {
+    const ctx = this.ctx;
+    const t = time / 1000;
+
+    // Fondo: degradé negro-cálido muy sutil.
+    const bg = ctx.createLinearGradient(0, 0, 0, h);
+    bg.addColorStop(0, "#0a0608");
+    bg.addColorStop(1, "#05050a");
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
+
+    // Brasas: nacen abajo y suben, parpadeando.
+    if (this.titleEmbers.length < 60 && Math.random() < 0.4) {
+      this.titleEmbers.push({
+        x: Math.random() * w,
+        y: h + 10,
+        vy: 12 + Math.random() * 26,
+        vx: (Math.random() - 0.5) * 10,
+        r: 1 + Math.random() * 2.2,
+        life: 1,
+        seed: Math.random() * 100,
+      });
+    }
+    for (let i = this.titleEmbers.length - 1; i >= 0; i--) {
+      const e = this.titleEmbers[i];
+      e.y -= e.vy * 0.016;
+      e.x += Math.sin(t + e.seed) * 0.4;
+      e.life -= 0.0028;
+      if (e.life <= 0 || e.y < -10) { this.titleEmbers.splice(i, 1); continue; }
+      const a = e.life * (0.5 + Math.abs(Math.sin(t * 3 + e.seed)) * 0.5);
+      ctx.fillStyle = `rgba(255,${150 + Math.floor(e.seed) % 60},60,${a})`;
+      ctx.beginPath();
+      ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    const cx = w / 2;
+    const cyTitle = h * 0.42;
+
+    // Resplandor cálido detrás del título (bloom de menú).
+    const flick = 0.85 + Math.sin(t * 4) * 0.05 + Math.sin(t * 11) * 0.03;
+    const glow = ctx.createRadialGradient(cx, cyTitle, 10, cx, cyTitle, 360);
+    glow.addColorStop(0, `rgba(255,170,70,${0.22 * flick})`);
+    glow.addColorStop(1, "rgba(255,170,70,0)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, w, h);
+
+    // Título.
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(255,160,60,0.9)";
+    ctx.shadowBlur = 28 * flick;
+    ctx.fillStyle = "#ffe6b0";
+    ctx.font = "bold 64px Georgia, 'Times New Roman', serif";
+    ctx.fillText("PORTADOR DE LUZ", cx, cyTitle);
+    ctx.restore();
+
+    // Subtítulo / enganche.
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(220,210,225,0.65)";
+    ctx.font = "italic 19px Georgia, serif";
+    ctx.fillText("El Sol murió. Alguien tiene que bajar a reencenderlo.", cx, cyTitle + 46);
+    ctx.restore();
+
+    // Llamado a la acción pulsante.
+    const pulse = 0.5 + Math.abs(Math.sin(t * 1.6)) * 0.5;
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.fillStyle = `rgba(255,210,140,${pulse})`;
+    ctx.font = "15px 'Courier New', monospace";
+    ctx.fillText("▸  CLIC O ENTER PARA DESCENDER  ◂", cx, h * 0.72);
+    ctx.restore();
+
+    // Viñeta.
+    const vig = ctx.createRadialGradient(cx, h / 2, Math.min(w, h) * 0.3, cx, h / 2, Math.max(w, h) * 0.7);
+    vig.addColorStop(0, "rgba(0,0,0,0)");
+    vig.addColorStop(1, "rgba(0,0,0,0.7)");
+    ctx.fillStyle = vig;
+    ctx.fillRect(0, 0, w, h);
   }
 
   // Pinta todas las fuentes de luz en el buffer emisivo y lo compone con "lighter".

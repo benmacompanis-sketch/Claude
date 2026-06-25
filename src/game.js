@@ -2,6 +2,7 @@
 (() => {
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
+  const hud = document.getElementById("hud");
 
   let camera, dungeon, player, renderer, particles;
   let enemies = [];
@@ -9,6 +10,7 @@
   let width = 0, height = 0;
   let depth = 1;
   let time = 0;
+  let state = "title"; // "title" | "playing"
 
   function resize() {
     width = window.innerWidth;
@@ -52,12 +54,16 @@
     resize();
     renderer = new Renderer(ctx);
     renderer.resize(width, height);
-    buildLevel();
+    buildLevel(); // listo en memoria; la pantalla de título se muestra primero
+    if (hud) hud.style.display = "none"; // oculto en el título
   }
 
-  function restart() {
+  // Empieza (o reinicia) una partida desde el principio.
+  function startGame() {
     depth = 1;
     buildLevel(65);
+    state = "playing";
+    if (hud) hud.style.display = "block";
   }
 
   let last = performance.now();
@@ -72,7 +78,7 @@
   }
 
   function update(dt) {
-    if (player.dead) return;
+    if (state !== "playing" || player.dead) return;
 
     // Apuntado: ángulo del jugador hacia el mouse (en coords de mundo).
     const mWorldX = Input.mouse.x + camera.offsetX;
@@ -139,6 +145,10 @@
   }
 
   function render() {
+    if (state === "title") {
+      renderer.drawTitle(time, width, height);
+      return;
+    }
     renderer.clear(width, height);
     renderer.drawDungeon(dungeon, camera);
     renderer.drawBraziers(dungeon, camera, time);
@@ -154,8 +164,20 @@
   }
 
   window.addEventListener("resize", resize);
+
+  function confirmInput() {
+    if (state === "title") { startGame(); return; }
+    if (state === "playing" && player.dead) { startGame(); }
+  }
   window.addEventListener("keydown", (e) => {
-    if (player && player.dead && (e.code === "Enter" || e.code === "Space")) restart();
+    if (e.code === "Enter" || e.code === "Space") confirmInput();
+  });
+  window.addEventListener("mousedown", () => {
+    // En título o en muerte, el click avanza; durante el juego es la espada.
+    if (state === "title" || (state === "playing" && player.dead)) {
+      confirmInput();
+      Input.consumeAttack(); // evitar que ese mismo click dispare un espadazo
+    }
   });
 
   init();
