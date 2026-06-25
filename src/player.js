@@ -12,9 +12,46 @@ class Player {
     this.facing = 1;         // 1 derecha, -1 izquierda (para futura animación)
     // "bob": leve balanceo al caminar, puro game feel.
     this.bob = 0;
+
+    // --- LUZ = VIDA (la antorcha) ---
+    this.torch = 65;         // 0..100, tu llama. Si llega a 0, te apagás.
+    this.torchMax = 100;
+    this.drainRate = 0.9;    // luz/seg que se consume solo por existir
+    this.dead = false;
+    this.hurtFlash = 0;      // feedback visual al recibir daño
+    this.flicker = 0;        // parpadeo de la llama (estético)
+  }
+
+  // Radio de luz actual: cuanta menos antorcha, más se cierra el mundo.
+  get lightRadius() {
+    const t = this.torch / this.torchMax;
+    // 90 px casi a oscuras, hasta ~340 px con la llama llena.
+    const base = 90 + t * 250;
+    // Parpadeo sutil para que la llama "respire".
+    return base + Math.sin(this.flicker) * 6;
+  }
+
+  refuel(amount) {
+    this.torch = Math.min(this.torchMax, this.torch + amount);
+  }
+
+  // Recibir daño = perder luz.
+  damage(amount) {
+    this.torch -= amount;
+    this.hurtFlash = 1;
+    if (this.torch <= 0) {
+      this.torch = 0;
+      this.dead = true;
+    }
   }
 
   update(dt, dungeon) {
+    // La llama se consume siempre.
+    this.torch = Math.max(0, this.torch - this.drainRate * dt);
+    if (this.torch <= 0) this.dead = true;
+    this.flicker += dt * 9;
+    if (this.hurtFlash > 0) this.hurtFlash = Math.max(0, this.hurtFlash - dt * 3);
+
     const dir = Input.moveVector();
 
     // Aceleración hacia la dirección pedida.
