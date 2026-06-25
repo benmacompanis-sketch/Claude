@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dungeon Crawler</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <canvas id="game"></canvas>
+    <div id="hud">
+      <div class="hud-line">WASD / Flechas para moverte</div>
+    </div>
+  </div>
+
+  <!-- Orden importa: utilidades primero, game loop al final -->
+  <script src="src/input.js"></script>
+  <script src="src/camera.js"></script>
+  <script src="src/dungeon.js"></script>
+  <script src="src/player.js"></script>
+  <script src="src/renderer.js"></script>
+  <script src="src/game.js"></script>
+</body>
+</html>
