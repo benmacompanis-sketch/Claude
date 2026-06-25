@@ -14,26 +14,76 @@ class Renderer {
     this.glow.height = Math.max(1, Math.floor(h / 2));
   }
 
-  // Pantalla de título: brasas que ascienden, título con resplandor y enganche.
+  // Pantalla de título: una ESCENA, no un slide de texto.
+  // El Portador encapuchado sostiene su antorcha en la oscuridad; la llama
+  // es la única fuente de luz e ilumina el título por encima.
   drawTitle(time, w, h) {
     const ctx = this.ctx;
     const t = time / 1000;
+    const cx = w / 2;
+    const flick = 0.82 + Math.sin(t * 7) * 0.06 + Math.sin(t * 17) * 0.04 + Math.sin(t * 31) * 0.02;
 
-    // Fondo: degradé negro-cálido muy sutil.
-    const bg = ctx.createLinearGradient(0, 0, 0, h);
-    bg.addColorStop(0, "#0a0608");
-    bg.addColorStop(1, "#05050a");
-    ctx.fillStyle = bg;
+    // --- Fondo: profundidad de un pozo, no un degradé plano ---
+    ctx.fillStyle = "#04040a";
+    ctx.fillRect(0, 0, w, h);
+    // Pilares lejanos apenas insinuados a los lados (encuadre).
+    ctx.fillStyle = "rgba(10,10,18,0.9)";
+    ctx.fillRect(0, 0, w * 0.13, h);
+    ctx.fillRect(w * 0.87, 0, w * 0.13, h);
+
+    // Posición de la antorcha (la fuente de luz de toda la escena).
+    const baseY = h * 0.84;
+    const torchX = cx + 30;
+    const torchY = baseY - 168;
+
+    // --- Charco de luz cálida en el piso de piedra ---
+    const pool = ctx.createRadialGradient(cx, baseY + 6, 10, cx, baseY + 6, 280);
+    pool.addColorStop(0, `rgba(120,70,30,${0.5 * flick})`);
+    pool.addColorStop(1, "rgba(120,70,30,0)");
+    ctx.fillStyle = pool;
+    ctx.beginPath();
+    ctx.ellipse(cx, baseY + 10, 300, 90, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Grandes lajas de piedra sugeridas con líneas tenues bajo la luz.
+    ctx.strokeStyle = "rgba(180,120,70,0.06)";
+    ctx.lineWidth = 1;
+    for (let i = -2; i <= 2; i++) {
+      ctx.beginPath();
+      ctx.moveTo(cx + i * 70, baseY - 10);
+      ctx.lineTo(cx + i * 130, baseY + 70);
+      ctx.stroke();
+    }
+
+    // --- Resplandor de la antorcha (motiva la luz del título) ---
+    const glow = ctx.createRadialGradient(torchX, torchY, 8, torchX, torchY, 520);
+    glow.addColorStop(0, `rgba(255,180,80,${0.32 * flick})`);
+    glow.addColorStop(0.5, `rgba(255,150,60,${0.10 * flick})`);
+    glow.addColorStop(1, "rgba(255,150,60,0)");
+    ctx.fillStyle = glow;
     ctx.fillRect(0, 0, w, h);
 
-    // Brasas: nacen abajo y suben, parpadeando.
-    if (this.titleEmbers.length < 60 && Math.random() < 0.4) {
+    // Sombra larga del Portador, proyectada lejos de la llama (hacia abajo-izq).
+    ctx.save();
+    ctx.translate(cx - 8, baseY + 4);
+    ctx.rotate(0.5);
+    ctx.fillStyle = "rgba(0,0,0,0.45)";
+    ctx.beginPath();
+    ctx.ellipse(0, 80, 34, 150, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // --- El Portador (silueta con borde cálido) ---
+    this._drawHooded(cx, baseY, torchX, torchY, flick, t);
+
+    // --- Brasas que ascienden desde la llama y el piso ---
+    if (this.titleEmbers.length < 50 && Math.random() < 0.5) {
+      const fromFlame = Math.random() < 0.5;
       this.titleEmbers.push({
-        x: Math.random() * w,
-        y: h + 10,
-        vy: 12 + Math.random() * 26,
-        vx: (Math.random() - 0.5) * 10,
-        r: 1 + Math.random() * 2.2,
+        x: fromFlame ? torchX + (Math.random() - 0.5) * 12 : Math.random() * w,
+        y: fromFlame ? torchY : h + 10,
+        vy: 16 + Math.random() * 30,
+        r: 0.8 + Math.random() * 1.8,
         life: 1,
         seed: Math.random() * 100,
       });
@@ -41,60 +91,178 @@ class Renderer {
     for (let i = this.titleEmbers.length - 1; i >= 0; i--) {
       const e = this.titleEmbers[i];
       e.y -= e.vy * 0.016;
-      e.x += Math.sin(t + e.seed) * 0.4;
-      e.life -= 0.0028;
+      e.x += Math.sin(t * 1.3 + e.seed) * 0.5;
+      e.life -= 0.0026;
       if (e.life <= 0 || e.y < -10) { this.titleEmbers.splice(i, 1); continue; }
-      const a = e.life * (0.5 + Math.abs(Math.sin(t * 3 + e.seed)) * 0.5);
-      ctx.fillStyle = `rgba(255,${150 + Math.floor(e.seed) % 60},60,${a})`;
+      const a = e.life * (0.4 + Math.abs(Math.sin(t * 3 + e.seed)) * 0.6);
+      ctx.fillStyle = `rgba(255,${160 + Math.floor(e.seed) % 60},70,${a})`;
       ctx.beginPath();
       ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    const cx = w / 2;
-    const cyTitle = h * 0.42;
-
-    // Resplandor cálido detrás del título (bloom de menú).
-    const flick = 0.85 + Math.sin(t * 4) * 0.05 + Math.sin(t * 11) * 0.03;
-    const glow = ctx.createRadialGradient(cx, cyTitle, 10, cx, cyTitle, 360);
-    glow.addColorStop(0, `rgba(255,170,70,${0.22 * flick})`);
-    glow.addColorStop(1, "rgba(255,170,70,0)");
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, w, h);
-
-    // Título.
+    // --- Título tratado como logo (grabado + espaciado + ornamento) ---
+    const cyTitle = h * 0.30;
     ctx.save();
     ctx.textAlign = "center";
-    ctx.shadowColor = "rgba(255,160,60,0.9)";
-    ctx.shadowBlur = 28 * flick;
-    ctx.fillStyle = "#ffe6b0";
-    ctx.font = "bold 64px Georgia, 'Times New Roman', serif";
+    if ("letterSpacing" in ctx) ctx.letterSpacing = "10px";
+    // Sombra grabada (oscura, desplazada hacia abajo).
+    ctx.fillStyle = "rgba(0,0,0,0.6)";
+    ctx.font = "600 58px Georgia, 'Times New Roman', serif";
+    ctx.fillText("PORTADOR DE LUZ", cx + 2, cyTitle + 3);
+    // Cara cálida con brillo.
+    ctx.shadowColor = "rgba(255,150,50,0.7)";
+    ctx.shadowBlur = 24 * flick;
+    const tg = ctx.createLinearGradient(0, cyTitle - 40, 0, cyTitle + 10);
+    tg.addColorStop(0, "#fff1cf");
+    tg.addColorStop(1, "#e8a858");
+    ctx.fillStyle = tg;
     ctx.fillText("PORTADOR DE LUZ", cx, cyTitle);
     ctx.restore();
 
-    // Subtítulo / enganche.
+    // Ornamento: regla fina con un rombo al centro.
     ctx.save();
-    ctx.textAlign = "center";
-    ctx.fillStyle = "rgba(220,210,225,0.65)";
-    ctx.font = "italic 19px Georgia, serif";
-    ctx.fillText("El Sol murió. Alguien tiene que bajar a reencenderlo.", cx, cyTitle + 46);
+    ctx.strokeStyle = "rgba(210,160,90,0.4)";
+    ctx.fillStyle = "rgba(230,180,110,0.55)";
+    ctx.lineWidth = 1;
+    const ry = cyTitle + 30, rw = 150;
+    ctx.beginPath(); ctx.moveTo(cx - rw, ry); ctx.lineTo(cx - 14, ry); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx + 14, ry); ctx.lineTo(cx + rw, ry); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(cx, ry - 5); ctx.lineTo(cx + 5, ry); ctx.lineTo(cx, ry + 5); ctx.lineTo(cx - 5, ry);
+    ctx.closePath(); ctx.fill();
     ctx.restore();
 
-    // Llamado a la acción pulsante.
-    const pulse = 0.5 + Math.abs(Math.sin(t * 1.6)) * 0.5;
+    // Enganche.
     ctx.save();
     ctx.textAlign = "center";
-    ctx.fillStyle = `rgba(255,210,140,${pulse})`;
-    ctx.font = "15px 'Courier New', monospace";
-    ctx.fillText("▸  CLIC O ENTER PARA DESCENDER  ◂", cx, h * 0.72);
+    ctx.fillStyle = "rgba(210,200,215,0.6)";
+    ctx.font = "italic 18px Georgia, serif";
+    ctx.fillText("El Sol murió. Alguien tiene que bajar a reencenderlo.", cx, cyTitle + 58);
     ctx.restore();
 
-    // Viñeta.
-    const vig = ctx.createRadialGradient(cx, h / 2, Math.min(w, h) * 0.3, cx, h / 2, Math.max(w, h) * 0.7);
+    // Llamado a la acción pulsante (abajo de todo, discreto).
+    const pulse = 0.45 + Math.abs(Math.sin(t * 1.6)) * 0.55;
+    ctx.save();
+    ctx.textAlign = "center";
+    if ("letterSpacing" in ctx) ctx.letterSpacing = "4px";
+    ctx.fillStyle = `rgba(255,205,135,${pulse})`;
+    ctx.font = "13px 'Courier New', monospace";
+    ctx.fillText("CLIC O ENTER PARA DESCENDER", cx, h * 0.93);
+    ctx.restore();
+
+    // --- Grano de textura (mata el look digital plano) ---
+    this._drawGrain(w, h);
+
+    // Viñeta envolvente.
+    const vig = ctx.createRadialGradient(cx, h * 0.55, Math.min(w, h) * 0.25, cx, h * 0.55, Math.max(w, h) * 0.72);
     vig.addColorStop(0, "rgba(0,0,0,0)");
-    vig.addColorStop(1, "rgba(0,0,0,0.7)");
+    vig.addColorStop(1, "rgba(0,0,0,0.78)");
     ctx.fillStyle = vig;
     ctx.fillRect(0, 0, w, h);
+  }
+
+  // Silueta del Portador encapuchado con antorcha y borde de luz cálido.
+  _drawHooded(cx, baseY, torchX, torchY, flick, t) {
+    const ctx = this.ctx;
+    const sway = Math.sin(t * 1.1) * 1.5;
+
+    ctx.save();
+    ctx.translate(sway, 0);
+
+    // Cuerpo/túnica (silueta casi negra).
+    ctx.fillStyle = "#070608";
+    ctx.beginPath();
+    ctx.moveTo(cx - 40, baseY);
+    ctx.quadraticCurveTo(cx - 30, baseY - 70, cx - 20, baseY - 112);
+    ctx.quadraticCurveTo(cx - 16, baseY - 128, cx, baseY - 132);   // hombro izq -> capucha
+    ctx.quadraticCurveTo(cx + 16, baseY - 128, cx + 20, baseY - 112);
+    ctx.quadraticCurveTo(cx + 30, baseY - 70, cx + 40, baseY);
+    // Dobladillo ondulado.
+    ctx.quadraticCurveTo(cx + 20, baseY + 8, cx, baseY + 3);
+    ctx.quadraticCurveTo(cx - 20, baseY + 8, cx - 40, baseY);
+    ctx.closePath();
+    ctx.fill();
+
+    // Capucha (punta hacia adelante).
+    ctx.beginPath();
+    ctx.moveTo(cx - 18, baseY - 120);
+    ctx.quadraticCurveTo(cx, baseY - 150, cx + 16, baseY - 124);
+    ctx.quadraticCurveTo(cx + 6, baseY - 110, cx - 18, baseY - 120);
+    ctx.closePath();
+    ctx.fill();
+
+    // Brazo/manga que sostiene la antorcha (hacia arriba-derecha).
+    ctx.lineWidth = 11;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#070608";
+    ctx.beginPath();
+    ctx.moveTo(cx + 12, baseY - 96);
+    ctx.lineTo(torchX - 2, torchY + 22);
+    ctx.stroke();
+
+    // Borde de luz cálido en el lado de la llama (rim light = se ve "pro").
+    ctx.lineWidth = 1.6;
+    ctx.strokeStyle = `rgba(255,170,90,${0.5 * flick})`;
+    ctx.beginPath();
+    ctx.moveTo(cx + 20, baseY - 112);
+    ctx.quadraticCurveTo(cx + 30, baseY - 70, cx + 40, baseY);
+    ctx.stroke();
+    // Rim en la capucha.
+    ctx.beginPath();
+    ctx.moveTo(cx + 16, baseY - 124);
+    ctx.quadraticCurveTo(cx + 8, baseY - 140, cx, baseY - 148);
+    ctx.stroke();
+
+    // Mango de la antorcha.
+    ctx.strokeStyle = "#1a120a";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(torchX - 4, torchY + 26);
+    ctx.lineTo(torchX, torchY + 4);
+    ctx.stroke();
+
+    // Llama (capas que parpadean).
+    const fh = 14 * flick;
+    let fg = ctx.createRadialGradient(torchX, torchY, 1, torchX, torchY, 16);
+    fg.addColorStop(0, "rgba(255,245,210,1)");
+    fg.addColorStop(0.5, "rgba(255,170,60,0.9)");
+    fg.addColorStop(1, "rgba(255,120,30,0)");
+    ctx.fillStyle = fg;
+    ctx.beginPath();
+    ctx.ellipse(torchX, torchY - 2, 9, fh, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(255,250,230,0.95)";
+    ctx.beginPath();
+    ctx.ellipse(torchX, torchY, 3.5, fh * 0.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  // Grano sutil cacheado para romper el plano digital.
+  _drawGrain(w, h) {
+    const ctx = this.ctx;
+    if (!this._grain) {
+      const g = document.createElement("canvas");
+      g.width = g.height = 128;
+      const gc = g.getContext("2d");
+      const img = gc.createImageData(128, 128);
+      for (let i = 0; i < img.data.length; i += 4) {
+        const v = 120 + Math.floor(Math.random() * 135);
+        img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+        img.data[i + 3] = 255;
+      }
+      gc.putImageData(img, 0, 0);
+      this._grain = g;
+    }
+    ctx.save();
+    ctx.globalCompositeOperation = "overlay";
+    ctx.globalAlpha = 0.05;
+    const pat = ctx.createPattern(this._grain, "repeat");
+    ctx.fillStyle = pat;
+    ctx.fillRect(0, 0, w, h);
+    ctx.restore();
   }
 
   // Pinta todas las fuentes de luz en el buffer emisivo y lo compone con "lighter".
