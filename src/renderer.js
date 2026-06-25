@@ -23,18 +23,25 @@ class Renderer {
     const cx = w / 2;
     const flick = 0.82 + Math.sin(t * 7) * 0.06 + Math.sin(t * 17) * 0.04 + Math.sin(t * 31) * 0.02;
 
-    // --- Fondo: profundidad de un pozo, no un degradé plano ---
+    // Si hay portada pintada, va de fondo a pantalla completa; si no, escena por código.
+    const art = Assets.get("titleArt");
     ctx.fillStyle = "#04040a";
     ctx.fillRect(0, 0, w, h);
-    // Pilares lejanos apenas insinuados a los lados (encuadre).
-    ctx.fillStyle = "rgba(10,10,18,0.9)";
-    ctx.fillRect(0, 0, w * 0.13, h);
-    ctx.fillRect(w * 0.87, 0, w * 0.13, h);
+    if (art) {
+      this._drawCover(art, w, h);
+    } else {
+      // Pilares lejanos apenas insinuados a los lados (encuadre).
+      ctx.fillStyle = "rgba(10,10,18,0.9)";
+      ctx.fillRect(0, 0, w * 0.13, h);
+      ctx.fillRect(w * 0.87, 0, w * 0.13, h);
+    }
 
     // Posición de la antorcha (la fuente de luz de toda la escena).
     const baseY = h * 0.84;
     const torchX = cx + 30;
     const torchY = baseY - 168;
+
+    if (!art) {
 
     // --- Charco de luz cálida en el piso de piedra ---
     const pool = ctx.createRadialGradient(cx, baseY + 6, 10, cx, baseY + 6, 280);
@@ -75,6 +82,7 @@ class Renderer {
 
     // --- El Portador (silueta con borde cálido) ---
     this._drawHooded(cx, baseY, torchX, torchY, flick, t);
+    } // fin de la escena por código (sólo si no hay portada pintada)
 
     // --- Brasas que ascienden desde la llama y el piso ---
     if (this.titleEmbers.length < 50 && Math.random() < 0.5) {
@@ -265,6 +273,20 @@ class Renderer {
     ctx.restore();
   }
 
+  // Dibuja una imagen "cover" (llena la pantalla recortando, sin deformar).
+  _drawCover(img, w, h) {
+    const ar = img.width / img.height;
+    const sr = w / h;
+    let dw, dh;
+    if (sr > ar) { dw = w; dh = w / ar; } else { dh = h; dw = h * ar; }
+    this.ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+  }
+
+  // Dibuja un sprite centrado en (x,y) a tamaño dado (pixel-perfect).
+  _sprite(img, x, y, w, h) {
+    this.ctx.drawImage(img, Math.round(x - w / 2), Math.round(y - h / 2), w, h);
+  }
+
   // Pinta todas las fuentes de luz en el buffer emisivo y lo compone con "lighter".
   drawBloom(player, dungeon, particles, enemies, cam, w, h) {
     const g = this.gctx;
@@ -359,6 +381,8 @@ class Renderer {
 
   _drawFloor(sx, sy, n) {
     const ctx = this.ctx;
+    const img = Assets.get("floor");
+    if (img) { ctx.drawImage(img, sx, sy, TILE, TILE); return; }
     // Color base con leve variación por tile.
     const shade = 26 + Math.floor(n * 10);
     ctx.fillStyle = `rgb(${shade}, ${shade}, ${shade + 8})`;
@@ -371,6 +395,8 @@ class Renderer {
 
   _drawWall(sx, sy, dungeon, c, r, ox, oy) {
     const ctx = this.ctx;
+    const img = Assets.get("wall");
+    if (img) { ctx.drawImage(img, sx, sy, TILE, TILE); return; }
     // Cuerpo de la pared.
     ctx.fillStyle = "#23232f";
     ctx.fillRect(sx, sy, TILE, TILE);
@@ -423,6 +449,9 @@ class Renderer {
       ctx.fillStyle = glow;
       ctx.fillRect(bx - 80, by - 80, 160, 160);
 
+      const img = Assets.get("brazier");
+      if (img) { this._sprite(img, bx, by - 8, 48, 96); continue; }
+
       // Pie del brasero.
       ctx.fillStyle = "#2a2218";
       ctx.fillRect(bx - 6, by + 2, 12, 12);
@@ -449,6 +478,9 @@ class Renderer {
     ctx.beginPath();
     ctx.ellipse(px, py + player.radius - 2, player.radius * 0.9, player.radius * 0.45, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    const pimg = Assets.get("player");
+    if (pimg) { this._sprite(pimg, px, py + bob, 48, 48); return; }
 
     // Cuerpo con gradiente cálido: sos quien lleva el fuego (núcleo blanco-dorado).
     const grad = ctx.createRadialGradient(
@@ -482,6 +514,10 @@ class Renderer {
       const ey = Math.round(e.y - cam.offsetY);
       const wob = Math.sin(e.wobble) * 2;
 
+      const simg = Assets.get("shadow");
+      if (simg) {
+      this._sprite(simg, ex, ey + wob, 48, 48);
+      } else {
       // Aura de humo: más densa en penumbra, se "quema" bajo la luz (exposure).
       const aura = ctx.createRadialGradient(ex, ey + wob, 2, ex, ey + wob, e.radius + 10);
       aura.addColorStop(0, `rgba(20,10,30,${0.85 - e.exposure * 0.3})`);
@@ -508,6 +544,7 @@ class Renderer {
       ctx.arc(ex - 5, ey - 3 + wob, 2.4, 0, Math.PI * 2);
       ctx.arc(ex + 5, ey - 3 + wob, 2.4, 0, Math.PI * 2);
       ctx.fill();
+      }
 
       // Barra de "luz absorbida" (vida) cuando está dañada.
       if (e.hp < e.maxHp) {

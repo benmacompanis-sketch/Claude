@@ -52,6 +52,7 @@
 
   function init() {
     resize();
+    Assets.load();
     renderer = new Renderer(ctx);
     renderer.resize(width, height);
     buildLevel(); // listo en memoria; la pantalla de título se muestra primero
