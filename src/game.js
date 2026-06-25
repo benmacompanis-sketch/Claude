@@ -16,6 +16,7 @@
     canvas.width = width;
     canvas.height = height;
     if (camera) camera.resize(width, height);
+    if (renderer) renderer.resize(width, height);
   }
 
   function buildLevel(keepTorch) {
@@ -50,6 +51,7 @@
   function init() {
     resize();
     renderer = new Renderer(ctx);
+    renderer.resize(width, height);
     buildLevel();
   }
 
@@ -145,6 +147,7 @@
     renderer.drawSword(player, camera);
     particles.draw(ctx, camera);
     renderer.drawLighting(player, camera, dungeon, width, height);
+    renderer.drawBloom(player, dungeon, particles, enemies, camera, width, height);
     renderer.drawHUD(player, depth, width, height);
     if (memory) renderer.drawMemory(memory, width, height);
     if (player.dead) renderer.drawDeath(width, height);

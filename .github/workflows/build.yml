@@ -1,0 +1,42 @@
+name: Construir instaladores
+
+# Genera los instaladores de escritorio para Windows, macOS y Linux.
+# Se dispara al pushear un tag (ej: v0.1.0) o manualmente desde la pestaña Actions.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Construir instalador
+        run: npm run dist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Subir artefactos
+        uses: actions/upload-artifact@v4
+        with:
+          name: portador-de-luz-${{ matrix.os }}
+          path: |
+            dist/*.exe
+            dist/*.dmg
+            dist/*.AppImage
+          if-no-files-found: ignore

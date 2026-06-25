@@ -2,6 +2,73 @@
 class Renderer {
   constructor(ctx) {
     this.ctx = ctx;
+    // Buffer emisivo para el bloom (se dibuja desenfocado y se compone aditivo).
+    this.glow = document.createElement("canvas");
+    this.gctx = this.glow.getContext("2d");
+  }
+
+  resize(w, h) {
+    // El bloom se renderiza a media resolución: más barato y más "suave".
+    this.glow.width = Math.max(1, Math.floor(w / 2));
+    this.glow.height = Math.max(1, Math.floor(h / 2));
+  }
+
+  // Pinta todas las fuentes de luz en el buffer emisivo y lo compone con "lighter".
+  drawBloom(player, dungeon, particles, enemies, cam, w, h) {
+    const g = this.gctx;
+    const s = 0.5; // escala del buffer
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.clearRect(0, 0, this.glow.width, this.glow.height);
+    g.save();
+    g.scale(s, s);
+
+    const ox = cam.offsetX, oy = cam.offsetY;
+
+    // Halo cálido del jugador (su llama).
+    const px = player.x - ox, py = player.y - oy;
+    const r = player.lightRadius * 0.85;
+    radial(g, px, py, r, "rgba(255,180,90,0.55)");
+    radial(g, px, py, player.radius * 1.6, "rgba(255,240,200,0.9)");
+
+    // Braseros.
+    for (const b of dungeon.braziers) {
+      if (b.taken || b.donated) continue;
+      radial(g, b.x - ox, b.y - oy, 90, "rgba(255,150,50,0.7)");
+    }
+
+    // Ojos fríos de las Sombras (acento que contrasta con tu calor).
+    for (const e of enemies) {
+      radial(g, e.x - ox, e.y - oy, 22 + e.exposure * 20, "rgba(150,180,255,0.5)");
+    }
+
+    // Espada.
+    if (player.swingTimer > 0) {
+      const t = player.swingTimer / player.swingDur;
+      const a = player.swingAngle;
+      const sx = px + Math.cos(a) * player.swordRange * 0.6;
+      const sy = py + Math.sin(a) * player.swordRange * 0.6;
+      radial(g, sx, sy, 70 * t, "rgba(255,235,170,0.8)");
+    }
+
+    // Partículas brillantes.
+    for (const p of particles.list) {
+      const a = Math.max(0, p.life / p.maxLife);
+      radial(g, p.x - ox, p.y - oy, 10 * a, `rgba(${p.color},${a * 0.5})`);
+    }
+
+    g.restore();
+
+    // Componer el buffer (escalado y suavizado por el upscale) en modo aditivo.
+    const ctx = this.ctx;
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    ctx.imageSmoothingEnabled = true;
+    ctx.globalAlpha = 0.9;
+    ctx.drawImage(this.glow, 0, 0, this.glow.width, this.glow.height, 0, 0, w, h);
+    // Segunda pasada más amplia para un bloom más jugoso.
+    ctx.globalAlpha = 0.5;
+    ctx.drawImage(this.glow, 0, 0, this.glow.width, this.glow.height, -8, -8, w + 16, h + 16);
+    ctx.restore();
   }
 
   clear(w, h) {
@@ -131,27 +198,28 @@ class Renderer {
     ctx.ellipse(px, py + player.radius - 2, player.radius * 0.9, player.radius * 0.45, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // Cuerpo con gradiente (volumen).
+    // Cuerpo con gradiente cálido: sos quien lleva el fuego (núcleo blanco-dorado).
     const grad = ctx.createRadialGradient(
-      px - 5, py - 6 + bob, 4,
+      px - 4, py - 6 + bob, 3,
       px, py + bob, player.radius
     );
-    grad.addColorStop(0, "#7ad7ff");
-    grad.addColorStop(1, "#2a7fb8");
+    grad.addColorStop(0, "#fff3d0");
+    grad.addColorStop(0.5, "#ffc24d");
+    grad.addColorStop(1, "#c2641a");
     ctx.fillStyle = grad;
     ctx.beginPath();
     ctx.arc(px, py + bob, player.radius, 0, Math.PI * 2);
     ctx.fill();
 
-    // Contorno.
-    ctx.strokeStyle = "rgba(0,0,0,0.5)";
+    // Contorno oscuro para recortar la silueta.
+    ctx.strokeStyle = "rgba(20,8,0,0.6)";
     ctx.lineWidth = 2;
     ctx.stroke();
 
     // "Ojo" / indicador de hacia dónde mira.
-    ctx.fillStyle = "#0a0a14";
+    ctx.fillStyle = "rgba(30,12,0,0.85)";
     ctx.beginPath();
-    ctx.arc(px + player.facing * 5, py - 2 + bob, 3.5, 0, Math.PI * 2);
+    ctx.arc(px + player.facing * 5, py - 2 + bob, 3.2, 0, Math.PI * 2);
     ctx.fill();
   }
 
@@ -169,11 +237,11 @@ class Renderer {
       ctx.fillStyle = aura;
       ctx.fillRect(ex - 30, ey - 30, 60, 60);
 
-      // Cuerpo: negro humo que vira a violeta pálido al ser revelado.
+      // Cuerpo: negro humo que vira a azul espectral frío al ser revelado.
       const reveal = e.exposure;
-      const cr = Math.floor(14 + reveal * 130);
-      const cg = Math.floor(8 + reveal * 70);
-      const cb = Math.floor(22 + reveal * 120);
+      const cr = Math.floor(12 + reveal * 80);
+      const cg = Math.floor(14 + reveal * 110);
+      const cb = Math.floor(28 + reveal * 150);
       ctx.fillStyle = e.hurtFlash > 0.3
         ? "rgba(255,255,255,0.9)"
         : `rgb(${cr},${cg},${cb})`;
@@ -336,4 +404,16 @@ class Renderer {
     ctx.fillRect(0, 0, w, h);
     ctx.restore();
   }
+}
+
+// Dibuja un disco de luz con caída radial (usado por el bloom).
+function radial(ctx, x, y, r, color) {
+  if (r <= 0) return;
+  const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+  g.addColorStop(0, color);
+  g.addColorStop(1, color.replace(/[\d.]+\)$/, "0)"));
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fill();
 }
