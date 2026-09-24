@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050">
+<!-- Imagen PROVISIONAL generada por scripts/generar-provisionales.mjs. Reemplazar por una foto real. -->
+<defs>
+<filter id="n1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.09 0.0035" numOctaves="3" seed="21" stitchTiles="noStitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.353  0 0 0 0 0.298  0 0 0 0 0.227  1.4 0 0 0 -0.45"/>
+<feComponentTransfer><feFuncA type="linear" slope="0.35200000000000004" intercept="0"/></feComponentTransfer></filter>
+<filter id="n2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.6 0.02" numOctaves="1" seed="23" stitchTiles="noStitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.475  0 0 0 0 0.396  0 0 0 0 0.302  1.4 0 0 0 -0.45"/>
+<feComponentTransfer><feFuncA type="linear" slope="0.15400000000000003" intercept="0"/></feComponentTransfer></filter>
+<linearGradient id="lg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d3b898" stop-opacity="1"/><stop offset="0.5" stop-color="#C9A881" stop-opacity="1"/><stop offset="1" stop-color="#b19472" stop-opacity="1"/></linearGradient>
+<filter id="s4" x="-40%" y="-40%" width="190%" height="190%" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" stdDeviation="3.6"/><feOffset dx="2.2" dy="3.2" result="o1"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.26"/><feComposite in2="o1" operator="in" result="s1"/>
+<feGaussianBlur in="SourceAlpha" stdDeviation="1"/><feOffset dx="0.48" dy="0.72" result="o2"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.34"/><feComposite in2="o2" operator="in" result="s2"/>
+<feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<radialGradient id="rg5" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#dfbba5" stop-opacity="1"/><stop offset="0.55" stop-color="#C4845C" stop-opacity="1"/><stop offset="1" stop-color="#7f563c" stop-opacity="1"/></radialGradient>
+<filter id="s6" x="-40%" y="-40%" width="190%" height="190%" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" stdDeviation="16.2"/><feOffset dx="9.9" dy="14.4" result="o1"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.26"/><feComposite in2="o1" operator="in" result="s1"/>
+<feGaussianBlur in="SourceAlpha" stdDeviation="2.5200000000000005"/><feOffset dx="2.16" dy="3.2399999999999998" result="o2"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.34"/><feComposite in2="o2" operator="in" result="s2"/>
+<feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<radialGradient id="rg7" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#d0d8cc" stop-opacity="1"/><stop offset="0.55" stop-color="#A9B8A3" stop-opacity="1"/><stop offset="1" stop-color="#6e786a" stop-opacity="1"/></radialGradient>
+<linearGradient id="lg8" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6dbca" stop-opacity="1"/><stop offset="1" stop-color="#d0c4b2" stop-opacity="1"/></linearGradient>
+<filter id="n9" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="2" seed="51" stitchTiles="noStitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.443  0 0 0 0 0.420  0 0 0 0 0.380  1.4 0 0 0 -0.45"/>
+<feComponentTransfer><feFuncA type="linear" slope="0.35200000000000004" intercept="0"/></feComponentTransfer></filter>
+<clipPath id="ct10"><rect x="0" y="0" width="360" height="190" rx="10"/></clipPath>
+<filter id="s11" x="-40%" y="-40%" width="190%" height="190%" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" stdDeviation="7.2"/><feOffset dx="4.4" dy="6.4" result="o1"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.26"/><feComposite in2="o1" operator="in" result="s1"/>
+<feGaussianBlur in="SourceAlpha" stdDeviation="1.12"/><feOffset dx="0.96" dy="1.44" result="o2"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.34"/><feComposite in2="o2" operator="in" result="s2"/>
+<feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="grain12" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.92" numOctaves="2" seed="7" stitchTiles="noStitch"/>
+<feColorMatrix type="saturate" values="0"/>
+<feComponentTransfer><feFuncA type="table" tableValues="0 0.09"/></feComponentTransfer></filter>
+<radialGradient id="rg13" cx="0.5" cy="0.48" r="0.78"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="0.62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2b1d10" stop-opacity="0.16"/></radialGradient>
+</defs>
+<rect x="0" y="0" width="1400" height="1050" fill="url(#lg3)"/>
+<rect x="0" y="0" width="1400" height="1050" filter="url(#n1)"/>
+<rect x="0" y="0" width="1400" height="1050" filter="url(#n2)"/><rect x="232.3" y="0" width="2" height="1050" fill="#8d765a" opacity="0.35"/><rect x="465.7" y="0" width="2" height="1050" fill="#8d765a" opacity="0.35"/><rect x="699" y="0" width="2" height="1050" fill="#8d765a" opacity="0.35"/><rect x="932.3" y="0" width="2" height="1050" fill="#8d765a" opacity="0.35"/><rect x="1165.7" y="0" width="2" height="1050" fill="#8d765a" opacity="0.35"/>
+<rect x="160" y="140" width="560" height="780" rx="24" fill="#C9D3C3" filter="url(#s4)"/>
+<circle cx="980" cy="360" r="120" fill="url(#rg5)" filter="url(#s6)"/>
+<path d="M866,336 C944,396 1016,396 1094,336" fill="none" stroke="#9d6a4a" stroke-width="4.8" opacity="0.5"/>
+<circle cx="1160" cy="600" r="80" fill="url(#rg7)" filter="url(#s6)"/>
+<path d="M1084,584 C1136,624 1184,624 1236,584" fill="none" stroke="#879382" stroke-width="3.2" opacity="0.5"/>
+<path d="M860,760 C940,640 1080,900 1200,800 S1300,700 1340,900" fill="none" stroke="#5D7663" stroke-width="26" stroke-linecap="round" filter="url(#s4)"/><path d="M860,760 C940,640 1080,900 1200,800 S1300,700 1340,900" fill="none" stroke="#fff" stroke-width="5.2" stroke-linecap="round" opacity="0.18" transform="translate(-2 -3)"/>
+<g transform="translate(250 600) rotate(-6)"><rect x="0" y="0" width="360" height="190" rx="10" fill="url(#lg8)" filter="url(#s11)"/><rect width="360" height="190" clip-path="url(#ct10)" filter="url(#n9)"/>
+<rect x="0" y="152" width="360" height="11.4" fill="#c7bbaa" opacity="0.5"/><rect x="0" y="85.5" width="360" height="9.5" fill="#000" opacity="0.06"/></g>
+<rect width="1400" height="1050" fill="url(#rg13)"/>
+<rect width="1400" height="1050" filter="url(#grain12)" style="mix-blend-mode:multiply"/>
+</svg>

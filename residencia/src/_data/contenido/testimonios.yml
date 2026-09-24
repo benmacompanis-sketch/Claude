@@ -1,0 +1,22 @@
+# TESTIMONIOS.
+# Los actuales son EJEMPLOS y se muestran marcados como tales.
+# Al cargar testimonios reales: pedí autorización por escrito a cada familia,
+# poné "ejemplo: false" y completá nombre y relación.
+
+mostrar: true        # Poné false para ocultar la sección hasta tener testimonios reales.
+
+aviso: "Testimonios de ejemplo: se reemplazarán por testimonios reales, con autorización de cada familia."
+
+items:
+  - texto: "Desde el primer día sentimos que mamá estaba en buenas manos. Nos llaman por cualquier cosa y eso, para nosotros, vale muchísimo."
+    autor: "[Nombre]"
+    relacion: "Hija de una residente"
+    ejemplo: true
+  - texto: "Papá volvió a tener ganas de charlar. Lo vemos más tranquilo, y eso nos tranquiliza a todos."
+    autor: "[Nombre]"
+    relacion: "Hijo de un residente"
+    ejemplo: true
+  - texto: "Lo que más valoramos es el trato: la conocen, saben lo que le gusta y la respetan."
+    autor: "[Nombre]"
+    relacion: "Nieta de una residente"
+    ejemplo: true

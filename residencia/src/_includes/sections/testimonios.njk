@@ -1,0 +1,27 @@
+{#- Testimonios. Los de ejemplo se muestran claramente marcados como tales.
+    Variables: testimoniosTexto (eyebrow, titulo). -#}
+{% from "macros/ui.njk" import encabezado with context %}
+{% set t = contenido.testimonios %}
+{% if t.mostrar and t.items.length %}
+<section class="section section--tint testimonials" aria-labelledby="testimonios-titulo">
+  <div class="container">
+    {{ encabezado(testimoniosTexto.eyebrow, testimoniosTexto.titulo, "", id="testimonios-titulo", clase="section-head--center") }}
+    <div class="testimonials__grid">
+      {%- for item in t.items %}
+      <figure class="quote{% if loop.first %} quote--featured{% endif %}" data-reveal style="--i: {{ loop.index0 }}">
+        {%- if item.ejemplo %}<p class="quote__badge">Testimonio de ejemplo</p>{% endif %}
+        {% if loop.first %}{% icono "quotes", "quote__mark" %}{% endif %}
+        <blockquote class="quote__text"><p>{{ item.texto | texto }}</p></blockquote>
+        <figcaption class="quote__cite">
+          <span class="quote__author">{{ item.autor | texto }}</span>
+          <span class="quote__relation">{{ item.relacion | texto }}</span>
+        </figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+    {%- if t.aviso and (t.items | selectattr("ejemplo") | length) %}
+    <p class="testimonials__note">{% icono "info" %}<span>{{ t.aviso | texto }}</span></p>
+    {%- endif %}
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,62 @@
+# Página NOSOTROS (incluye la sección Equipo, en /nosotros/#equipo).
+
+seo:
+  titulo: "Nosotros · {nombre}"
+  descripcion: "Conocé la historia, la forma de trabajar y el equipo de {nombre}, residencia para adultos mayores en {ciudad}."
+
+encabezado:
+  eyebrow: "Nosotros"
+  titulo: "Una casa pensada para cuidar, y un equipo que elige hacerlo"
+  bajada: "Conocé nuestra historia, cómo entendemos el cuidado y a las personas que acompañan a cada residente."
+  foto: "nosotros/hero"
+  alt: "Pared iluminada por el sol de la mañana, con una planta junto a la ventana"
+
+# Subnavegación de la página.
+indice:
+  - texto: "Historia"
+    ancla: "historia"
+  - texto: "Cómo cuidamos"
+    ancla: "filosofia"
+  - texto: "Equipo"
+    ancla: "equipo"
+
+historia:
+  eyebrow: "Nuestra historia"
+  titulo: "Empezó con una idea simple"
+  texto: |
+    {nombre} nació en [año de fundación] con una idea simple: que las personas mayores pudieran vivir esta etapa en un lugar cálido, cuidado y con trato de familia. [Completar con la historia real: quiénes la fundaron, cómo empezó y cómo fue creciendo.]
+
+    Hoy somos un equipo de [cantidad] personas que comparten esa misma manera de trabajar: cerca de cada residente, atentos a los detalles y en contacto con cada familia.
+  foto: "nosotros/historia"
+  alt: "Fotografía de archivo de la fachada de la residencia"
+  leyenda: "[Foto de archivo: la casa en sus comienzos]"
+  dato:
+    valor: "{anios}"
+    texto: "años acompañando a familias de {ciudad}"
+
+filosofia:
+  eyebrow: "Cómo entendemos el cuidado"
+  titulo: "Cinco ideas que guían nuestro trabajo"
+  bajada: "No son frases para la pared. Son la forma en que queremos que se viva cada día en la casa."
+  principios:
+    - titulo: "Cada persona es única"
+      texto: "Tiene su historia, sus costumbres y su forma de ver las cosas. Cuidar bien empieza por conocerla."
+    - titulo: "El trato humano es lo primero"
+      texto: "Un saludo por el nombre, paciencia para escuchar, tiempo para acompañar. Ahí se nota el cuidado."
+    - titulo: "Respeto y dignidad, siempre"
+      texto: "Cuidamos la intimidad, las decisiones y los tiempos de cada residente."
+    - titulo: "Autonomía en todo lo posible"
+      texto: "Ayudamos en lo que hace falta y alentamos a cada uno a seguir haciendo lo que puede y le gusta."
+    - titulo: "Las familias son parte"
+      texto: "Las escuchamos, las acompañamos y las mantenemos cerca del día a día."
+
+cita:
+  texto: "Queremos que al entrar se sienta olor a casa: a comida recién hecha, a mate, a plantas regadas."
+  autor: "[Nombre y apellido]"
+  cargo: "Dirección"
+
+equipo:
+  eyebrow: "Equipo"
+  titulo: "Las personas que acompañan cada día"
+  bajada: "Detrás de cada día tranquilo hay un equipo que conoce a cada residente por su nombre. Te lo presentamos."
+  nota: "Completar con los datos reales del equipo. No publicar títulos ni matrículas sin verificarlos."

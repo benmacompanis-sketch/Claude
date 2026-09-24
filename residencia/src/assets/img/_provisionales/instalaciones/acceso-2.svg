@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+<!-- Imagen PROVISIONAL generada por scripts/generar-provisionales.mjs. Reemplazar por una foto real. -->
+<defs>
+<linearGradient id="lg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9E0D1" stop-opacity="1"/><stop offset="1" stop-color="#D8CCB8" stop-opacity="1"/></linearGradient>
+<linearGradient id="lg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E3D8C6" stop-opacity="1"/><stop offset="1" stop-color="#F1EADF" stop-opacity="1"/></linearGradient>
+<linearGradient id="lg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9AE8A" stop-opacity="1"/><stop offset="1" stop-color="#B08D66" stop-opacity="1"/></linearGradient>
+<linearGradient id="lg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6F2EA" stop-opacity="1"/><stop offset="1" stop-color="#EDE6DA" stop-opacity="1"/></linearGradient>
+<linearGradient id="lg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFBF1" stop-opacity="1"/><stop offset="1" stop-color="#F7E7C4" stop-opacity="1"/></linearGradient>
+<filter id="b6" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="b7" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="10"/></filter>
+<linearGradient id="lg8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4B791" stop-opacity="1"/><stop offset="1" stop-color="#8E6A48" stop-opacity="1"/></linearGradient>
+<filter id="s9" x="-40%" y="-40%" width="190%" height="190%" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" stdDeviation="7.2"/><feOffset dx="4.4" dy="6.4" result="o1"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.182"/><feComposite in2="o1" operator="in" result="s1"/>
+<feGaussianBlur in="SourceAlpha" stdDeviation="1.12"/><feOffset dx="0.96" dy="1.44" result="o2"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.238"/><feComposite in2="o2" operator="in" result="s2"/>
+<feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<radialGradient id="rg10" cx="0.56" cy="0.46" r="0.7"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#3a2c1f" stop-opacity="0.18"/></radialGradient>
+<filter id="grain11" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.92" numOctaves="2" seed="7" stitchTiles="noStitch"/>
+<feColorMatrix type="saturate" values="0"/>
+<feComponentTransfer><feFuncA type="table" tableValues="0 0.09"/></feComponentTransfer></filter>
+<radialGradient id="rg12" cx="0.5" cy="0.48" r="0.78"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="0.62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2b1d10" stop-opacity="0.16"/></radialGradient>
+</defs>
+<rect width="1600" height="1200" fill="#E8DFD0"/><polygon points="0,0 768,372 768,732 0,1200" fill="url(#lg1)"/><polygon points="1600,0 1024,372 1024,732 1600,1200" fill="url(#lg2)"/><polygon points="0,0 1600,0 1024,372 768,372" fill="url(#lg4)"/><polygon points="0,1200 1600,1200 1024,732 768,732" fill="url(#lg3)"/><rect x="768" y="372" width="256" height="360" fill="#F3ECE0"/><rect x="824.3" y="415.2" width="143.4" height="316.8" fill="url(#lg5)" filter="url(#b6)"/><rect x="824.3" y="415.2" width="143.4" height="316.8" fill="none" stroke="#D4B791" stroke-width="3"/><polygon points="0,1116 768,717.6 768,732 0,1200" fill="#F7F2EA" opacity="0.8"/><polygon points="1600,1116 1024,717.6 1024,732 1600,1200" fill="#F7F2EA" opacity="0.8"/><polygon points="1553.9,165.1 1473.3,202.1 1473.3,711.3 1553.9,732.1" fill="#FFF8E8" opacity="0.95"/><polygon points="1398.5,1162.6 1370.2,1097 441.1,1097 364,1162.6" fill="#FFF3D6" opacity="0.45" filter="url(#b7)"/><polygon points="1392.6,239 1312,276 1312,669.6 1392.6,690.4" fill="#FFF8E8" opacity="0.95"/><polygon points="1253.4,1031.5 1220.2,966 595.2,966 518.1,1031.5" fill="#FFF3D6" opacity="0.45" filter="url(#b7)"/><polygon points="1231.4,313 1150.7,349.9 1150.7,627.9 1231.4,648.8" fill="#FFF8E8" opacity="0.95"/><polygon points="1108.2,900.5 1070.2,835 749.3,835 672.3,900.5" fill="#FFF3D6" opacity="0.45" filter="url(#b7)"/><polygon points="0,728 768,577.8 768,582.8 0,758" fill="url(#lg8)" filter="url(#s9)"/><rect x="76.8" y="727.7" width="9" height="27" fill="#9E9990"/><rect x="268.8" y="686.9" width="6.5" height="19.5" fill="#9E9990"/><rect x="460.8" y="646.1" width="4" height="12" fill="#9E9990"/><rect x="652.8" y="605.3" width="1.5" height="4.5" fill="#9E9990"/><polygon points="192,268.5 284.2,293.7 284.2,1026.8 192,1083" fill="#D4B791" opacity="0.9"/><polygon points="460.8,342 553,367.2 553,863 460.8,919.2" fill="#D4B791" opacity="0.9"/><rect width="1600" height="1200" fill="url(#rg10)"/>
+<rect width="1600" height="1200" fill="url(#rg12)"/>
+<rect width="1600" height="1200" filter="url(#grain11)" style="mix-blend-mode:multiply"/>
+</svg>

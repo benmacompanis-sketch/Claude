@@ -1,0 +1,51 @@
+# Página CONTACTO y textos del formulario.
+
+seo:
+  titulo: "Contacto · {nombre}"
+  descripcion: "Consultá disponibilidad o coordiná una visita a {nombre}, residencia para adultos mayores en {ciudad}. Teléfono, WhatsApp, email, dirección y horarios."
+
+encabezado:
+  eyebrow: "Contacto"
+  titulo: "Hablemos con tranquilidad"
+  bajada: "Contanos qué necesitás. Te respondemos a la brevedad y, si querés, coordinamos una visita para que conozcas la residencia."
+
+canales:
+  titulo: "Otras formas de contactarnos"
+  whatsapp: "La forma más rápida de hablar con nosotros."
+  telefono: "Atención telefónica: {atencion}."
+  email: "Para consultas detalladas o envío de documentación."
+
+formulario:
+  titulo: "Dejanos tu consulta"
+  bajada: "Completá tus datos y te contactamos. Los campos marcados con * son obligatorios."
+  motivos:
+    - valor: "disponibilidad"
+      texto: "Consultar disponibilidad"
+    - valor: "visita"
+      texto: "Solicitar una visita"
+    - valor: "temporaria"
+      texto: "Estadía temporaria"
+    - valor: "informacion"
+      texto: "Información general"
+    - valor: "otro"
+      texto: "Otro motivo"
+  tipos:
+    - "Permanente"
+    - "Temporaria"
+    - "Todavía no lo sé"
+  boton: "Enviar consulta"
+  privacidad: "Usamos tus datos solo para responder tu consulta. Más información en la [política de privacidad](/privacidad/)."
+  exito:
+    titulo: "¡Gracias por escribirnos!"
+    texto: "Recibimos tu consulta. Te vamos a contactar a la brevedad para responderte y, si querés, coordinar una visita."
+  error:
+    titulo: "No pudimos enviar tu consulta"
+    texto: "Puede ser un problema momentáneo de conexión. Probá de nuevo en unos minutos o escribinos por WhatsApp."
+
+mapa:
+  titulo: "Cómo llegar"
+  nota: "El mapa interactivo se carga solo si lo pedís, para que la página sea más rápida."
+
+visitas:
+  titulo: "Visitas a la residencia"
+  texto: "Coordinamos las visitas con anticipación para poder dedicarte el tiempo que merecés."

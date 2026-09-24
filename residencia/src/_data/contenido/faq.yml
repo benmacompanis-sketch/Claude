@@ -1,0 +1,73 @@
+# PREGUNTAS FRECUENTES.
+# · "destacada: true" → también aparece en la página de Inicio (recomendado: 4 o 5).
+# · Las respuestas pueden tener varios párrafos (dejá una línea en blanco entre ellos).
+# · Cuando las respuestas sean definitivas, activá "faqSchema" en site.yml.
+
+seo:
+  titulo: "Preguntas frecuentes · {nombre}"
+  descripcion: "Respuestas sobre el ingreso, las visitas, la documentación, la disponibilidad y la vida diaria en {nombre}, residencia para adultos mayores en {ciudad}."
+
+encabezado:
+  eyebrow: "Preguntas frecuentes"
+  titulo: "Respuestas claras a las dudas de siempre"
+  bajada: "Si no encontrás lo que buscás, escribinos: te respondemos personalmente."
+
+grupos:
+  - id: "residencia"
+    titulo: "Sobre la residencia"
+    preguntas:
+      - pregunta: "¿Qué incluye la residencia?"
+        destacada: true
+        respuesta: |
+          La estadía incluye alojamiento, alimentación, asistencia en la vida diaria, higiene y confort, actividades recreativas y comunicación permanente con la familia.
+
+          [Completar con el detalle de lo que incluye la cuota y los servicios que se abonan aparte.]
+      - pregunta: "¿Hay habitaciones individuales?"
+        respuesta: |
+          [Completar con los tipos de habitación disponibles: individuales, dobles, con baño privado o compartido.] Te contamos las opciones disponibles cuando nos consultás.
+      - pregunta: "¿Existen estadías temporarias?"
+        destacada: true
+        respuesta: |
+          Sí. Además del alojamiento permanente, recibimos residentes por períodos puntuales: el descanso de la familia, un viaje o una primera experiencia antes de decidir. [Completar: estadía mínima y condiciones.]
+
+  - id: "ingreso"
+    titulo: "Ingreso"
+    preguntas:
+      - pregunta: "¿Cómo es el proceso de ingreso?"
+        respuesta: |
+          Primero conversamos y coordinamos una visita. Si deciden avanzar, hacemos una entrevista de admisión para conocer a la persona, su historia y sus necesidades. Con esa información preparamos su llegada y un plan de cuidado personalizado.
+      - pregunta: "¿Qué documentación se necesita?"
+        respuesta: |
+          Habitualmente se solicita el DNI, la credencial de obra social o prepaga y un resumen de la historia clínica con la medicación actual. [Confirmar la lista definitiva de la residencia.]
+      - pregunta: "¿Cómo solicito una entrevista?"
+        destacada: true
+        respuesta: |
+          Podés pedirla por WhatsApp, llamando al {telefono} o completando el [formulario de contacto](/contacto/#formulario). Te respondemos para coordinar día y horario.
+
+  - id: "familia"
+    titulo: "Visitas y familia"
+    preguntas:
+      - pregunta: "¿Se puede visitar el establecimiento antes de decidir?"
+        destacada: true
+        respuesta: |
+          Sí, y te lo recomendamos. Coordinamos una visita para que recorras la casa, conozcas al equipo y veas cómo es un día acá.
+      - pregunta: "¿Qué horarios de visita existen?"
+        respuesta: |
+          Horarios de visita: {visitas}. [Completar con recomendaciones, por ejemplo evitar los horarios de comida o de descanso.]
+      - pregunta: "¿Cómo se comunica la familia con la residencia?"
+        destacada: true
+        respuesta: |
+          Acordamos con cada familia los canales y la frecuencia de contacto: [llamados, mensajes o reuniones]. Además, podés comunicarte cuando lo necesites al {telefono} o por WhatsApp.
+
+  - id: "disponibilidad"
+    titulo: "Disponibilidad y costos"
+    preguntas:
+      - pregunta: "¿Cómo puedo consultar disponibilidad?"
+        respuesta: |
+          Escribinos por WhatsApp, llamanos o dejanos tu consulta en el [formulario](/contacto/#formulario). Te respondemos con la disponibilidad actual y los próximos pasos.
+      - pregunta: "¿Cuánto cuesta la residencia?"
+        respuesta: |
+          El valor depende del tipo de habitación y del acompañamiento que necesite cada persona. Te lo informamos en detalle en la entrevista. [Completar: cómo se informan los aranceles y medios de pago.]
+      - pregunta: "¿Trabajan con obras sociales o PAMI?"
+        respuesta: |
+          [Completar con las obras sociales, prepagas o convenios con los que trabaja la residencia, si corresponde.]

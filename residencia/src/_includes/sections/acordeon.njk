@@ -1,0 +1,15 @@
+{#- Lista de preguntas desplegables (usa <details>: accesible y funciona sin JavaScript).
+    Variables: preguntasLista, acordeonId. -#}
+<div class="accordion" data-accordion>
+  {%- for p in preguntasLista %}
+  <details class="acc" id="{{ acordeonId }}-{{ loop.index }}">
+    <summary class="acc__q">
+      <span class="acc__q-text">{{ p.pregunta | texto }}</span>
+      <span class="acc__icon" aria-hidden="true"></span>
+    </summary>
+    <div class="acc__a">
+      {{ p.respuesta | parrafos }}
+    </div>
+  </details>
+  {%- endfor %}
+</div>

@@ -1,0 +1,65 @@
+{% from "macros/ui.njk" import boton with context %}
+<footer class="site-footer" data-footer>
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand brand--light" href="/" aria-label="{{ site.nombre | plano }}, ir al inicio">{% include "partials/logo.njk" %}</a>
+        <p class="footer__about">{{ site.descriptor }} en {{ site.ubicacion.ciudad | texto }}. Cuidado cercano, respeto por cada historia y acompañamiento a las familias.</p>
+        {{ boton("Escribinos por WhatsApp", site | whatsapp("general"), "outline-light", icono="whatsapp-logo", externo=true, tam="sm") }}
+      </div>
+
+      <nav class="footer__col" aria-labelledby="footer-residencia">
+        <h2 class="footer__title" id="footer-residencia">La residencia</h2>
+        <ul class="footer__links" role="list">
+          {%- for item in navegacion.principal %}{% if item.url != "/contacto/" %}
+          <li><a href="{{ item.url }}">{{ item.texto }}</a></li>
+          {%- endif %}{% endfor %}
+        </ul>
+      </nav>
+
+      <nav class="footer__col" aria-labelledby="footer-familias">
+        <h2 class="footer__title" id="footer-familias">Familias</h2>
+        <ul class="footer__links" role="list">
+          <li><a href="/familias/">Guía para familias</a></li>
+          <li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li>
+          <li><a href="/contacto/?motivo=visita#formulario">Solicitar una visita</a></li>
+          <li><a href="/contacto/?motivo=disponibilidad#formulario">Consultar disponibilidad</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col footer__col--contact">
+        <h2 class="footer__title">Contacto</h2>
+        <ul class="footer__contact" role="list">
+          <li>{% icono "phone" %}<a href="{{ site | telefono }}">{{ site.contacto.telefono.visible | texto }}</a></li>
+          <li>{% icono "whatsapp-logo" %}<a href="{{ site | whatsapp('general') }}" target="_blank" rel="noopener">{{ site.whatsapp.visible | texto }}</a></li>
+          <li>{% icono "envelope-simple" %}<a href="{{ site | email }}">{{ site.contacto.email | texto }}</a></li>
+          <li>{% icono "map-pin" %}<span>{{ site.ubicacion.direccion | texto }}, {{ site.ubicacion.ciudad | texto }}, {{ site.ubicacion.provincia | texto }}</span></li>
+          <li>{% icono "clock" %}<span>{{ site.horarios.atencion | texto }}</span></li>
+        </ul>
+        <ul class="footer__social" role="list">
+          {%- for clave, red in site.redes %}
+          {%- set iconoRed = "instagram-logo" if clave == "instagram" else "facebook-logo" %}
+          <li>
+            {%- if red.url and not (red.url | esProvisorio) %}
+            <a href="{{ red.url }}" target="_blank" rel="noopener" aria-label="{{ clave | capitalize }} de {{ site.nombre | plano }}">{% icono iconoRed %}<span>{{ red.usuario | texto }}</span></a>
+            {%- else %}
+            <span>{% icono iconoRed %}<span>{{ red.usuario | texto }}</span></span>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© {{ "" | anio }} {{ site.nombre | texto }}</p>
+      <p class="footer__legal-id">Habilitación: {{ site.institucional.habilitacion | texto }}</p>
+      <ul class="footer__legal" role="list">
+        {%- for item in navegacion.legales %}
+        <li><a href="{{ item.url }}">{{ item.texto }}</a></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+</footer>

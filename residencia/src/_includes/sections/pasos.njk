@@ -1,0 +1,15 @@
+{#- Pasos del ingreso. Variable: pasosVariante = "compacta" (inicio) | "detallada" (familias). -#}
+<ol class="steps steps--{{ pasosVariante or 'compacta' }}" role="list">
+  {%- for p in contenido.familias.pasos.items %}
+  <li class="step" data-reveal style="--i: {{ loop.index0 }}">
+    <span class="step__marker" aria-hidden="true">
+      {%- if pasosVariante == "detallada" %}{% icono p.icono %}{% else %}{{ loop.index | dosDigitos }}{% endif -%}
+    </span>
+    <div class="step__body">
+      {%- if pasosVariante == "detallada" %}<p class="step__num">Paso {{ loop.index }}</p>{% endif %}
+      <h3 class="step__title">{{ p.titulo | texto }}</h3>
+      <p class="step__text">{{ p.texto | texto }}</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>

@@ -1,0 +1,106 @@
+# =============================================================================
+#  DATOS DE LA RESIDENCIA  ·  archivo principal
+# -----------------------------------------------------------------------------
+#  Todo lo que cambies acá se actualiza en toda la web.
+#
+#  · Los textos entre [corchetes] son PROVISORIOS: reemplazalos por la información
+#    real (sin corchetes). Mientras tengan corchetes, se ven con un subrayado suave
+#    y no se publican en los datos para Google.
+#  · En los textos de la carpeta "contenido" podés escribir {nombre}, {ciudad},
+#    {provincia}, {direccion}, {telefono}, {whatsapp}, {email}, {anios}, {visitas}
+#    y {atencion}: se reemplazan solos con lo que cargues en este archivo.
+# =============================================================================
+
+nombre: "[Nombre del geriátrico]"        # Nombre completo.
+nombreCorto: "[Nombre]"                   # Versión corta para el logo.
+descriptor: "Residencia para adultos mayores"
+
+# Dominio definitivo (con https y sin barra final). Se usa para SEO y redes sociales.
+url: "https://example.com"
+idioma: "es-AR"
+
+ubicacion:
+  direccion: "[Dirección]"                # Calle y número.
+  ciudad: "[Ciudad]"
+  provincia: "[Provincia]"
+  codigoPostal: "[Código postal]"
+  pais: "AR"
+  # Referencias para llegar: colectivos, esquinas, estacionamiento.
+  referencias: "[Referencias para llegar: calles cercanas, colectivos, estacionamiento]"
+  mapa:
+    # Google Maps → buscá la dirección → Compartir → Insertar un mapa → copiá SOLO la URL
+    # que aparece dentro de src="…". Mientras esté vacío se muestra un mapa ilustrado.
+    embedUrl: ""
+    # Google Maps → Compartir → Copiar enlace. Si queda vacío, se arma con la dirección.
+    enlace: ""
+  coordenadas:                            # Opcional. Mejora el posicionamiento local.
+    lat: ""
+    lng: ""
+
+contacto:
+  telefono:
+    visible: "[Teléfono]"                 # Cómo se muestra. Ej.: (0351) 123-4567
+    numero: ""                            # Para el botón "Llamar". Ej.: +543511234567
+  email: "[Email]"
+
+# -----------------------------------------------------------------------------
+#  WHATSAPP · el número se carga SOLO acá y se usa en todos los botones del sitio.
+# -----------------------------------------------------------------------------
+whatsapp:
+  numero: ""                              # Formato internacional, solo números. Ej.: 5493511234567
+  visible: "[WhatsApp]"                   # Cómo se muestra. Ej.: +54 9 351 123-4567
+  botonFlotante: true                     # Botón fijo en la esquina de la pantalla.
+  mensajes:                               # Mensajes que se escriben solos al abrir WhatsApp.
+    general: "Hola, quisiera recibir información sobre la residencia y conocer disponibilidad."
+    visita: "Hola, me gustaría coordinar una visita para conocer la residencia."
+    disponibilidad: "Hola, quisiera consultar disponibilidad en la residencia."
+    temporaria: "Hola, quisiera consultar por una estadía temporaria en la residencia."
+    actividades: "Hola, me gustaría recibir la agenda de actividades de la residencia."
+
+horarios:
+  atencion: "[Horario de atención]"       # Ej.: Lunes a viernes de 9 a 18 h · Sábados de 9 a 13 h
+  visitas: "[Horarios de visita]"         # Ej.: Todos los días de 10 a 12 h y de 16 a 19 h
+  # Opcional, para Google (formato 24 h). Ejemplo:
+  #  - dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  #    abre: "09:00"
+  #    cierra: "18:00"
+  estructurados: []
+
+redes:
+  instagram:
+    usuario: "[@Instagram]"
+    url: ""                               # Ej.: https://www.instagram.com/tu-cuenta
+  facebook:
+    usuario: "[Facebook]"
+    url: ""
+
+institucional:
+  anios: "[+XX]"                          # Años de trayectoria. Ej.: +15
+  fundacion: "[Año de fundación]"
+  habilitacion: "[N.º de habilitación y organismo, si corresponde]"
+  razonSocial: "[Razón social]"
+  cuit: "[CUIT]"
+
+seo:
+  descripcion: "Residencia para adultos mayores en [Ciudad]. Atención personalizada, espacios adaptados y acompañamiento cercano a las familias. Coordiná una visita."
+  imagen: "/assets/og/residencia.jpg"     # Imagen al compartir en WhatsApp y redes (1200 × 630).
+  # Activalo cuando las respuestas de "Preguntas frecuentes" sean definitivas.
+  faqSchema: false
+
+# -----------------------------------------------------------------------------
+#  FORMULARIO DE CONTACTO · cómo se envían las consultas
+# -----------------------------------------------------------------------------
+#  "demo"      → no envía nada. Sirve para revisar el diseño (muestra un aviso).
+#  "netlify"   → Netlify Forms. Funciona solo si el sitio está publicado en Netlify.
+#  "endpoint"  → Formspree, Getform, Basin o un backend propio: completá "endpoint".
+#  "whatsapp"  → arma un mensaje con los datos del formulario y abre WhatsApp.
+formulario:
+  modo: "demo"
+  endpoint: ""                            # Ej.: https://formspree.io/f/xxxxxxx
+
+# -----------------------------------------------------------------------------
+#  MODO BORRADOR · ayudas visuales mientras se completa la información
+# -----------------------------------------------------------------------------
+borrador:
+  resaltarProvisorios: true               # Subraya suavemente los [textos provisorios].
+  marcarFotosProvisionales: false         # Muestra "Foto provisional" sobre las ilustraciones.

@@ -1,0 +1,232 @@
+---
+layout: layouts/base.njk
+paginaId: inicio
+permalink: /
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.inicio %}
+
+{# ─────────────────────────── HERO ─────────────────────────── #}
+{% set h = c.hero %}
+<section class="hero" aria-labelledby="hero-titulo">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow hero__eyebrow">{{ h.eyebrow | texto }}</p>
+      <h1 class="hero__title" id="hero-titulo">{{ h.titulo | texto }}</h1>
+      <p class="hero__lead">{{ h.bajada | texto }}</p>
+      <div class="hero__actions">
+        {{ boton(h.cta.texto, h.cta.url, "primary", iconoFin="arrow-right") }}
+        {{ enlace(h.ctaSecundario.texto, h.ctaSecundario.url) }}
+      </div>
+      <ul class="hero__stats" role="list">
+        {%- for i in h.indicadores %}
+        <li class="hero__stat"><span class="hero__stat-value">{{ i.valor | texto }}</span><span class="hero__stat-label">{{ i.texto | texto }}</span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    <figure class="hero__media">
+      <div class="hero__frame media media--arch">
+        {% foto h.foto, h.alt, { sizes: "(min-width: 64em) 42vw, 92vw", carga: "eager", prioridad: "high" } %}
+      </div>
+      {% if h.leyenda %}<figcaption class="hero__caption">{{ h.leyenda | texto }}</figcaption>{% endif %}
+    </figure>
+  </div>
+</section>
+
+{# ─────────────────────────── NUESTRA CASA ─────────────────────────── #}
+{% set m = c.manifiesto %}
+<section class="section manifesto" aria-labelledby="manifiesto-titulo">
+  <div class="container manifesto__grid">
+    <div class="manifesto__aside">
+      <h2 class="eyebrow" id="manifiesto-titulo">{{ m.eyebrow | texto }}</h2>
+      <div class="manifesto__media media" data-reveal>
+        {% foto m.foto, m.alt, { sizes: "(min-width: 64em) 28vw, (min-width: 40em) 40vw, 80vw", anchos: "480,800,1200" } %}
+      </div>
+    </div>
+    <div class="manifesto__body">
+      <p class="manifesto__statement" data-reveal>{{ m.cita | texto }}</p>
+      <div class="manifesto__text prose" data-reveal>{{ m.texto | parrafos }}</div>
+      <div class="manifesto__footer" data-reveal>
+        <p class="signature">
+          <span class="signature__name">{{ m.firma.nombre | texto }}</span>
+          <span class="signature__role">{{ m.firma.cargo | texto }}</span>
+        </p>
+        {{ enlace(m.enlace.texto, m.enlace.url) }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ─────────────────────────── POR QUÉ ELEGIRNOS ─────────────────────────── #}
+{% set v = c.valores %}
+<section class="section section--tint values" aria-labelledby="valores-titulo">
+  <div class="container values__grid">
+    <div class="values__intro">
+      {{ encabezado(v.eyebrow, v.titulo, v.bajada, id="valores-titulo") }}
+    </div>
+    <ul class="values__list" role="list">
+      {%- for item in contenido.valores %}
+      <li class="value" data-reveal style="--i: {{ loop.index0 % 2 }}">
+        <span class="value__icon">{% icono item.icono %}</span>
+        <div class="value__body">
+          <h3 class="value__title">{{ item.titulo | texto }}</h3>
+          <p class="value__text">{{ item.texto | texto }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ─────────────────────────── UN DÍA ACÁ ─────────────────────────── #}
+{% set diaTexto = c.dia %}
+{% include "sections/dia.njk" %}
+
+{# ─────────────────────────── INSTALACIONES (collage) ─────────────────────────── #}
+{% set e = c.espacios %}
+<section class="section section--dark spaces" aria-labelledby="espacios-titulo">
+  <div class="container">
+    <div class="spaces__head">
+      {{ encabezado(e.eyebrow, e.titulo, e.bajada, id="espacios-titulo") }}
+      {{ enlace(e.enlace.texto, e.enlace.url, "link-arrow--light") }}
+    </div>
+    <ul class="spaces__collage" role="list">
+      {%- for espacio in contenido.instalaciones.espacios | porIds(e.destacados) %}
+      {%- set f0 = espacio.fotos[0] %}
+      <li class="space-tile space-tile--{{ loop.index }}" data-reveal style="--i: {{ loop.index0 }}">
+        <a class="space-tile__link" href="/instalaciones/#{{ espacio.id }}">
+          <span class="space-tile__media media">
+            {% foto f0.src, f0.alt, { sizes: ("(min-width: 64em) 55vw, 100vw" if loop.first else "(min-width: 64em) 40vw, 50vw"), anchos: "480,800,1200" } %}
+          </span>
+          <span class="space-tile__label">{{ espacio.nombre | texto }}{% icono "arrow-up-right" %}</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ─────────────────────────── SERVICIOS ─────────────────────────── #}
+{% set s = c.servicios %}
+{% set sv = contenido.servicios %}
+<section class="section services-overview" aria-labelledby="servicios-titulo">
+  <div class="container">
+    <div class="services-overview__head">
+      {{ encabezado(s.eyebrow, s.titulo, s.bajada, id="servicios-titulo") }}
+    </div>
+    <div class="modalities">
+      {%- for mod in sv.modalidades.items %}
+      <article class="modality" data-reveal style="--i: {{ loop.index0 }}">
+        <span class="modality__icon">{% icono mod.icono %}</span>
+        <p class="modality__label">{{ mod.etiqueta | texto }}</p>
+        <h3 class="modality__title">{{ mod.titulo | texto }}</h3>
+        <p class="modality__text">{{ mod.texto | texto }}</p>
+        {{ enlace(mod.enlace.texto, mod.enlace.url) }}
+      </article>
+      {%- endfor %}
+    </div>
+    <div class="service-groups">
+      {%- for g in sv.grupos %}
+      <div class="service-group" data-reveal style="--i: {{ loop.index0 }}">
+        <h3 class="service-group__title">{{ g.titulo | texto }}</h3>
+        <ul class="service-group__list" role="list">
+          {%- for item in g.servicios %}
+          <li>{% icono item.icono %}<span>{{ item.titulo | texto }}</span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="services-overview__foot">
+      {{ boton(s.enlace.texto, s.enlace.url, "secondary", iconoFin="arrow-right") }}
+    </div>
+  </div>
+</section>
+
+{# ─────────────────────────── TRANQUILIDAD ─────────────────────────── #}
+{% set t = c.tranquilidad %}
+<section class="section section--sage peace" aria-labelledby="tranquilidad-titulo">
+  <div class="container peace__grid">
+    <div class="peace__media media" data-reveal>
+      {% foto t.foto, t.alt, { sizes: "(min-width: 64em) 40vw, 92vw", anchos: "480,800,1200" } %}
+    </div>
+    <div class="peace__content">
+      {{ encabezado(t.eyebrow, t.titulo, "", id="tranquilidad-titulo") }}
+      <ol class="peace__list" role="list">
+        {%- for item in t.items %}
+        <li class="peace__item" data-reveal style="--i: {{ loop.index0 }}">
+          <span class="peace__num" aria-hidden="true">{{ loop.index | dosDigitos }}</span>
+          <div>
+            <h3 class="peace__title">{{ item.titulo | texto }}</h3>
+            <p class="peace__text">{{ item.texto | texto }}</p>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+      {{ enlace(t.enlace.texto, t.enlace.url) }}
+    </div>
+  </div>
+</section>
+
+{# ─────────────────────────── INGRESO ─────────────────────────── #}
+{% set g = c.ingreso %}
+<section class="section admission" aria-labelledby="ingreso-titulo">
+  <div class="container">
+    <div class="admission__head">
+      {{ encabezado(g.eyebrow, g.titulo, g.bajada, id="ingreso-titulo") }}
+      <div class="admission__actions">
+        {{ boton(g.cta.texto, g.cta.url, "primary", iconoFin="arrow-right") }}
+        {{ enlace(g.ctaSecundario.texto, g.ctaSecundario.url) }}
+      </div>
+    </div>
+    {% set pasosVariante = "compacta" %}
+    {% include "sections/pasos.njk" %}
+  </div>
+</section>
+
+{# ─────────────────────────── TESTIMONIOS ─────────────────────────── #}
+{% set testimoniosTexto = c.testimonios %}
+{% include "sections/testimonios.njk" %}
+
+{# ─────────────────────────── PREGUNTAS ─────────────────────────── #}
+{% set q = c.preguntas %}
+<section class="section faq-home" aria-labelledby="preguntas-titulo">
+  <div class="container faq-home__grid">
+    <div class="faq-home__intro">
+      {{ encabezado(q.eyebrow, q.titulo, q.bajada, id="preguntas-titulo") }}
+      <div class="faq-home__links">
+        {{ enlace(q.enlace.texto, q.enlace.url) }}
+        {{ boton("Escribinos por WhatsApp", site | whatsapp("general"), "secondary", icono="whatsapp-logo", externo=true, tam="sm") }}
+      </div>
+    </div>
+    {% set preguntasLista = contenido.faq.grupos | todasLasPreguntas | selectattr("destacada") %}
+    {% set acordeonId = "pregunta-inicio" %}
+    {% include "sections/acordeon.njk" %}
+  </div>
+</section>
+
+{# ─────────────────────────── VISITA ─────────────────────────── #}
+{% set vi = c.visita %}
+<section class="section visit" aria-labelledby="visita-titulo">
+  <div class="container">
+    <div class="visit__panel">
+      <div class="visit__media media">
+        {% foto vi.foto, vi.alt, { sizes: "(min-width: 64em) 45vw, 100vw", anchos: "480,800,1200" } %}
+      </div>
+      <div class="visit__content">
+        <p class="eyebrow">{{ vi.eyebrow | texto }}</p>
+        <h2 class="visit__title" id="visita-titulo">{{ vi.titulo | texto }}</h2>
+        <p class="visit__text">{{ vi.texto | texto }}</p>
+        <div class="visit__actions">
+          {{ boton("Solicitar una visita", "/contacto/?motivo=visita#formulario", "primary", iconoFin="arrow-right") }}
+          {{ boton("Hablar por WhatsApp", site | whatsapp("visita"), "secondary", icono="whatsapp-logo", externo=true) }}
+        </div>
+        <ul class="visit__info" role="list">
+          <li>{% icono "phone" %}<a href="{{ site | telefono }}">{{ site.contacto.telefono.visible | texto }}</a></li>
+          <li>{% icono "map-pin" %}<span>{{ site.ubicacion.direccion | texto }}, {{ site.ubicacion.ciudad | texto }}</span></li>
+          <li>{% icono "clock" %}<span>{{ site.horarios.atencion | texto }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

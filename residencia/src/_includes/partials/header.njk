@@ -1,0 +1,74 @@
+<header class="site-header" data-header>
+  {# Franja superior: solo en pantallas grandes. #}
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <p class="topbar__place">{% icono "map-pin" %}<span>{{ site.descriptor }} en {{ site.ubicacion.ciudad | texto }}, {{ site.ubicacion.provincia | texto }}</span></p>
+      <ul class="topbar__links" role="list">
+        {%- for item in navegacion.secundaria %}
+        <li><a href="{{ item.url }}"{% if item.url | activo(page.url) %} aria-current="page"{% endif %}>{{ item.texto }}</a></li>
+        {%- endfor %}
+        <li><a href="{{ site | telefono }}">{% icono "phone" %}<span>{{ site.contacto.telefono.visible | texto }}</span></a></li>
+        <li><a href="{{ site | whatsapp('general') }}" target="_blank" rel="noopener">{% icono "whatsapp-logo" %}<span>WhatsApp</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <div class="container navbar__inner">
+      <a class="brand" href="/" aria-label="{{ site.nombre | plano }}, ir al inicio">
+        {% include "partials/logo.njk" %}
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <ul class="nav__list" role="list">
+          {%- for item in navegacion.principal %}
+          <li><a class="nav__link" href="{{ item.url }}"{% if item.url | activo(page.url) %} aria-current="page"{% endif %}>{{ item.texto }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+
+      <div class="navbar__actions">
+        <a class="btn btn--primary btn--sm navbar__cta" href="{{ navegacion.cta.url }}">
+          <span class="navbar__cta-full">{{ navegacion.cta.texto }}</span>
+          <span class="navbar__cta-short" aria-hidden="true">{{ navegacion.cta.textoCorto }}</span>
+        </a>
+        <a class="icon-btn navbar__call" href="{{ site | telefono }}" aria-label="Llamar a la residencia">{% icono "phone" %}</a>
+        <button class="menu-toggle" type="button" popovertarget="menu" aria-controls="menu" aria-expanded="false" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+          <span class="menu-toggle__label">Menú</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{# Menú del celular. Usa el atributo "popover": abre al instante, incluso antes de que cargue el JavaScript,
+   y se cierra tocando afuera o con la tecla Esc. #}
+<div id="menu" class="menu" popover data-menu>
+  <div class="menu__top">
+    <a class="brand brand--small" href="/" tabindex="-1" aria-hidden="true">{% include "partials/logo.njk" %}</a>
+    <button class="menu__close" type="button" popovertarget="menu" popovertargetaction="hide" data-menu-close>
+      {% icono "x" %}<span>Cerrar</span>
+    </button>
+  </div>
+  <nav class="menu__nav" aria-label="Menú">
+    <ul class="menu__list" role="list">
+      {%- for item in navegacion.principal %}
+      <li><a class="menu__link" href="{{ item.url }}"{% if item.url | activo(page.url) %} aria-current="page"{% endif %}>{{ item.texto }}{% icono "caret-right" %}</a></li>
+      {%- endfor %}
+    </ul>
+    <ul class="menu__list menu__list--secondary" role="list">
+      {%- for item in navegacion.secundaria %}
+      <li><a class="menu__link" href="{{ item.url }}"{% if item.url | activo(page.url) %} aria-current="page"{% endif %}>{{ item.texto }}{% icono "caret-right" %}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  <div class="menu__footer">
+    <a class="btn btn--primary btn--block" href="{{ navegacion.cta.url }}">{{ navegacion.cta.texto }}</a>
+    <div class="menu__quick">
+      <a class="btn btn--secondary" href="{{ site | telefono }}">{% icono "phone" %}Llamar</a>
+      <a class="btn btn--secondary" href="{{ site | whatsapp('general') }}" target="_blank" rel="noopener">{% icono "whatsapp-logo" %}WhatsApp</a>
+    </div>
+    <p class="menu__meta">{{ site.ubicacion.direccion | texto }}, {{ site.ubicacion.ciudad | texto }}<br>{{ site.horarios.atencion | texto }}</p>
+  </div>
+</div>

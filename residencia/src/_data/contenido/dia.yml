@@ -1,0 +1,50 @@
+# Un día en la residencia: se muestra en Inicio y en Actividades.
+# "horario" es opcional (por ejemplo "8 a 12 h"); si queda vacío no se muestra.
+
+- id: "manana"
+  momento: "Mañana"
+  horario: ""
+  titulo: "Despertar sin apuro"
+  icono: "sun-horizon"
+  foto: "dia/manana"
+  alt: "Desayuno con café con leche y medialunas sobre la mesa"
+  items:
+    - "Desayuno"
+    - "Higiene y cuidado personal"
+    - "Actividades y caminatas"
+
+- id: "mediodia"
+  momento: "Mediodía"
+  horario: ""
+  titulo: "La mesa compartida"
+  icono: "sun"
+  foto: "dia/mediodia"
+  alt: "Plato de almuerzo con puré, carne y verduras"
+  items:
+    - "Almuerzo"
+    - "Descanso"
+    - "Acompañamiento"
+
+- id: "tarde"
+  momento: "Tarde"
+  horario: ""
+  titulo: "Tiempo para compartir"
+  icono: "sun-dim"
+  foto: "dia/tarde"
+  alt: "Mate, bizcochitos y cartas españolas sobre la mesa"
+  items:
+    - "Talleres y recreación"
+    - "Merienda"
+    - "Visitas de la familia"
+
+- id: "noche"
+  momento: "Noche"
+  horario: ""
+  titulo: "Un cierre tranquilo"
+  icono: "moon-stars"
+  foto: "dia/noche"
+  alt: "Velador encendido junto a la cama"
+  items:
+    - "Cena"
+    - "Charla de sobremesa"
+    - "Descanso"

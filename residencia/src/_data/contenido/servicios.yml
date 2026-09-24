@@ -1,0 +1,157 @@
+# Página SERVICIOS.
+# IMPORTANTE: no presentar como servicios médicos prestaciones que no estén confirmadas.
+# Para agregar un servicio, copiá un bloque "- id: ..." completo dentro del grupo que
+# corresponda. Para quitarlo, borrá el bloque. "incluye" es opcional.
+
+seo:
+  titulo: "Servicios · {nombre}"
+  descripcion: "Alojamiento permanente, estadías temporarias, asistencia diaria, alimentación, actividades y comunicación con las familias en {nombre}, {ciudad}."
+
+encabezado:
+  eyebrow: "Servicios"
+  titulo: "Todo lo necesario para vivir bien, en un solo lugar"
+  bajada: "Un acompañamiento completo y a la medida de cada persona, tanto en estadías permanentes como temporarias."
+  foto: "servicios/hero"
+  alt: "Rincón de lectura con sillón, lámpara y luz natural"
+
+modalidades:
+  eyebrow: "Modalidades"
+  titulo: "Dos formas de estar con nosotros"
+  items:
+    - id: "permanente"
+      icono: "house-line"
+      etiqueta: "Para vivir acá"
+      titulo: "Alojamiento permanente"
+      texto: "Para quienes buscan un nuevo hogar, con cuidados, compañía y el día a día resuelto."
+      incluye:
+        - "Habitación [individual o compartida: confirmar]"
+        - "Las cuatro comidas del día"
+        - "Asistencia y acompañamiento diario"
+        - "Actividades recreativas"
+      enlace:
+        texto: "Consultar disponibilidad"
+        url: "/contacto/?motivo=disponibilidad#formulario"
+    - id: "temporaria"
+      icono: "calendar-check"
+      etiqueta: "Por un tiempo"
+      titulo: "Estadías temporarias"
+      texto: "Para períodos puntuales: el descanso de la familia, un viaje o una primera experiencia antes de decidir."
+      incluye:
+        - "Estadía mínima: [a confirmar]"
+        - "Los mismos cuidados que el alojamiento permanente"
+        - "Ingreso con entrevista previa"
+      enlace:
+        texto: "Consultar por una estadía"
+        url: "/contacto/?motivo=temporaria#formulario"
+
+detalle:
+  eyebrow: "El día a día"
+  titulo: "Qué incluye el acompañamiento"
+  bajada: "Cada servicio se ajusta a la persona: a lo que necesita, a lo que puede hacer sola y a lo que disfruta."
+
+grupos:
+  - id: "cuidado"
+    titulo: "Cuidado diario"
+    servicios:
+      - id: "asistencia"
+        icono: "hand-heart"
+        titulo: "Asistencia diaria"
+        texto: "Acompañamos las actividades de todos los días —levantarse, vestirse, moverse por la casa— respetando lo que cada persona puede y quiere hacer por su cuenta."
+        incluye:
+          - "[Detalle del servicio a confirmar]"
+      - id: "acompanamiento"
+        icono: "heart"
+        titulo: "Acompañamiento"
+        texto: "Presencia cercana durante el día: una charla, una caminata, alguien atento a cómo está cada uno."
+      - id: "higiene"
+        icono: "hand-soap"
+        titulo: "Higiene y confort"
+        texto: "Cuidado personal diario, con respeto por la intimidad y los tiempos de cada residente, en ambientes limpios y ordenados."
+        incluye:
+          - "[Lavandería y cuidado de la ropa: confirmar]"
+
+  - id: "bienestar"
+    titulo: "Bienestar"
+    servicios:
+      - id: "alimentacion"
+        icono: "bowl-steam"
+        titulo: "Alimentación"
+        texto: "Desayuno, almuerzo, merienda y cena, con menús variados y adaptados a las indicaciones de cada residente."
+        enlace:
+          texto: "Ver cómo comemos"
+          url: "#alimentacion"
+      - id: "recreacion"
+        icono: "palette"
+        titulo: "Actividades recreativas"
+        texto: "Juegos, música, talleres y encuentros para pasar un buen rato y compartir con otros."
+        enlace:
+          texto: "Ver las actividades"
+          url: "/actividades/"
+      - id: "estimulacion"
+        icono: "puzzle-piece"
+        titulo: "Estimulación cognitiva"
+        texto: "Propuestas para ejercitar la memoria, la atención y el lenguaje, según los intereses de cada grupo."
+        incluye:
+          - "[Profesional a cargo y frecuencia: confirmar]"
+      - id: "descanso"
+        icono: "armchair"
+        titulo: "Espacios de descanso"
+        texto: "Lugares tranquilos para leer, dormir la siesta o simplemente estar."
+
+  - id: "familias"
+    titulo: "Familias"
+    servicios:
+      - id: "comunicacion"
+        icono: "chats-circle"
+        titulo: "Seguimiento y comunicación con familiares"
+        texto: "Contamos a la familia cómo está su ser querido y acordamos juntos los canales de contacto."
+        incluye:
+          - "[Canales: llamados, mensajes, reuniones periódicas]"
+
+salud:
+  titulo: "Sobre la atención de salud"
+  texto: "[Completar con las prestaciones de salud confirmadas por la residencia: por ejemplo enfermería, control médico, administración de medicación o coordinación con obras sociales. No publicar prestaciones que no estén confirmadas.]"
+
+alimentacion:
+  eyebrow: "Alimentación"
+  titulo: "Comer rico también es cuidarse"
+  bajada: "Las comidas ordenan el día y son un momento para disfrutar, compartir la mesa y conversar. Por eso las pensamos con el mismo cuidado que todo lo demás."
+  foto: "alimentacion/frutas"
+  alt: "Frutera con naranjas, manzanas y peras"
+  puntos:
+    - titulo: "Comidas equilibradas"
+      texto: "Menús variados, con verduras, frutas, legumbres y la comida casera de siempre."
+    - titulo: "Adaptadas a cada persona"
+      texto: "Respetamos las indicaciones médicas y las necesidades de cada residente: dietas especiales, texturas adaptadas y preferencias."
+    - titulo: "Acompañamiento en la mesa"
+      texto: "Ayudamos a quien lo necesita, con paciencia y sin apuro."
+    - titulo: "Un comedor para compartir"
+      texto: "La mesa compartida también es un momento de encuentro."
+  menu:
+    titulo: "Un día en la mesa"
+    aviso: "Menú de ejemplo. Reemplazar por el menú real de la residencia."
+    comidas:
+      - momento: "Desayuno"
+        icono: "coffee"
+        foto: "alimentacion/desayuno"
+        alt: "Café con leche y medialunas"
+        plato: "Café con leche o té, pan con manteca y mermelada, fruta de estación."
+      - momento: "Almuerzo"
+        icono: "fork-knife"
+        foto: "alimentacion/almuerzo"
+        alt: "Plato de carne con puré y verduras"
+        plato: "Carne al horno con puré de calabaza y verduras al vapor. De postre, compota."
+      - momento: "Merienda"
+        icono: "cookie"
+        foto: "alimentacion/merienda"
+        alt: "Mate con termo y medialunas"
+        plato: "Mate o infusión, con bizcochitos o medialunas."
+      - momento: "Cena"
+        icono: "bowl-steam"
+        foto: "alimentacion/cena"
+        alt: "Plato de sopa de calabaza con pan"
+        plato: "Sopa de verduras, tortilla de acelga y ensalada de frutas."
+
+cierre:
+  titulo: "¿Querés saber si podemos acompañar a tu familiar?"
+  texto: "Contanos su situación y te orientamos, sin compromiso."

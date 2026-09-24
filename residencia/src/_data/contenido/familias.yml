@@ -1,0 +1,101 @@
+# Página FAMILIAS: pensada para quien está evaluando el ingreso de un ser querido.
+
+seo:
+  titulo: "Guía para familias · {nombre}"
+  descripcion: "Cómo es el ingreso, qué pasa los primeros días, cómo se mantiene el contacto y cómo visitar {nombre}. Todo lo que una familia necesita saber."
+
+encabezado:
+  eyebrow: "Familias"
+  titulo: "Una guía para acompañarte en esta decisión"
+  bajada: "Sabemos que elegir una residencia llega con muchas preguntas. Acá reunimos lo que más nos consultan las familias, con claridad y sin vueltas."
+  foto: "familias/hero"
+  alt: "Dos tazas de té y una tetera sobre la mesa, listas para una charla"
+
+pasos:
+  eyebrow: "El ingreso, paso a paso"
+  titulo: "Cómo es el camino"
+  bajada: "Cada familia tiene sus tiempos. Estos son los pasos habituales; los recorremos juntos, sin apuro."
+  items:
+    - titulo: "Nos contactás"
+      icono: "chat-circle-text"
+      texto: "Por teléfono, WhatsApp o el formulario. Te contamos cómo trabajamos y resolvemos las primeras dudas."
+    - titulo: "Venís a conocernos"
+      icono: "door-open"
+      texto: "Recorrés la residencia, conocés al equipo y ves cómo es un día acá."
+    - titulo: "Conversamos"
+      icono: "coffee"
+      texto: "Una entrevista para conocer la historia, los gustos, las rutinas y las necesidades de tu familiar."
+    - titulo: "Preparamos la llegada"
+      icono: "clipboard-text"
+      texto: "Organizamos la documentación, la habitación y un plan de cuidado a su medida."
+    - titulo: "Acompañamos la adaptación"
+      icono: "heart"
+      texto: "Los primeros días estamos especialmente cerca, de tu familiar y de ustedes."
+
+preguntas:
+  eyebrow: "Lo que más nos preguntan"
+  titulo: "Respuestas para decidir con tranquilidad"
+  items:
+    - pregunta: "¿Cómo es el ingreso?"
+      respuesta: |
+        Primero conversamos, después nos visitan y, si deciden avanzar, hacemos una entrevista de admisión para conocer a fondo a la persona: su historia, su salud, sus gustos y sus rutinas.
+
+        Con esa información preparamos su llegada y un plan de cuidado personalizado. [Completar: plazos habituales y requisitos de ingreso.]
+    - pregunta: "¿Qué pasa durante los primeros días?"
+      respuesta: |
+        La adaptación lleva su tiempo, y es distinta para cada persona. Esos días estamos especialmente atentos: acompañamos a tu familiar a conocer la casa y a sus compañeros, respetamos sus tiempos y te contamos cómo se va sintiendo.
+    - pregunta: "¿Cómo se mantiene el contacto?"
+      respuesta: |
+        Acordamos con cada familia la forma de comunicarse: [llamados, mensajes o reuniones periódicas]. Además, siempre pueden escribirnos o llamarnos para consultar cómo está.
+    - pregunta: "¿Puedo visitar a mi familiar?"
+      respuesta: |
+        Sí. Las visitas son una parte importante de la vida en la residencia. Horarios de visita: {visitas}. [Completar con recomendaciones o condiciones para las visitas.]
+    - pregunta: "¿Cómo conozco la residencia?"
+      respuesta: |
+        Coordinamos una visita para que recorras la casa, conozcas al equipo y hagas todas las preguntas que necesites. Podés pedirla por WhatsApp, por teléfono o desde el formulario de contacto.
+    - pregunta: "¿Cómo consulto disponibilidad?"
+      respuesta: |
+        Escribinos o llamanos y te contamos la disponibilidad actual y las opciones de habitación. [Completar si hay lista de espera o reservas.]
+
+tranquilidad:
+  eyebrow: "Seguridad y tranquilidad"
+  titulo: "Lo que hacemos para que estén tranquilos"
+  bajada: "Cuidar también es prevenir, ordenar y comunicar. Estos son los aspectos que atendemos todos los días."
+  nota: "Los protocolos y habilitaciones se detallan en la entrevista. [Completar solo con información confirmada.]"
+  items:
+    - icono: "shield-check"
+      titulo: "Espacios pensados para la seguridad"
+      texto: "Ambientes ordenados, circulaciones despejadas y elementos de apoyo donde hacen falta."
+    - icono: "heart"
+      titulo: "Acompañamiento"
+      texto: "Personas cerca para ayudar, charlar o simplemente estar, a lo largo del día."
+    - icono: "eye"
+      titulo: "Supervisión"
+      texto: "Un equipo atento a cómo está cada residente. [Completar: cómo se organiza la supervisión durante la noche.]"
+    - icono: "hand-soap"
+      titulo: "Higiene"
+      texto: "Limpieza cuidadosa y constante de las habitaciones y los espacios comunes."
+    - icono: "clipboard-text"
+      titulo: "Protocolos internos"
+      texto: "[Describir los protocolos de la residencia: por ejemplo, ante emergencias, para la medicación o para las visitas.]"
+    - icono: "wheelchair"
+      titulo: "Accesibilidad"
+      texto: "Espacios adaptados para moverse con comodidad y la mayor autonomía posible."
+    - icono: "chats-circle"
+      titulo: "Comunicación con las familias"
+      texto: "Canales claros para consultar, recibir novedades y coordinar visitas."
+
+documentacion:
+  titulo: "Qué conviene tener a mano"
+  bajada: "Una lista orientativa para ir preparando el ingreso."
+  nota: "La documentación definitiva la confirma la residencia en la entrevista."
+  items:
+    - "DNI de la persona que ingresa"
+    - "Credencial de obra social o prepaga [confirmar]"
+    - "Resumen de historia clínica y medicación actual [confirmar]"
+    - "Datos de contacto de los familiares responsables"
+    - "[Otros requisitos de la residencia]"
+
+cierre:
+  titulo: "Cuando quieras, hablamos"
+  texto: "Sin apuro y sin compromiso. Te escuchamos, respondemos tus dudas y, si querés, coordinamos una visita."

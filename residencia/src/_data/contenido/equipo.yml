@@ -1,0 +1,46 @@
+# EQUIPO (se muestra en Nosotros).
+# Reemplazá los [datos] por los reales. Para la foto, guardá un retrato en
+# src/assets/img/equipo/ con el nombre indicado (por ejemplo direccion.jpg).
+# Podés agregar o quitar personas copiando o borrando un bloque "- area: ...".
+
+- area: "Dirección"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Cargo]"
+  texto: "[Breve descripción: trayectoria, rol y cómo acompaña a residentes y familias.]"
+  foto: "equipo/direccion"
+
+- area: "Cuidadores"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Cargo: por ejemplo, coordinación de cuidadores]"
+  texto: "[Descripción del equipo de cuidado y de su tarea diaria.]"
+  foto: "equipo/cuidado"
+
+- area: "Enfermería"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Cargo]"
+  texto: "[Descripción del rol. Incluir títulos o matrículas solo si están verificados.]"
+  foto: "equipo/enfermeria"
+
+- area: "Profesionales"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Especialidad]"
+  texto: "[Descripción del rol y de cómo trabaja con los residentes.]"
+  foto: "equipo/profesionales"
+
+- area: "Cocina"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Cargo]"
+  texto: "[Descripción: cómo se piensan y preparan las comidas.]"
+  foto: "equipo/cocina"
+
+- area: "Mantenimiento"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Cargo]"
+  texto: "[Descripción de la tarea: que todo funcione y esté en condiciones.]"
+  foto: "equipo/mantenimiento"
+
+- area: "Administración"
+  nombre: "[Nombre y apellido]"
+  cargo: "[Cargo]"
+  texto: "[Descripción: atención a familias, trámites y consultas.]"
+  foto: "equipo/administracion"

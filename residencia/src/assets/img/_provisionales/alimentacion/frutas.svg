@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+<!-- Imagen PROVISIONAL generada por scripts/generar-provisionales.mjs. Reemplazar por una foto real. -->
+<defs>
+<filter id="n1" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.9 0.01" numOctaves="1" seed="3" stitchTiles="noStitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.427  0 0 0 0 0.361  0 0 0 0 0.278  1.4 0 0 0 -0.45"/>
+<feComponentTransfer><feFuncA type="linear" slope="0.11000000000000001" intercept="0"/></feComponentTransfer></filter>
+<filter id="n2" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.01 0.9" numOctaves="1" seed="5" stitchTiles="noStitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.427  0 0 0 0 0.361  0 0 0 0 0.278  1.4 0 0 0 -0.45"/>
+<feComponentTransfer><feFuncA type="linear" slope="0.11000000000000001" intercept="0"/></feComponentTransfer></filter>
+<filter id="n3" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.003 0.004" numOctaves="2" seed="9" stitchTiles="noStitch"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.353  0 0 0 0 0.282  0 0 0 0 0.204  1.4 0 0 0 -0.45"/>
+<feComponentTransfer><feFuncA type="linear" slope="0.132" intercept="0"/></feComponentTransfer></filter>
+<radialGradient id="rg4" cx="0.4" cy="0.36" r="0.7"><stop offset="0" stop-color="#f5f1e9" stop-opacity="1"/><stop offset="0.75" stop-color="#EFE7DA" stop-opacity="1"/><stop offset="1" stop-color="#d7d0c4" stop-opacity="1"/></radialGradient>
+<radialGradient id="rg5" cx="0.44" cy="0.42" r="0.62"><stop offset="0" stop-color="#e9dfcf" stop-opacity="1"/><stop offset="0.7" stop-color="#E4D8C4" stop-opacity="1"/><stop offset="1" stop-color="#aba293" stop-opacity="1"/></radialGradient>
+<filter id="s6" x="-40%" y="-40%" width="190%" height="190%" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" stdDeviation="14.4"/><feOffset dx="8.8" dy="12.8" result="o1"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.26"/><feComposite in2="o1" operator="in" result="s1"/>
+<feGaussianBlur in="SourceAlpha" stdDeviation="2.24"/><feOffset dx="1.92" dy="2.88" result="o2"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.34"/><feComposite in2="o2" operator="in" result="s2"/>
+<feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<radialGradient id="rg7" cx="0.36" cy="0.32" r="0.7"><stop offset="0" stop-color="#f0bb7f" stop-opacity="1"/><stop offset="0.6" stop-color="#E8963A" stop-opacity="1"/><stop offset="1" stop-color="#a26929" stop-opacity="1"/></radialGradient>
+<filter id="s8" x="-40%" y="-40%" width="190%" height="190%" color-interpolation-filters="sRGB">
+<feGaussianBlur in="SourceAlpha" stdDeviation="7.2"/><feOffset dx="4.4" dy="6.4" result="o1"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.26"/><feComposite in2="o1" operator="in" result="s1"/>
+<feGaussianBlur in="SourceAlpha" stdDeviation="1.12"/><feOffset dx="0.96" dy="1.44" result="o2"/>
+<feFlood flood-color="#3E3024" flood-opacity="0.34"/><feComposite in2="o2" operator="in" result="s2"/>
+<feMerge><feMergeNode in="s1"/><feMergeNode in="s2"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<radialGradient id="rg9" cx="0.36" cy="0.32" r="0.7"><stop offset="0" stop-color="#f5c389" stop-opacity="1"/><stop offset="0.6" stop-color="#EFA24A" stop-opacity="1"/><stop offset="1" stop-color="#a77134" stop-opacity="1"/></radialGradient>
+<radialGradient id="rg10" cx="0.36" cy="0.32" r="0.7"><stop offset="0" stop-color="#d18477" stop-opacity="1"/><stop offset="0.6" stop-color="#B8412E" stop-opacity="1"/><stop offset="1" stop-color="#812e20" stop-opacity="1"/></radialGradient>
+<radialGradient id="rg11" cx="0.36" cy="0.32" r="0.7"><stop offset="0" stop-color="#f0bb7f" stop-opacity="1"/><stop offset="0.6" stop-color="#E8963A" stop-opacity="1"/><stop offset="1" stop-color="#a26929" stop-opacity="1"/></radialGradient>
+<radialGradient id="rg12" cx="0.36" cy="0.32" r="0.7"><stop offset="0" stop-color="#bfcc89" stop-opacity="1"/><stop offset="0.6" stop-color="#9DB04A" stop-opacity="1"/><stop offset="1" stop-color="#6e7b34" stop-opacity="1"/></radialGradient>
+<filter id="grain13" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.92" numOctaves="2" seed="7" stitchTiles="noStitch"/>
+<feColorMatrix type="saturate" values="0"/>
+<feComponentTransfer><feFuncA type="table" tableValues="0 0.09"/></feComponentTransfer></filter>
+<radialGradient id="rg14" cx="0.5" cy="0.48" r="0.78"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="0.62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#2b1d10" stop-opacity="0.16"/></radialGradient>
+</defs>
+<rect x="0" y="0" width="1200" height="1200" fill="#EFE7DA"/>
+<rect x="0" y="0" width="1200" height="1200" filter="url(#n1)"/>
+<rect x="0" y="0" width="1200" height="1200" filter="url(#n2)"/>
+<rect x="0" y="0" width="1200" height="1200" filter="url(#n3)"/>
+<circle cx="600" cy="600" r="300" fill="url(#rg4)" filter="url(#s6)"/>
+<circle cx="600" cy="600" r="246" fill="url(#rg5)"/><circle cx="516" cy="540" r="90" fill="url(#rg7)" filter="url(#s8)"/><circle cx="660" cy="516" r="84" fill="url(#rg9)" filter="url(#s8)"/><circle cx="684" cy="654" r="87" fill="url(#rg10)" filter="url(#s8)"/><circle cx="534" cy="681" r="81" fill="url(#rg11)" filter="url(#s8)"/><circle cx="600" cy="600" r="78" fill="url(#rg12)" filter="url(#s8)"/>
+<rect width="1200" height="1200" fill="url(#rg14)"/>
+<rect width="1200" height="1200" filter="url(#grain13)" style="mix-blend-mode:multiply"/>
+</svg>

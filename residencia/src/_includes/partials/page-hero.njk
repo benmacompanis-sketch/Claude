@@ -1,0 +1,32 @@
+{#- Encabezado de páginas interiores.
+    Variables: enc (eyebrow, titulo, bajada, foto, alt), migas (lista de {texto, url}), encAcciones (opcional). -#}
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    {%- if migas %}
+    <nav class="breadcrumbs" aria-label="Estás en">
+      <ol role="list">
+        {%- for miga in migas %}
+        <li>{% if loop.last %}<span aria-current="page">{{ miga.texto }}</span>{% else %}<a href="{{ miga.url }}">{{ miga.texto }}</a>{% endif %}</li>
+        {%- endfor %}
+      </ol>
+    </nav>
+    {%- endif %}
+    <div class="page-hero__grid">
+      <div class="page-hero__content">
+        {% if enc.eyebrow %}<p class="eyebrow">{{ enc.eyebrow | texto }}</p>{% endif %}
+        <h1 class="page-hero__title" id="page-title">{{ enc.titulo | texto }}</h1>
+      </div>
+      <div class="page-hero__aside">
+        {% if enc.bajada %}<p class="page-hero__lead">{{ enc.bajada | texto }}</p>{% endif %}
+        {% if encAcciones %}<div class="page-hero__actions">{{ encAcciones | safe }}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+  {%- if enc.foto %}
+  <div class="container container--wide">
+    <div class="page-hero__media media">
+      {% foto enc.foto, enc.alt, { sizes: "(min-width: 88em) 1400px, 96vw", carga: "eager", prioridad: "high" } %}
+    </div>
+  </div>
+  {%- endif %}
+</section>

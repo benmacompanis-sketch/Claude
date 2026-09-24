@@ -1,0 +1,41 @@
+{#- Componentes pequeños y reutilizables.
+    Importar con: {% from "macros/ui.njk" import boton, enlace, encabezado with context %} -#}
+
+{#- Botón. variante: primary | secondary | light | outline-light | whatsapp -#}
+{% macro boton(texto, url, variante="primary", icono="", iconoFin="", tam="", externo=false, clase="", ayuda="") -%}
+<a class="btn btn--{{ variante }}{% if tam %} btn--{{ tam }}{% endif %}{% if clase %} {{ clase }}{% endif %}" href="{{ url }}"{% if externo %} target="_blank" rel="noopener"{% endif %}>
+  {%- if icono %}{% icono icono %}{% endif -%}
+  <span>{{ texto | texto }}</span>
+  {%- if ayuda %}<span class="visually-hidden"> {{ ayuda }}</span>{% endif -%}
+  {%- if iconoFin %}{% icono iconoFin, "icon--end" %}{% endif -%}
+</a>
+{%- endmacro %}
+
+{#- Enlace de texto con flecha. -#}
+{% macro enlace(texto, url, clase="") -%}
+<a class="link-arrow{% if clase %} {{ clase }}{% endif %}" href="{{ url }}"><span>{{ texto | texto }}</span>{% icono "arrow-right" %}</a>
+{%- endmacro %}
+
+{#- Encabezado de sección: antetítulo, título y bajada. -#}
+{% macro encabezado(eyebrow="", titulo="", bajada="", nivel=2, id="", clase="") -%}
+<div class="section-head{% if clase %} {{ clase }}{% endif %}">
+  {%- if eyebrow %}<p class="eyebrow">{{ eyebrow | texto }}</p>{% endif %}
+  <h{{ nivel }} class="section-title"{% if id %} id="{{ id }}"{% endif %}>{{ titulo | texto }}</h{{ nivel }}>
+  {%- if bajada %}<p class="section-lead">{{ bajada | texto }}</p>{% endif %}
+</div>
+{%- endmacro %}
+
+{#- Dato de contacto con ícono (se usa en contacto y footer). -#}
+{% macro dato(icono, etiqueta, valor, url="", externo=false) -%}
+<li class="contact-item">
+  <span class="contact-item__icon">{% icono icono %}</span>
+  <span class="contact-item__body">
+    <span class="contact-item__label">{{ etiqueta }}</span>
+    {%- if url %}
+    <a class="contact-item__value" href="{{ url }}"{% if externo %} target="_blank" rel="noopener"{% endif %}>{{ valor | texto }}</a>
+    {%- else %}
+    <span class="contact-item__value">{{ valor | texto }}</span>
+    {%- endif %}
+  </span>
+</li>
+{%- endmacro %}

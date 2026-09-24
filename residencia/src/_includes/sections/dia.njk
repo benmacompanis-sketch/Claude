@@ -1,0 +1,32 @@
+{#- Un día en la residencia. Variables: diaTexto (eyebrow, titulo, bajada, nota, enlace), diaNivel. -#}
+{% from "macros/ui.njk" import encabezado, enlace with context %}
+<section class="section day" aria-labelledby="dia-titulo">
+  <div class="container">
+    <div class="day__head">
+      {{ encabezado(diaTexto.eyebrow, diaTexto.titulo, diaTexto.bajada, id="dia-titulo") }}
+      <div class="day__aside">
+        <p class="day__note">{% icono "clock" %}<span>{{ diaTexto.nota | texto }}</span></p>
+        {% if diaTexto.enlace %}{{ enlace(diaTexto.enlace.texto, diaTexto.enlace.url) }}{% endif %}
+      </div>
+    </div>
+
+    <ol class="day__moments" role="list">
+      {%- for m in contenido.dia %}
+      {%- set momentoId = m.id %}
+      <li class="moment moment--{{ m.id }}" data-reveal style="--i: {{ loop.index0 }}">
+        <div class="moment__top">
+          {% include "partials/sol.njk" %}
+          <p class="moment__time">{{ m.momento }}{% if m.horario %}<span> · {{ m.horario }}</span>{% endif %}</p>
+        </div>
+        <h3 class="moment__title">{{ m.titulo | texto }}</h3>
+        <div class="moment__media media">
+          {% foto m.foto, m.alt, { sizes: "(min-width: 72em) 20vw, (min-width: 40em) 45vw, 90vw", anchos: "480,800" } %}
+        </div>
+        <ul class="moment__items" role="list">
+          {%- for item in m.items %}<li>{{ item | texto }}</li>{%- endfor %}
+        </ul>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>

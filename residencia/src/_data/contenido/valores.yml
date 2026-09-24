@@ -1,0 +1,34 @@
+# "Por qué elegirnos": se muestra en Inicio.
+# Íconos disponibles: ver src/assets/icons/ (nombre del archivo sin ".svg").
+
+- icono: "hand-heart"
+  titulo: "Atención personalizada"
+  texto: "Conocemos a cada residente: sus rutinas, sus gustos y lo que necesita. El cuidado se adapta a la persona, no al revés."
+
+- icono: "clipboard-text"
+  titulo: "Seguimiento permanente"
+  texto: "Estamos atentos a cómo está cada residente a lo largo del día y compartimos con la familia lo importante."
+
+- icono: "shield-check"
+  titulo: "Ambientes seguros"
+  texto: "Espacios ordenados y pensados para moverse con confianza, de día y de noche."
+
+- icono: "bowl-steam"
+  titulo: "Alimentación equilibrada"
+  texto: "Comidas variadas y ricas, adaptadas a lo que cada persona necesita."
+
+- icono: "palette"
+  titulo: "Actividades recreativas"
+  texto: "Propuestas para moverse, crear, recordar y compartir, respetando las ganas de cada uno."
+
+- icono: "users-three"
+  titulo: "Acompañamiento familiar"
+  texto: "Las familias son parte. Mantenemos el contacto y estamos disponibles para cada consulta."
+
+- icono: "wheelchair"
+  titulo: "Espacios adaptados"
+  texto: "Accesos, circulaciones y baños pensados para la movilidad de las personas mayores."
+
+- icono: "identification-badge"
+  titulo: "Equipo capacitado"
+  texto: "Personas preparadas para cuidar, con paciencia, respeto y buen trato."

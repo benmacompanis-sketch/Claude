@@ -1,0 +1,34 @@
+{
+  "name": "residencia-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio institucional para una residencia de adultos mayores.",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "imagenes": "node scripts/generar-provisionales.mjs",
+    "limpiar": "rm -rf _site .cache"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^7.0.0",
+    "browserslist": "^4.29.1",
+    "esbuild": "^0.28.2",
+    "js-yaml": "^5.4.2",
+    "lightningcss": "^1.33.0",
+    "nunjucks": "^3.2.4"
+  },
+  "browserslist": [
+    "> 0.3% in AR",
+    "last 2 versions",
+    "not dead",
+    "iOS >= 14",
+    "Safari >= 14",
+    "Chrome >= 90",
+    "Samsung >= 14"
+  ]
+}

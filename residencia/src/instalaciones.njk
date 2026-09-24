@@ -1,0 +1,87 @@
+---
+layout: layouts/base.njk
+paginaId: instalaciones
+waMensaje: visita
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Instalaciones"
+    url: "/instalaciones/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.instalaciones %}
+{% set enc = c.encabezado %}
+{% set totalFotos = 0 %}
+{% for e in c.espacios %}{% set totalFotos = totalFotos + e.fotos.length %}{% endfor %}
+{% set encAcciones %}<p class="page-hero__meta">{% icono "image" %}<span>{{ c.espacios.length }} espacios · {{ totalFotos }} fotos</span></p>{% endset %}
+{% include "partials/page-hero.njk" %}
+
+{# Navegación por espacios (queda fija debajo del encabezado al bajar). #}
+<nav class="chips" aria-label="Espacios de la residencia" data-chips>
+  <div class="container">
+    <ul class="chips__list" role="list">
+      {%- for e in c.espacios %}
+      <li><a class="chip" href="#{{ e.id }}" data-chip="{{ e.id }}">{{ e.nombre | plano }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</nav>
+
+<div class="gallery" data-gallery>
+  {%- for e in c.espacios %}
+  {%- set n = e.fotos.length %}
+  {%- set disposicion = "vacio" if n == 0 else ("solo" if n == 1 else ("duo" if n == 2 else "trio")) %}
+  <section class="chapter chapter--{{ disposicion }}{% if loop.index0 % 2 %} chapter--reverse{% endif %}" id="{{ e.id }}" aria-labelledby="{{ e.id }}-titulo" data-chapter>
+    <div class="container chapter__grid">
+      <div class="chapter__head" data-reveal>
+        <p class="chapter__num" aria-hidden="true">{{ loop.index | dosDigitos }}</p>
+        <h2 class="chapter__title" id="{{ e.id }}-titulo">{{ e.nombre | texto }}</h2>
+        <p class="chapter__text">{{ e.texto | texto }}</p>
+        {%- if e.detalles %}
+        <ul class="chapter__details" role="list">
+          {%- for d in e.detalles %}<li>{% icono "check" %}<span>{{ d | texto }}</span></li>{%- endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+
+      {%- if n == 0 %}
+      <div class="chapter__empty" data-reveal>
+        {% icono "camera" %}
+        <p><strong>Pronto vamos a sumar fotos de este espacio.</strong><br>Mientras tanto, te lo mostramos con gusto en una visita.</p>
+        {{ enlace("Coordinar una visita", "/contacto/?motivo=visita#formulario") }}
+      </div>
+      {%- else %}
+      <ul class="chapter__gallery" role="list">
+        {%- for f in e.fotos %}
+        <li class="shot shot--{{ loop.index }}" data-reveal style="--i: {{ loop.index0 }}">
+          <figure>
+            <button class="shot__button media" type="button" data-lightbox-item data-caption="{{ f.leyenda | plano }} · {{ e.nombre | plano }}" aria-label="Ampliar foto: {{ f.leyenda | plano }}">
+              {% foto f.src, f.alt, { sizes: ("(min-width: 64em) 50vw, 96vw" if loop.first else "(min-width: 64em) 30vw, 96vw"), anchos: "480,800,1200,1600" } %}
+              <span class="shot__zoom" aria-hidden="true">{% icono "arrows-out" %}</span>
+            </button>
+            <figcaption class="shot__caption">{{ f.leyenda | texto }}</figcaption>
+          </figure>
+        </li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+  </section>
+  {%- endfor %}
+</div>
+
+{# Visor de fotos (lo maneja assets/js/modulos/galeria.js). #}
+<dialog class="lightbox" aria-label="Fotos de la residencia" data-lightbox>
+  <div class="lightbox__stage" data-lb-stage></div>
+  <div class="lightbox__bar">
+    <p class="lightbox__caption" data-lb-caption aria-live="polite"></p>
+    <p class="lightbox__count" data-lb-count></p>
+  </div>
+  <button class="lightbox__btn lightbox__close" type="button" data-lb-close aria-label="Cerrar">{% icono "x" %}</button>
+  <button class="lightbox__btn lightbox__prev" type="button" data-lb-prev aria-label="Foto anterior">{% icono "arrow-left" %}</button>
+  <button class="lightbox__btn lightbox__next" type="button" data-lb-next aria-label="Foto siguiente">{% icono "arrow-right" %}</button>
+</dialog>
+
+{% set cierre = c.cierre %}
+{% set cierreMensaje = "visita" %}
+{% include "sections/cierre.njk" %}

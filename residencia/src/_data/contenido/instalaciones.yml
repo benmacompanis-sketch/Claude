@@ -1,0 +1,116 @@
+# Página INSTALACIONES (galería).
+# Cada espacio tiene sus fotos. Para cambiar una foto provisional por una real,
+# guardá la foto en src/assets/img/ con el mismo nombre (ver LEEME de imágenes).
+# "leyenda" es el texto corto que acompaña cada foto. "detalles" es opcional.
+
+seo:
+  titulo: "Instalaciones · {nombre}"
+  descripcion: "Recorré las habitaciones, el comedor, las salas comunes, el jardín y los espacios adaptados de {nombre}, residencia para adultos mayores en {ciudad}."
+
+encabezado:
+  eyebrow: "Instalaciones"
+  titulo: "Recorré la casa"
+  bajada: "Cada espacio está pensado para la comodidad, la seguridad y el bienestar de quienes viven acá. Estas imágenes te dan una idea; nada reemplaza venir a conocerla."
+
+espacios:
+  - id: "habitaciones"
+    nombre: "Habitaciones"
+    texto: "Pensadas para descansar bien y sentirse en su lugar, con todo lo necesario para el día a día."
+    detalles:
+      - "[Habitaciones individuales o compartidas: confirmar]"
+      - "[Baño privado o compartido: confirmar]"
+      - "[Timbre de llamada: confirmar]"
+    fotos:
+      - src: "instalaciones/habitacion-1"
+        alt: "Habitación con cama tendida, almohadones y mesas de luz"
+        leyenda: "Habitación"
+      - src: "instalaciones/habitacion-2"
+        alt: "Mesa de luz con velador, libros y una planta"
+        leyenda: "Detalle de una habitación"
+
+  - id: "comedor"
+    nombre: "Comedor"
+    texto: "Un lugar para compartir la mesa, conversar y disfrutar cada comida con tiempo."
+    fotos:
+      - src: "instalaciones/comedor-2"
+        alt: "Comedor con mesa de madera, sillas y lámparas colgantes"
+        leyenda: "Comedor"
+      - src: "instalaciones/comedor-1"
+        alt: "Mesa puesta para cuatro con platos, cubiertos y una frutera"
+        leyenda: "La mesa, lista para el almuerzo"
+
+  - id: "salas"
+    nombre: "Salas comunes"
+    texto: "Espacios para charlar, leer, mirar una película o recibir a la familia."
+    fotos:
+      - src: "instalaciones/sala-1"
+        alt: "Sala de estar con sillón de tres cuerpos, cuadros y plantas"
+        leyenda: "Sala de estar"
+      - src: "instalaciones/sala-2"
+        alt: "Rincón de lectura con biblioteca, sillón y lámpara"
+        leyenda: "Rincón de lectura"
+
+  - id: "jardin"
+    nombre: "Jardín y patios"
+    texto: "Aire libre, sol y verde para caminar, tomar mate o simplemente estar afuera."
+    fotos:
+      - src: "instalaciones/jardin-1"
+        alt: "Banco de madera en el jardín, rodeado de árboles"
+        leyenda: "Jardín"
+      - src: "instalaciones/patio-1"
+        alt: "Patio con piso de baldosas, plantas y una mesa con tazas"
+        leyenda: "Patio"
+      - src: "instalaciones/jardin-2"
+        alt: "Césped con flores y un camino de piedras"
+        leyenda: "Canteros y camino"
+
+  - id: "recreacion"
+    nombre: "Espacios recreativos"
+    texto: "Mesas y rincones preparados para talleres, juegos y actividades en grupo."
+    fotos:
+      - src: "instalaciones/recreativo-1"
+        alt: "Mesa con juego de damas, dominó y piezas de rompecabezas"
+        leyenda: "Mesa de juegos"
+
+  - id: "descanso"
+    nombre: "Áreas de descanso"
+    texto: "Rincones tranquilos para una siesta, una lectura o un rato de sol."
+    fotos:
+      - src: "instalaciones/descanso-1"
+        alt: "Sillón con manta junto a una ventana con cortina de tablillas"
+        leyenda: "Rincón junto a la ventana"
+
+  - id: "accesos"
+    nombre: "Accesos y circulaciones"
+    texto: "Ingresos accesibles y pasillos pensados para moverse con seguridad."
+    detalles:
+      - "[Rampa de acceso: confirmar]"
+      - "[Pasamanos en pasillos: confirmar]"
+      - "[Ascensor: confirmar si corresponde]"
+    fotos:
+      - src: "instalaciones/acceso-1"
+        alt: "Entrada con puerta de madera, rampa con baranda y macetas"
+        leyenda: "Ingreso con rampa"
+      - src: "instalaciones/acceso-2"
+        alt: "Pasillo amplio con pasamanos y luz natural"
+        leyenda: "Pasillo con pasamanos"
+
+  - id: "banos"
+    nombre: "Baños adaptados"
+    texto: "Pensados para la seguridad y la comodidad, con elementos de apoyo."
+    detalles:
+      - "[Barras de apoyo: confirmar]"
+      - "[Ducha sin desnivel y asiento: confirmar]"
+    fotos:
+      - src: "instalaciones/bano-1"
+        alt: "Baño con barras de apoyo, asiento rebatible y ducha de mano"
+        leyenda: "Baño adaptado"
+
+  - id: "otros"
+    nombre: "Otros sectores"
+    texto: "[Completar con otros espacios de la residencia, por ejemplo: sala de visitas, lavadero, enfermería o capilla.]"
+    fotos: []
+
+cierre:
+  titulo: "Nada reemplaza recorrerla en persona"
+  texto: "Coordinamos una visita para que conozcas cada espacio, al equipo y la rutina de la casa."

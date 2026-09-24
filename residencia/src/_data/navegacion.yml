@@ -1,0 +1,39 @@
+# Menús del sitio. El orden de la lista es el orden en pantalla.
+
+# Menú principal (barra superior y menú del celular).
+principal:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Nosotros"
+    url: "/nosotros/"
+  - texto: "Servicios"
+    url: "/servicios/"
+  - texto: "Instalaciones"
+    url: "/instalaciones/"
+  - texto: "Actividades"
+    url: "/actividades/"
+  - texto: "Equipo"
+    url: "/nosotros/#equipo"
+  - texto: "Contacto"
+    url: "/contacto/"
+
+# Enlaces secundarios (franja superior en computadoras y menú del celular).
+secundaria:
+  - texto: "Familias"
+    url: "/familias/"
+  - texto: "Preguntas frecuentes"
+    url: "/preguntas-frecuentes/"
+
+# Botón destacado de la barra.
+cta:
+  texto: "Consultar disponibilidad"
+  textoCorto: "Consultar"
+  url: "/contacto/?motivo=disponibilidad#formulario"
+
+legales:
+  - texto: "Política de privacidad"
+    url: "/privacidad/"
+  - texto: "Términos y condiciones"
+    url: "/terminos/"
+  - texto: "Aviso legal"
+    url: "/aviso-legal/"

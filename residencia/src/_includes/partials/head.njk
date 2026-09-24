@@ -1,0 +1,43 @@
+{%- set datos = contenido[contenidoId or paginaId] if (contenidoId or paginaId) and contenido[contenidoId or paginaId] else {} -%}
+{%- if datos.seo -%}
+  {%- set seoTitulo = datos.seo.titulo | plano -%}
+  {%- set seoDescripcion = datos.seo.descripcion | plano -%}
+{%- else -%}
+  {%- set seoTitulo = ((titulo ~ " · " ~ site.nombre) if titulo else site.nombre) | plano -%}
+  {%- set seoDescripcion = (descripcion or site.seo.descripcion) | plano -%}
+{%- endif -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ seoTitulo }}</title>
+<meta name="description" content="{{ seoDescripcion }}">
+<link rel="canonical" href="{{ page.url | absoluta }}">
+{% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+<meta name="theme-color" content="#F7F2EA">
+<meta name="format-detection" content="telephone=no">
+
+{# Tipografías críticas: se descargan en paralelo con el HTML. #}
+<link rel="preload" href="/assets/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader-display.woff2" as="font" type="font/woff2" crossorigin>
+{% if paginaId == "inicio" %}<link rel="preload" href="/assets/fonts/newsreader-italic.woff2" as="font" type="font/woff2" crossorigin>{% endif %}
+<link rel="stylesheet" href="{% asset 'css' %}">
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+{# Vista previa al compartir (WhatsApp, Facebook, etc.). #}
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="{{ site.nombre | plano }}">
+<meta property="og:title" content="{{ seoTitulo }}">
+<meta property="og:description" content="{{ seoDescripcion }}">
+<meta property="og:url" content="{{ page.url | absoluta }}">
+<meta property="og:image" content="{{ site.seo.imagen | absoluta }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ site.nombre | plano }}, {{ site.descriptor | lower }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">{{ site | schema({ migas: migas, faq: faqSchema }) }}</script>

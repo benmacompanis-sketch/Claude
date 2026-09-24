@@ -1,0 +1,120 @@
+---
+layout: layouts/base.njk
+paginaId: servicios
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Servicios"
+    url: "/servicios/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.servicios %}
+{% set enc = c.encabezado %}
+{% include "partials/page-hero.njk" %}
+
+{# ─────────────── MODALIDADES ─────────────── #}
+<section class="section modalities-section" aria-labelledby="modalidades-titulo">
+  <div class="container">
+    {{ encabezado(c.modalidades.eyebrow, c.modalidades.titulo, "", id="modalidades-titulo") }}
+    <div class="modalities modalities--detailed">
+      {%- for mod in c.modalidades.items %}
+      <article class="modality" id="{{ mod.id }}" data-reveal style="--i: {{ loop.index0 }}">
+        <span class="modality__icon">{% icono mod.icono %}</span>
+        <p class="modality__label">{{ mod.etiqueta | texto }}</p>
+        <h3 class="modality__title">{{ mod.titulo | texto }}</h3>
+        <p class="modality__text">{{ mod.texto | texto }}</p>
+        {%- if mod.incluye %}
+        <ul class="checklist" role="list">
+          {%- for i in mod.incluye %}<li>{% icono "check" %}<span>{{ i | texto }}</span></li>{%- endfor %}
+        </ul>
+        {%- endif %}
+        {{ boton(mod.enlace.texto, mod.enlace.url, "secondary", iconoFin="arrow-right", tam="sm") }}
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{# ─────────────── DETALLE DE SERVICIOS ─────────────── #}
+<section class="section section--tint service-detail" aria-labelledby="detalle-titulo">
+  <div class="container">
+    {{ encabezado(c.detalle.eyebrow, c.detalle.titulo, c.detalle.bajada, id="detalle-titulo") }}
+    <div class="service-detail__groups">
+      {%- for g in c.grupos %}
+      <div class="service-block" id="{{ g.id }}">
+        <h3 class="service-block__title">{{ g.titulo | texto }}</h3>
+        <ul class="service-block__list" role="list">
+          {%- for s in g.servicios %}
+          <li class="service" id="servicio-{{ s.id }}" data-reveal>
+            <span class="service__icon">{% icono s.icono %}</span>
+            <div class="service__body">
+              <h4 class="service__title">{{ s.titulo | texto }}</h4>
+              <p class="service__text">{{ s.texto | texto }}</p>
+              {%- if s.incluye %}
+              <ul class="service__extra" role="list">
+                {%- for i in s.incluye %}<li>{{ i | texto }}</li>{%- endfor %}
+              </ul>
+              {%- endif %}
+              {% if s.enlace %}{{ enlace(s.enlace.texto, s.enlace.url) }}{% endif %}
+            </div>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+    <aside class="note" aria-labelledby="salud-titulo">
+      <span class="note__icon">{% icono "info" %}</span>
+      <div>
+        <h3 class="note__title" id="salud-titulo">{{ c.salud.titulo | texto }}</h3>
+        <p>{{ c.salud.texto | texto }}</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{# ─────────────── ALIMENTACIÓN ─────────────── #}
+{% set al = c.alimentacion %}
+<section class="section food" id="alimentacion" aria-labelledby="alimentacion-titulo">
+  <div class="container">
+    <div class="food__intro">
+      <div class="food__text">
+        {{ encabezado(al.eyebrow, al.titulo, al.bajada, id="alimentacion-titulo") }}
+        <ul class="food__points" role="list">
+          {%- for p in al.puntos %}
+          <li data-reveal style="--i: {{ loop.index0 }}">
+            <h3 class="food__point-title">{{ p.titulo | texto }}</h3>
+            <p>{{ p.texto | texto }}</p>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+      <div class="food__media media" data-reveal>
+        {% foto al.foto, al.alt, { sizes: "(min-width: 64em) 38vw, 90vw", anchos: "480,800,1200" } %}
+      </div>
+    </div>
+
+    <div class="menu-card" data-reveal>
+      <div class="menu-card__head">
+        <h3 class="menu-card__title">{{ al.menu.titulo | texto }}</h3>
+        <p class="menu-card__notice">{% icono "info" %}<span>{{ al.menu.aviso | texto }}</span></p>
+      </div>
+      <ol class="menu-card__list" role="list">
+        {%- for comida in al.menu.comidas %}
+        <li class="meal">
+          <div class="meal__media media">
+            {% foto comida.foto, comida.alt, { sizes: "(min-width: 64em) 18vw, (min-width: 40em) 40vw, 80vw", anchos: "480,800" } %}
+          </div>
+          <p class="meal__time">{% icono comida.icono %}<span>{{ comida.momento }}</span></p>
+          <p class="meal__dish">{{ comida.plato | texto }}</p>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+{% set cierre = c.cierre %}
+{% set cierreMensaje = "general" %}
+{% set cierreCta = { texto: "Contanos tu situación", url: "/contacto/?motivo=informacion#formulario" } %}
+{% include "sections/cierre.njk" %}

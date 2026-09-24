@@ -1,0 +1,113 @@
+---
+layout: layouts/base.njk
+paginaId: nosotros
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Nosotros"
+    url: "/nosotros/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.nosotros %}
+{% set enc = c.encabezado %}
+{% include "partials/page-hero.njk" %}
+
+{# Índice de la página #}
+<nav class="page-index" aria-label="En esta página">
+  <div class="container">
+    <ul class="page-index__list" role="list">
+      {%- for item in c.indice %}
+      <li><a href="#{{ item.ancla }}">{{ item.texto }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</nav>
+
+{# ─────────────── HISTORIA ─────────────── #}
+{% set h = c.historia %}
+<section class="section story" id="historia" aria-labelledby="historia-titulo">
+  <div class="container story__grid">
+    <figure class="story__photo" data-reveal>
+      <div class="story__frame media">
+        {% foto h.foto, h.alt, { sizes: "(min-width: 64em) 32vw, 80vw", anchos: "480,800,1200" } %}
+      </div>
+      <figcaption class="story__caption">{{ h.leyenda | texto }}</figcaption>
+    </figure>
+    <div class="story__body">
+      {{ encabezado(h.eyebrow, h.titulo, "", id="historia-titulo") }}
+      <div class="prose story__text" data-reveal>{{ h.texto | parrafos }}</div>
+      <p class="story__fact" data-reveal>
+        <span class="story__fact-value">{{ h.dato.valor | texto }}</span>
+        <span class="story__fact-label">{{ h.dato.texto | texto }}</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+{# ─────────────── FILOSOFÍA ─────────────── #}
+{% set fi = c.filosofia %}
+<section class="section section--tint principles" id="filosofia" aria-labelledby="filosofia-titulo">
+  <div class="container">
+    {{ encabezado(fi.eyebrow, fi.titulo, fi.bajada, id="filosofia-titulo") }}
+    <ol class="principles__list" role="list">
+      {%- for p in fi.principios %}
+      <li class="principle" data-reveal style="--i: {{ loop.index0 }}">
+        <span class="principle__num" aria-hidden="true">{{ loop.index | dosDigitos }}</span>
+        <h3 class="principle__title">{{ p.titulo | texto }}</h3>
+        <p class="principle__text">{{ p.texto | texto }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+{# ─────────────── CITA ─────────────── #}
+<section class="pullquote" aria-label="Nuestra forma de pensar la casa">
+  <div class="container container--narrow">
+    <figure class="pullquote__figure" data-reveal>
+      {% icono "quotes", "pullquote__mark" %}
+      <blockquote><p>{{ c.cita.texto | texto }}</p></blockquote>
+      <figcaption>{{ c.cita.autor | texto }} · {{ c.cita.cargo | texto }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+{# ─────────────── EQUIPO ─────────────── #}
+{% set eq = c.equipo %}
+<section class="section team" id="equipo" aria-labelledby="equipo-titulo">
+  <div class="container">
+    <div class="team__head">
+      {{ encabezado(eq.eyebrow, eq.titulo, eq.bajada, id="equipo-titulo") }}
+    </div>
+    {% set lider = contenido.equipo[0] %}
+    <article class="member member--featured" data-reveal>
+      <div class="member__media media">
+        {% foto lider.foto, ("" if (lider.foto | fotoProvisional) else ("Retrato de " ~ lider.nombre ~ ", " ~ lider.area)), { sizes: "(min-width: 64em) 30vw, 90vw", anchos: "480,800" } %}
+      </div>
+      <div class="member__body">
+        <p class="member__area">{{ lider.area | texto }}</p>
+        <h3 class="member__name">{{ lider.nombre | texto }}</h3>
+        <p class="member__role">{{ lider.cargo | texto }}</p>
+        <p class="member__text">{{ lider.texto | texto }}</p>
+      </div>
+    </article>
+    <ul class="team__grid" role="list">
+      {%- for m in contenido.equipo %}{% if not loop.first %}
+      <li class="member" data-reveal style="--i: {{ (loop.index0 - 1) % 3 }}">
+        <div class="member__media media">
+          {% foto m.foto, ("" if (m.foto | fotoProvisional) else ("Retrato de " ~ m.nombre ~ ", " ~ m.area)), { sizes: "(min-width: 64em) 26vw, (min-width: 40em) 45vw, 90vw", anchos: "480,800" } %}
+        </div>
+        <p class="member__area">{{ m.area | texto }}</p>
+        <h3 class="member__name">{{ m.nombre | texto }}</h3>
+        <p class="member__role">{{ m.cargo | texto }}</p>
+        <p class="member__text">{{ m.texto | texto }}</p>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+    <p class="team__note">{% icono "info" %}<span>{{ eq.nota | texto }}</span></p>
+  </div>
+</section>
+
+{% set cierre = { titulo: "La mejor forma de conocernos es venir", texto: "Te mostramos la casa, te presentamos al equipo y respondemos todas tus preguntas." } %}
+{% set cierreMensaje = "visita" %}
+{% include "sections/cierre.njk" %}

@@ -1,0 +1,122 @@
+# Textos de la página de INICIO.
+# Podés usar **negrita**, *itálica* y [enlaces](/url). Los {tokens} se completan con site.yml.
+
+seo:
+  titulo: "{nombre} · Residencia para adultos mayores en {ciudad}"
+  descripcion: "Residencia para adultos mayores en {ciudad}. Atención personalizada, espacios adaptados y acompañamiento cercano a las familias. Coordiná una visita para conocernos."
+
+hero:
+  eyebrow: "Residencia para adultos mayores · {ciudad}, {provincia}"
+  # La parte entre *asteriscos* se muestra en itálica.
+  titulo: "Acá cada persona se siente *en casa*, y cada familia, acompañada."
+  bajada: "Acompañamos el día a día de cada residente con atención personalizada, respeto por su historia y la calidez de un hogar. Y estamos cerca de las familias en cada paso."
+  cta:
+    texto: "Solicitar una visita"
+    url: "/contacto/?motivo=visita#formulario"
+  ctaSecundario:
+    texto: "Ver las instalaciones"
+    url: "/instalaciones/"
+  foto: "inicio/hero"
+  alt: "Sala de estar de la residencia, con un sillón junto a la ventana"
+  leyenda: "La sala de estar, a media mañana."
+  indicadores:
+    - valor: "{anios} años"
+      texto: "acompañando familias"
+    - valor: "Atención"
+      texto: "personalizada"
+    - valor: "Espacios"
+      texto: "adaptados"
+
+manifiesto:
+  eyebrow: "Nuestra casa"
+  cita: "Creemos que esta etapa se vive mejor con cosas simples: sentirse escuchado, comer rico, tener con quién charlar y que te llamen por tu nombre."
+  texto: |
+    En {nombre} cada residente tiene su historia, sus costumbres y su manera de hacer las cosas. Nuestro trabajo es acompañarlo con respeto, cuidar su bienestar y su autonomía, y hacer de esta casa un lugar donde se sienta cómodo, seguro y en compañía.
+
+    Por eso prestamos atención a los detalles: los horarios de cada uno, sus comidas preferidas, las charlas de la tarde y la tranquilidad de la noche.
+  firma:
+    nombre: "[Nombre y apellido]"
+    cargo: "Dirección de {nombre}"
+  foto: "inicio/nuestra-casa"
+  alt: "Mate, termo y un libro abierto sobre una mesa con mantel"
+  enlace:
+    texto: "Conocé cómo trabajamos"
+    url: "/nosotros/"
+
+valores:
+  eyebrow: "Por qué elegirnos"
+  titulo: "Lo que cuidamos todos los días"
+  bajada: "Detrás de un día tranquilo hay muchos detalles atendidos. Estos son los que más nos importan."
+
+dia:
+  eyebrow: "El día a día"
+  titulo: "Cómo es un día en la residencia"
+  bajada: "Los días tienen un ritmo tranquilo y previsible, que da seguridad. Y dentro de ese ritmo, cada residente conserva sus tiempos y sus costumbres."
+  nota: "Horarios orientativos: se adaptan a cada persona."
+  enlace:
+    texto: "Ver las actividades"
+    url: "/actividades/"
+
+espacios:
+  eyebrow: "Instalaciones"
+  titulo: "Espacios pensados para vivir con comodidad"
+  bajada: "Habitaciones cómodas, lugares para compartir y rincones tranquilos. Cada ambiente está pensado para moverse con seguridad y sentirse a gusto."
+  enlace:
+    texto: "Recorré las instalaciones"
+    url: "/instalaciones/"
+  # Espacios que se muestran en el collage (ids de instalaciones.yml, en este orden).
+  destacados: ["habitaciones", "comedor", "jardin", "salas", "banos"]
+
+servicios:
+  eyebrow: "Servicios"
+  titulo: "Un acompañamiento completo, pensado para cada persona"
+  bajada: "Recibimos residentes de forma permanente y también por estadías temporarias. En los dos casos, el cuidado se arma a la medida de cada uno."
+  enlace:
+    texto: "Ver todos los servicios"
+    url: "/servicios/"
+
+tranquilidad:
+  eyebrow: "Para las familias"
+  titulo: "Tu tranquilidad también es parte del cuidado"
+  foto: "inicio/tranquilidad"
+  alt: "Habitación con la cama tendida y luz de la tarde"
+  items:
+    - titulo: "Vas a saber cómo está."
+      texto: "Acordamos juntos la forma y la frecuencia del contacto, y estamos disponibles para cada consulta."
+    - titulo: "Vas a conocer a quienes lo cuidan."
+      texto: "Te presentamos al equipo desde la primera visita: personas que conocen a cada residente por su nombre."
+    - titulo: "Vas a encontrar un lugar pensado para cuidar."
+      texto: "Espacios seguros y accesibles, higiene en cada sector y un equipo atento en el día a día."
+  enlace:
+    texto: "Leer la guía para familias"
+    url: "/familias/"
+
+ingreso:
+  eyebrow: "El ingreso, paso a paso"
+  titulo: "Sabemos que no es una decisión fácil"
+  bajada: "Por eso te acompañamos desde la primera consulta, sin apuro y con toda la información que necesites para decidir en familia."
+  cta:
+    texto: "Hablemos con tranquilidad"
+    url: "/contacto/"
+  ctaSecundario:
+    texto: "Guía para familias"
+    url: "/familias/"
+
+testimonios:
+  eyebrow: "Familias"
+  titulo: "Lo que nos cuentan las familias"
+
+preguntas:
+  eyebrow: "Preguntas frecuentes"
+  titulo: "Las dudas de siempre, con respuestas claras"
+  bajada: "¿No encontrás lo que buscás? Escribinos y te respondemos personalmente."
+  enlace:
+    texto: "Ver todas las preguntas"
+    url: "/preguntas-frecuentes/"
+
+visita:
+  eyebrow: "Visitanos"
+  titulo: "Vení a conocernos"
+  texto: "La mejor manera de decidir es recorrer la casa, charlar con el equipo y ver cómo se vive un día acá. Coordinamos la visita con vos, sin compromiso."
+  foto: "inicio/visita"
+  alt: "Entrada de la residencia, con puerta de madera, rampa y plantas"

@@ -1,0 +1,16 @@
+{#- Pequeño "reloj de sol": muestra la posición del sol (o la luna) según el momento del día.
+    Recibe la variable "momentoId": manana | mediodia | tarde | noche. -#}
+<svg class="dial" viewBox="0 0 72 40" aria-hidden="true" focusable="false">
+  <path class="dial__arc" d="M6 34a30 30 0 0 1 60 0"/>
+  <path class="dial__horizon" d="M1 34h70"/>
+  {%- if momentoId == "manana" %}
+  <circle class="dial__sun" cx="7.8" cy="23.7" r="5"/>
+  {%- elif momentoId == "mediodia" %}
+  <circle class="dial__sun" cx="36" cy="4.5" r="5"/>
+  {%- elif momentoId == "tarde" %}
+  <circle class="dial__sun" cx="60.6" cy="16.8" r="5"/>
+  {%- else %}
+  <path class="dial__moon" d="M38 6.3A7 7 0 1 0 38 19.7A6.7 6.7 0 0 1 38 6.3Z"/>
+  <circle class="dial__star" cx="55" cy="10" r="1.1"/><circle class="dial__star" cx="61" cy="20" r=".9"/><circle class="dial__star" cx="16" cy="14" r="1"/>
+  {%- endif %}
+</svg>

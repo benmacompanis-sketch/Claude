@@ -1,0 +1,22 @@
+{#- Cierre de página interior: una invitación a dar el siguiente paso.
+    Variables: cierre (titulo, texto), cierreMensaje (clave del mensaje de WhatsApp),
+    cierreCta (texto, url) opcional. -#}
+{% from "macros/ui.njk" import boton with context %}
+{% set ctaPrincipal = cierreCta or { texto: "Solicitar una visita", url: "/contacto/?motivo=visita#formulario" } %}
+<section class="section closing" aria-labelledby="cierre-titulo">
+  <div class="container">
+    <div class="closing__panel" data-reveal>
+      <div class="closing__mark" aria-hidden="true">
+        <svg viewBox="0 0 40 48" fill="none" focusable="false"><path d="M6 45V20a14 14 0 0 1 28 0v25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13.5 20a6.5 6.5 0 0 1 13 0Z" fill="currentColor" opacity=".35"/></svg>
+      </div>
+      <div class="closing__content">
+        <h2 class="closing__title" id="cierre-titulo">{{ cierre.titulo | texto }}</h2>
+        <p class="closing__text">{{ cierre.texto | texto }}</p>
+      </div>
+      <div class="closing__actions">
+        {{ boton(ctaPrincipal.texto, ctaPrincipal.url, "light", iconoFin="arrow-right") }}
+        {{ boton("Escribinos por WhatsApp", site | whatsapp(cierreMensaje or "general"), "outline-light", icono="whatsapp-logo", externo=true) }}
+      </div>
+    </div>
+  </div>
+</section>
