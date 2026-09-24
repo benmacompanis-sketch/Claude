@@ -1,0 +1,120 @@
+/* ==========================================================================
+   MOVIMIENTO
+   Animaciones cortas y livianas (solo opacidad y transformaciones, que no
+   recalculan el diseño). Si la persona pidió reducir el movimiento en su
+   dispositivo, no se reproduce ninguna.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada del hero: rápida, sin bloquear. El título se ve desde el primer
+     instante (solo se desplaza unos píxeles). */
+  .hero__eyebrow,
+  .hero__lead,
+  .hero__actions,
+  .hero__stats,
+  .hero__caption {
+    animation: entrar 0.8s var(--ease-out) both;
+  }
+
+  .hero__title {
+    animation: subir 0.9s var(--ease-out) both;
+  }
+
+  .hero__eyebrow {
+    animation-delay: 0.05s;
+  }
+
+  .hero__lead {
+    animation-delay: 0.14s;
+  }
+
+  .hero__actions {
+    animation-delay: 0.22s;
+  }
+
+  .hero__stats {
+    animation-delay: 0.3s;
+  }
+
+  .hero__caption {
+    animation-delay: 0.65s;
+  }
+
+  .hero__frame img {
+    animation: asentar 1.6s var(--ease-out) both;
+  }
+
+  .hero__media::before {
+    animation: entrar 1.2s 0.35s var(--ease-out) both;
+  }
+
+  /* El sol del logo "sale" al cargar la página. */
+  .site-header .brand__sun {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: amanecer 1.3s 0.15s var(--ease-out) both;
+  }
+
+  /* Aparición suave de secciones al hacer scroll (la activa el JavaScript;
+     sin JavaScript, todo el contenido se ve igual). */
+  .reveal-activo [data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.8s var(--ease-out),
+      transform 0.9s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .reveal-activo [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Transición suave entre páginas (navegadores compatibles). */
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.22s;
+  }
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(16px);
+  }
+}
+
+@keyframes asentar {
+  from {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes amanecer {
+  from {
+    opacity: 0;
+    transform: translateY(35%) scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

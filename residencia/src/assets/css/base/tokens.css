@@ -1,0 +1,135 @@
+/* ==========================================================================
+   VARIABLES DE DISEÑO
+   Cambiando estos valores se ajusta la identidad visual de todo el sitio.
+   ========================================================================== */
+
+:root {
+  /* ---------- Paleta ---------- */
+  --c-cream-50: #fdfbf7;   /* superficies claras (tarjetas, paneles) */
+  --c-cream-100: #f9f5ee;  /* fondo general: blanco cálido */
+  --c-cream-200: #f2ebdf;  /* fondo alternativo de secciones */
+  --c-sand-200: #e9dfcf;
+  --c-sand-300: #dccfba;   /* líneas y bordes */
+  --c-sand-400: #c9b89c;
+  --c-sage-100: #e5ebe3;   /* fondo verde salvia muy suave */
+  --c-sage-200: #d0dacd;
+  --c-sage-400: #9cb0a0;
+  --c-sage-600: #587062;   /* íconos */
+  --c-green-700: #36594f;
+  --c-green-800: #2c4a42;  /* color principal: verde profundo */
+  --c-green-900: #213831;  /* secciones oscuras */
+  --c-green-950: #182923;  /* pie de página */
+  --c-ink: #1d2824;        /* títulos */
+  --c-text: #383833;       /* texto */
+  --c-muted: #5f5b53;      /* texto secundario */
+  --c-clay-300: #e4bc9f;
+  --c-clay-500: #c07a52;   /* acento: terracota suave (detalles) */
+  --c-clay-700: #8f4e2d;   /* acento para texto (contraste AA) */
+  --c-night: #1f3538;      /* azul petróleo: la noche */
+  --c-success: #2f6b4e;
+  --c-error: #a13a2a;
+  --c-white: #fff;
+
+  /* ---------- Roles (se redefinen en fondos oscuros) ---------- */
+  --bg: var(--c-cream-100);
+  --surface: var(--c-cream-50);
+  --text: var(--c-text);
+  --heading: var(--c-ink);
+  --muted: var(--c-muted);
+  --line: var(--c-sand-300);
+  --line-soft: rgb(220 207 186 / 0.6);
+  --accent: var(--c-clay-700);
+  --accent-soft: var(--c-clay-500);
+  --link: var(--c-green-800);
+  --focus: var(--c-clay-700);
+  --icon: var(--c-sage-600);
+
+  /* ---------- Tipografía ---------- */
+  --font-serif: "Newsreader Display", "Newsreader Display Fallback", Georgia, "Times New Roman", serif;
+  --font-serif-text: "Newsreader Text", "Newsreader Text Fallback", Georgia, "Times New Roman", serif;
+  --font-sans: "Figtree", "Figtree Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --fs-xs: 0.8125rem;                                         /* 13 px */
+  --fs-sm: 0.9375rem;                                         /* 15 px */
+  --fs-base: clamp(1.0625rem, 1.02rem + 0.18vw, 1.1875rem);   /* 17 → 19 px */
+  --fs-md: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);       /* 18 → 21 px */
+  --fs-lg: clamp(1.25rem, 1.12rem + 0.55vw, 1.625rem);        /* 20 → 26 px */
+  --fs-xl: clamp(1.5rem, 1.26rem + 1.05vw, 2.25rem);          /* 24 → 36 px */
+  --fs-2xl: clamp(1.875rem, 1.45rem + 1.9vw, 3.125rem);       /* 30 → 50 px */
+  --fs-3xl: clamp(2.375rem, 1.6rem + 3.3vw, 4.375rem);        /* 38 → 70 px */
+
+  --lh-tight: 1.06;
+  --lh-snug: 1.2;
+  --lh-body: 1.65;
+
+  /* ---------- Espaciado ---------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --section-y: clamp(4rem, 2.5rem + 5.5vw, 7.75rem);
+  --gutter: clamp(1.25rem, 0.75rem + 2.2vw, 2.75rem);
+  --container: 76rem;
+  --container-wide: 90rem;
+  --container-narrow: 46rem;
+
+  /* ---------- Radios ---------- */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* ---------- Sombras (cálidas y sutiles) ---------- */
+  --shadow-xs: 0 1px 2px rgb(45 35 22 / 0.06);
+  --shadow-sm: 0 1px 2px rgb(45 35 22 / 0.05), 0 6px 16px -8px rgb(45 35 22 / 0.12);
+  --shadow-md: 0 2px 4px rgb(45 35 22 / 0.04), 0 14px 36px -14px rgb(45 35 22 / 0.2);
+  --shadow-lg: 0 4px 10px rgb(45 35 22 / 0.05), 0 28px 60px -24px rgb(45 35 22 / 0.3);
+
+  /* ---------- Movimiento ---------- */
+  --ease-out: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 150ms;
+  --dur-2: 240ms;
+  --dur-3: 420ms;
+  --dur-4: 800ms;
+
+  /* ---------- Encabezado ---------- */
+  --topbar-h: 0px;
+  --navbar-h: 4.25rem;
+}
+
+@media (min-width: 64em) {
+  :root {
+    --topbar-h: 2.5rem;
+    --navbar-h: 5.25rem;
+  }
+}
+
+/* Superficies oscuras: se invierten los roles de color. */
+.section--dark,
+.site-footer,
+.closing__panel,
+.quote--featured,
+.moment--noche {
+  --bg: var(--c-green-900);
+  --surface: #28413a;
+  --text: #d4ddd5;
+  --heading: #f7f2ea;
+  --muted: #b3c2b7;
+  --line: rgb(255 255 255 / 0.16);
+  --line-soft: rgb(255 255 255 / 0.1);
+  --accent: #e6b894;
+  --accent-soft: #d99b73;
+  --link: #f7f2ea;
+  --focus: #efc3a0;
+  --icon: #b9cbbd;
+}

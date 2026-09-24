@@ -1,0 +1,252 @@
+/* ==========================================================================
+   PIEZAS REUTILIZABLES: notas, listas de verificación, datos de contacto
+   ========================================================================== */
+
+/* Nota informativa (placeholders importantes, avisos). */
+.note {
+  display: flex;
+  gap: 1rem;
+  margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--r-md);
+  border: 1px dashed var(--c-sand-400);
+  background: rgb(253 251 247 / 0.7);
+  color: var(--muted);
+  max-inline-size: 52rem;
+}
+
+.note__icon .icon {
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
+  color: var(--accent);
+}
+
+.note__title {
+  margin-bottom: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--heading);
+}
+
+.note--warning {
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  border-style: solid;
+  border-color: rgb(192 122 82 / 0.35);
+  background: #fbf2ea;
+}
+
+/* Lista con tildes. */
+.checklist {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  line-height: 1.5;
+}
+
+.checklist .icon {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  margin-top: 0.2rem;
+  color: var(--c-sage-600);
+}
+
+.checklist--large {
+  gap: 0;
+}
+
+.checklist--large li {
+  padding-block: 0.95rem;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: var(--fs-base);
+}
+
+.checklist--large li:last-child {
+  border-bottom: 0;
+}
+
+/* Datos de contacto con ícono. */
+.contact-list {
+  display: grid;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-block: 1.05rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.contact-item:first-child {
+  border-top: 1px solid var(--line-soft);
+}
+
+.contact-item__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: 50%;
+  background: var(--c-sage-100);
+  color: var(--c-green-800);
+}
+
+.contact-item__icon .icon {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.contact-item__body {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.contact-item__label {
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.contact-item__value {
+  color: var(--heading);
+  font-size: 1.0625rem;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a.contact-item__value:hover {
+  text-decoration: underline;
+}
+
+/* Redes. */
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.social-list a,
+.social-list li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 2.75rem;
+  padding: 0.4rem 1rem 0.4rem 0.8rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--c-cream-50);
+  color: var(--heading);
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.social-list a:hover {
+  border-color: rgb(29 40 36 / 0.4);
+}
+
+.social-list .icon {
+  inline-size: 1.2rem;
+  block-size: 1.2rem;
+  color: var(--c-green-800);
+}
+
+/* Página de error y agradecimiento. */
+.error-page {
+  padding-block: clamp(3rem, 2rem + 5vw, 7rem);
+}
+
+.error-page__mark {
+  inline-size: 4rem;
+  margin-bottom: 2rem;
+  color: var(--c-green-800);
+}
+
+.error-page .page-hero__title {
+  max-inline-size: 16ch;
+}
+
+.error-page .page-hero__lead {
+  margin-top: 1.25rem;
+}
+
+.error-page__links {
+  display: grid;
+  gap: 0 2rem;
+  margin-block: 2rem;
+  padding-block: 0.75rem;
+  border-block: 1px solid var(--line-soft);
+}
+
+@media (min-width: 36em) {
+  .error-page__links {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.error-page__help {
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+}
+
+.thanks__icon .icon {
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--c-success);
+}
+
+.thanks__next {
+  margin-top: 2.5rem;
+}
+
+.thanks__subtitle {
+  font-size: var(--fs-lg);
+}
+
+.thanks__next .error-page__links {
+  margin-top: 1rem;
+}
+
+.thanks__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Legales. */
+.legal__updated {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.prose--legal {
+  font-size: var(--fs-base);
+}
+
+.prose--legal h2 {
+  font-size: var(--fs-lg);
+  font-family: var(--font-serif-text);
+}
+
+.legal__nav {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.legal__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+}

@@ -47,7 +47,7 @@ export async function construirJs({ input, output }) {
     splitting: true,
     format: 'esm',
     minify: true,
-    target: ['es2020', 'safari14'],
+    target: ['es2020', 'safari14.1'],
     outdir,
     entryNames: '[name]-[hash]',
     chunkNames: 'modulos/[name]-[hash]',

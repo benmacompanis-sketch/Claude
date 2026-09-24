@@ -1,0 +1,10 @@
+# Publicación en Netlify (opcional).
+# Si este proyecto sigue dentro de un repositorio más grande, en Netlify configurá
+# "Base directory: residencia". Los encabezados HTTP están en src/estaticos/_headers.
+
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"

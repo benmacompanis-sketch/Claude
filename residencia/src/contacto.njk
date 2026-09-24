@@ -1,0 +1,215 @@
+---
+layout: layouts/base.njk
+paginaId: contacto
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Contacto"
+    url: "/contacto/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado, dato with context %}
+{% set c = contenido.contacto %}
+{% set enc = c.encabezado %}
+{% include "partials/page-hero.njk" %}
+
+{% set f = c.formulario %}
+{% set modo = site.formulario.modo or "demo" %}
+{% set accion = site.formulario.endpoint if (modo == "endpoint" and site.formulario.endpoint) else "/gracias/" %}
+{% set urlMapa = site | mapa %}
+{% set telReal = site.contacto.telefono.numero and not (site.contacto.telefono.numero | esProvisorio) %}
+
+<section class="section section--flush-top contact" aria-label="Formas de contacto">
+  <div class="container contact__grid">
+
+    {# ─────────────── CANALES ─────────────── #}
+    <div class="contact__channels">
+      <a class="wa-card" href="{{ site | whatsapp('general') }}" target="_blank" rel="noopener">
+        <span class="wa-card__icon">{% icono "whatsapp-logo" %}</span>
+        <span class="wa-card__body">
+          <span class="wa-card__title">Escribinos por WhatsApp</span>
+          <span class="wa-card__text">{{ c.canales.whatsapp | texto }}</span>
+          <span class="wa-card__number">{{ site.whatsapp.visible | texto }}</span>
+        </span>
+        {% icono "arrow-up-right", "wa-card__arrow" %}
+      </a>
+
+      <h2 class="contact__subtitle">{{ c.canales.titulo | texto }}</h2>
+      <ul class="contact-list" role="list">
+        {{ dato("phone", "Teléfono", site.contacto.telefono.visible, (site | telefono) if telReal else "") }}
+        {{ dato("envelope-simple", "Email", site.contacto.email, (site | email) if not (site.contacto.email | esProvisorio) else "") }}
+        {{ dato("map-pin", "Dirección", site.ubicacion.direccion ~ ", " ~ site.ubicacion.ciudad ~ ", " ~ site.ubicacion.provincia, "#como-llegar") }}
+        {{ dato("clock", "Horario de atención", site.horarios.atencion) }}
+        {{ dato("calendar-blank", "Horarios de visita", site.horarios.visitas) }}
+      </ul>
+
+      <div class="contact__social">
+        <p class="contact__social-title">Seguinos</p>
+        <ul class="social-list" role="list">
+          {%- for clave, red in site.redes %}
+          {%- set iconoRed = "instagram-logo" if clave == "instagram" else "facebook-logo" %}
+          <li>
+            {%- if red.url and not (red.url | esProvisorio) %}
+            <a href="{{ red.url }}" target="_blank" rel="noopener">{% icono iconoRed %}<span>{{ red.usuario | texto }}</span></a>
+            {%- else %}
+            <span>{% icono iconoRed %}<span>{{ red.usuario | texto }}</span></span>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+
+    {# ─────────────── FORMULARIO ─────────────── #}
+    <div class="contact__form" id="formulario">
+      <form class="form" method="post" action="{{ accion }}" data-form data-mode="{{ modo }}" data-endpoint="{{ site.formulario.endpoint }}" data-wa="{{ site | whatsapp('general') }}"{% if modo == "netlify" %} name="consulta" data-netlify="true" netlify-honeypot="empresa"{% endif %}>
+        {% if modo == "netlify" %}<input type="hidden" name="form-name" value="consulta">{% endif %}
+        <div class="form__head">
+          <h2 class="form__title">{{ f.titulo | texto }}</h2>
+          <p class="form__intro">{{ f.bajada | texto }}</p>
+        </div>
+
+        <div class="form__summary" data-form-summary tabindex="-1" hidden>
+          {% icono "warning-circle" %}
+          <div>
+            <p class="form__summary-title">Revisá estos datos para poder enviar la consulta:</p>
+            <ul data-form-summary-list></ul>
+          </div>
+        </div>
+
+        <div class="form__grid">
+          <div class="field">
+            <label class="field__label" for="f-nombre">Nombre <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" id="f-nombre" name="nombre" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="f-nombre-error" data-label="Nombre">
+            <p class="field__error" id="f-nombre-error" data-error></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-apellido">Apellido <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" id="f-apellido" name="apellido" type="text" autocomplete="family-name" required maxlength="60" aria-describedby="f-apellido-error" data-label="Apellido">
+            <p class="field__error" id="f-apellido-error" data-error></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-telefono">Teléfono <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required minlength="8" maxlength="30" pattern="[0-9+()\-\s.]{8,30}" aria-describedby="f-telefono-ayuda f-telefono-error" data-label="Teléfono">
+            <p class="field__hint" id="f-telefono-ayuda">Con característica. Por ejemplo: 11 2345-6789</p>
+            <p class="field__error" id="f-telefono-error" data-error></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-email">Email <span class="field__optional">(opcional)</span></label>
+            <input class="field__input" id="f-email" name="email" type="email" autocomplete="email" maxlength="120" aria-describedby="f-email-error" data-label="Email">
+            <p class="field__error" id="f-email-error" data-error></p>
+          </div>
+          <div class="field field--full">
+            <label class="field__label" for="f-motivo">Motivo de la consulta <span class="field__req" aria-hidden="true">*</span></label>
+            <div class="field__select">
+              <select class="field__input" id="f-motivo" name="motivo" required aria-describedby="f-motivo-error" data-label="Motivo de la consulta">
+                <option value="">Elegí una opción</option>
+                {%- for m in f.motivos %}
+                <option value="{{ m.valor }}">{{ m.texto }}</option>
+                {%- endfor %}
+              </select>
+              {% icono "caret-down" %}
+            </div>
+            <p class="field__error" id="f-motivo-error" data-error></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="f-edad">Edad de tu familiar <span class="field__optional">(opcional)</span></label>
+            <input class="field__input" id="f-edad" name="edad" type="number" inputmode="numeric" min="40" max="120" step="1" aria-describedby="f-edad-error" data-label="Edad de tu familiar">
+            <p class="field__error" id="f-edad-error" data-error></p>
+          </div>
+          <fieldset class="field field--choices">
+            <legend class="field__label">Tipo de residencia</legend>
+            <div class="choices">
+              {%- for t in f.tipos %}
+              <label class="choice"><input type="radio" name="tipo" value="{{ t }}"{% if loop.last %} checked{% endif %}><span>{{ t }}</span></label>
+              {%- endfor %}
+            </div>
+          </fieldset>
+          <div class="field field--full">
+            <label class="field__label" for="f-mensaje">Mensaje <span class="field__optional">(opcional)</span></label>
+            <textarea class="field__input field__textarea" id="f-mensaje" name="mensaje" rows="4" maxlength="1500" placeholder="Contanos brevemente la situación de tu familiar o qué te gustaría saber." aria-describedby="f-mensaje-contador" data-label="Mensaje"></textarea>
+            <p class="field__hint field__counter" id="f-mensaje-contador" data-counter>Hasta 1500 caracteres.</p>
+          </div>
+          <div class="field field--full">
+            <label class="check">
+              <input type="checkbox" name="consentimiento" value="si" required aria-describedby="f-consentimiento-error" data-label="Autorización de contacto">
+              <span>Acepto que me contacten para responder esta consulta.</span>
+            </label>
+            <p class="field__hint">{{ f.privacidad | texto }}</p>
+            <p class="field__error" id="f-consentimiento-error" data-error></p>
+          </div>
+          <div class="field--hp" aria-hidden="true">
+            <label>No completar este campo <input type="text" name="empresa" tabindex="-1" autocomplete="off"></label>
+          </div>
+        </div>
+
+        <div class="form__footer">
+          <button class="btn btn--primary form__submit" type="submit" data-form-submit>
+            <span class="form__submit-text">{{ f.boton }}</span>
+            <span class="form__submit-loading" aria-hidden="true"><span class="spinner"></span>Enviando…</span>
+            {% icono "paper-plane-tilt", "icon--end" %}
+          </button>
+          <p class="form__alt">¿Preferís hablar ahora? <a href="{{ site | whatsapp('general') }}" target="_blank" rel="noopener">Escribinos por WhatsApp</a></p>
+        </div>
+        <p class="visually-hidden" aria-live="polite" data-form-status></p>
+      </form>
+
+      <div class="form-result form-result--success" data-form-success hidden tabindex="-1">
+        <span class="form-result__icon">{% icono "check-circle" %}</span>
+        <h2 class="form-result__title" data-success-title>{{ f.exito.titulo | texto }}</h2>
+        <p class="form-result__text" data-success-text>{{ f.exito.texto | texto }}</p>
+        {% if modo == "demo" %}<p class="form-result__demo">{% icono "info" %}<span><strong>Formulario en modo demostración:</strong> esta consulta no se envió. Para recibir consultas, configurá el envío en <code>src/_data/site.yml</code> (sección «formulario»).</span></p>{% endif %}
+        <div class="form-result__actions">
+          {{ boton("Volver al inicio", "/", "secondary", icono="house-simple", tam="sm") }}
+          {{ boton("Escribir por WhatsApp", site | whatsapp("general"), "secondary", icono="whatsapp-logo", externo=true, tam="sm") }}
+        </div>
+      </div>
+
+      <div class="form-result form-result--error" data-form-error hidden tabindex="-1">
+        <span class="form-result__icon">{% icono "warning-circle" %}</span>
+        <h2 class="form-result__title">{{ f.error.titulo | texto }}</h2>
+        <p class="form-result__text">{{ f.error.texto | texto }}</p>
+        <div class="form-result__actions">
+          <button class="btn btn--primary btn--sm" type="button" data-form-retry>{% icono "arrow-counter-clockwise" %}<span>Intentar de nuevo</span></button>
+          {{ boton("Escribir por WhatsApp", site | whatsapp("general"), "secondary", icono="whatsapp-logo", externo=true, tam="sm") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ─────────────── CÓMO LLEGAR ─────────────── #}
+<section class="section section--tint location" id="como-llegar" aria-labelledby="mapa-titulo">
+  <div class="container location__grid">
+    <div class="location__info">
+      <p class="eyebrow">Ubicación</p>
+      <h2 class="section-title" id="mapa-titulo">{{ c.mapa.titulo | texto }}</h2>
+      <address class="location__address">
+        {{ site.ubicacion.direccion | texto }}<br>
+        {{ site.ubicacion.ciudad | texto }}, {{ site.ubicacion.provincia | texto }}
+      </address>
+      <p class="location__refs">{{ site.ubicacion.referencias | texto }}</p>
+      {%- if urlMapa %}
+      <a class="link-arrow" href="{{ urlMapa }}" target="_blank" rel="noopener"><span>Abrir en Google Maps</span>{% icono "arrow-up-right" %}</a>
+      {%- endif %}
+      <div class="location__visits">
+        <h3 class="location__visits-title">{{ c.visitas.titulo | texto }}</h3>
+        <p>{{ c.visitas.texto | texto }}</p>
+        <p class="location__hours">{% icono "calendar-blank" %}<span>{{ site.horarios.visitas | texto }}</span></p>
+      </div>
+    </div>
+
+    <div class="map" data-map data-embed="{{ site.ubicacion.mapa.embedUrl }}">
+      <div class="map__frame media" data-map-frame>
+        {% foto "contacto/mapa", "", { sizes: "(min-width: 64em) 55vw, 96vw", anchos: "480,800,1200" } %}
+        <div class="map__overlay">
+          {%- if site.ubicacion.mapa.embedUrl %}
+          <button class="btn btn--light" type="button" data-map-load>{% icono "map-trifold" %}<span>Mostrar mapa interactivo</span></button>
+          <p class="map__note">{{ c.mapa.nota | texto }}</p>
+          {%- else %}
+          <p class="map__pending">{% icono "map-pin" %}<span>{{ "[Mapa interactivo: se activa al cargar la ubicación de Google Maps en site.yml]" | texto }}</span></p>
+          {%- endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -36,7 +36,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addShortcode('asset', (tipo) => assets[tipo]);
 
   /* Filtros de texto y enlaces. */
-  for (const nombre of ['texto', 'parrafos', 'plano', 'whatsapp', 'telefono', 'email', 'mapa', 'absoluta', 'porIds', 'todasLasPreguntas', 'dosDigitos', 'jsonSeguro', 'activo']) {
+  for (const nombre of ['texto', 'parrafos', 'plano', 'whatsapp', 'telefono', 'email', 'mapa', 'absoluta', 'porIds', 'todasLasPreguntas', 'dosDigitos', 'jsonSeguro', 'activo', 'provisorios', 'fechaIso']) {
     eleventyConfig.addFilter(nombre, filtros[nombre]);
   }
   eleventyConfig.addFilter('esProvisorio', filtros.esProvisorio);
@@ -67,7 +67,7 @@ export default function (eleventyConfig) {
     sharpWebpOptions: { quality: 78 },
     filenameFormat: (id, src, width, format) => {
       const nombre = src.split('/').pop().replace(/\.[^.]+$/, '');
-      return `${nombre}-${id.slice(0, 6)}-${width}.${format}`;
+      return `${nombre}-${id.replace(/[^a-zA-Z0-9]/g, '').slice(0, 6)}-${width}.${format}`;
     },
     htmlOptions: {
       imgAttributes: { loading: 'lazy', decoding: 'async' },

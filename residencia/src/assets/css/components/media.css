@@ -1,0 +1,70 @@
+/* ==========================================================================
+   IMÁGENES
+   Todas las fotos van dentro de un contenedor .media con proporción fija:
+   así no hay saltos de diseño mientras cargan.
+   ========================================================================== */
+
+.media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--c-sand-200);
+  isolation: isolate;
+}
+
+.media picture {
+  display: contents;
+}
+
+.media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Arco (remite a la ventana del logo). */
+.media--arch {
+  border-radius: 50% 50% var(--r-lg) var(--r-lg) / var(--arco, 40%) var(--arco, 40%) var(--r-lg) var(--r-lg);
+}
+
+/* Estado vacío: cuando todavía no hay foto. */
+.foto-pendiente {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.5rem;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 10rem;
+  padding: 1.5rem;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgb(201 184 156 / 0.18) 14px 15px),
+    var(--c-sand-200);
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.foto-pendiente .icon {
+  inline-size: 2rem;
+  block-size: 2rem;
+  color: var(--icon);
+}
+
+/* Etiqueta opcional sobre fotos provisionales (site.yml → borrador.marcarFotosProvisionales). */
+.foto-etiqueta {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--r-pill);
+  background: rgb(24 41 35 / 0.72);
+  color: var(--c-cream-100);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+}

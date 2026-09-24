@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+paginaId: error
+permalink: /404.html
+titulo: "Página no encontrada"
+descripcion: "No encontramos la página que buscabas."
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% from "macros/ui.njk" import boton, enlace with context %}
+<section class="section error-page" aria-labelledby="page-title">
+  <div class="container container--text">
+    <div class="error-page__mark" aria-hidden="true">
+      <svg viewBox="0 0 40 48" fill="none" focusable="false"><path d="M6 45V20a14 14 0 0 1 28 0v25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M2.5 45h35" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13.5 45a6.5 6.5 0 0 1 13 0Z" fill="var(--c-clay-500)" opacity=".8"/></svg>
+    </div>
+    <p class="eyebrow">Error 404</p>
+    <h1 class="page-hero__title" id="page-title">No encontramos esta página</h1>
+    <p class="page-hero__lead">Puede que el enlace haya cambiado o que la dirección tenga un error. Estas secciones pueden ayudarte a encontrar lo que buscabas:</p>
+    <ul class="error-page__links" role="list">
+      <li>{{ enlace("Inicio", "/") }}</li>
+      <li>{{ enlace("Instalaciones", "/instalaciones/") }}</li>
+      <li>{{ enlace("Servicios", "/servicios/") }}</li>
+      <li>{{ enlace("Guía para familias", "/familias/") }}</li>
+      <li>{{ enlace("Preguntas frecuentes", "/preguntas-frecuentes/") }}</li>
+      <li>{{ enlace("Contacto", "/contacto/") }}</li>
+    </ul>
+    <p class="error-page__help">¿Buscabas algo en particular? Escribinos y te ayudamos.</p>
+    {{ boton("Escribir por WhatsApp", site | whatsapp("general"), "primary", icono="whatsapp-logo", externo=true) }}
+  </div>
+</section>

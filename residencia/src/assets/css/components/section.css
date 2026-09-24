@@ -1,0 +1,274 @@
+/* ==========================================================================
+   ENCABEZADOS DE SECCIÓN Y ENCABEZADO DE PÁGINAS INTERIORES
+   ========================================================================== */
+
+.eyebrow {
+  display: block;
+  margin-bottom: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  inline-size: 1.75rem;
+  block-size: 1px;
+  margin: -0.2em 0.75rem 0 0;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.section-head {
+  max-inline-size: 44rem;
+}
+
+.section-title {
+  font-size: var(--fs-2xl);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.section-lead {
+  margin-top: 1.25rem;
+  max-inline-size: 36rem;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head--center .eyebrow::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  inline-size: 1.75rem;
+  block-size: 1px;
+  margin: -0.2em 0 0 0.75rem;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.section-head--center .section-lead {
+  margin-inline: auto;
+}
+
+/* ---------- Encabezado de páginas interiores ---------- */
+.page-hero {
+  padding-block: clamp(1.25rem, 0.5rem + 2vw, 2.25rem) clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+.breadcrumbs {
+  margin-bottom: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.breadcrumbs li + li::before {
+  content: "";
+  inline-size: 0.35rem;
+  block-size: 0.35rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.6;
+  margin-right: 0.35rem;
+}
+
+.breadcrumbs a {
+  display: inline-block;
+  padding-block: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--heading);
+  text-decoration: underline;
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--heading);
+}
+
+.page-hero__grid {
+  display: grid;
+  gap: 1.5rem 4rem;
+}
+
+@media (min-width: 64em) {
+  .page-hero__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+  }
+}
+
+.page-hero__title {
+  font-size: clamp(2.25rem, 1.45rem + 3.3vw, 4.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-inline-size: 18ch;
+}
+
+.page-hero__lead {
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--muted);
+  max-inline-size: 34rem;
+}
+
+@media (min-width: 64em) {
+  .page-hero__aside {
+    padding-bottom: 0.5rem;
+  }
+}
+
+.page-hero__actions {
+  margin-top: 1.5rem;
+}
+
+.page-hero__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.page-hero__meta .icon {
+  color: var(--icon);
+}
+
+.page-hero__media {
+  margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg);
+}
+
+@media (min-width: 40em) {
+  .page-hero__media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 64em) {
+  .page-hero__media {
+    aspect-ratio: 21 / 9;
+    border-radius: var(--r-xl);
+  }
+}
+
+.page-hero--compact {
+  padding-bottom: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.page-hero--compact .page-hero__title {
+  max-inline-size: none;
+}
+
+/* ---------- Índice interno de página ---------- */
+.page-index {
+  border-block: 1px solid var(--line-soft);
+  background: var(--c-cream-50);
+}
+
+.page-index__list {
+  display: flex;
+  gap: 0.5rem 2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.page-index__list::-webkit-scrollbar {
+  display: none;
+}
+
+.page-index a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 3.5rem;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.page-index a:hover {
+  color: var(--heading);
+}
+
+/* ---------- Cierre de páginas interiores ---------- */
+.closing__panel {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding: clamp(2rem, 1.2rem + 3.5vw, 4rem);
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgb(255 255 255 / 0.06), transparent 55%),
+    var(--c-green-900);
+  color: var(--text);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.closing__mark {
+  position: absolute;
+  right: clamp(-2rem, -1rem - 2vw, -1rem);
+  bottom: -2.5rem;
+  inline-size: clamp(9rem, 6rem + 12vw, 16rem);
+  color: rgb(247 242 234 / 0.07);
+  z-index: -1;
+}
+
+.closing__title {
+  font-size: var(--fs-xl);
+  line-height: 1.15;
+  max-inline-size: 22ch;
+}
+
+.closing__text {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  max-inline-size: 36rem;
+}
+
+.closing__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (min-width: 64em) {
+  .closing__panel {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .closing__mark {
+    display: block;
+  }
+}

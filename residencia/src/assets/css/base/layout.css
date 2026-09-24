@@ -1,0 +1,50 @@
+/* ==========================================================================
+   LAYOUT: contenedores y secciones
+   ========================================================================== */
+
+.container {
+  inline-size: 100%;
+  max-inline-size: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide {
+  max-inline-size: calc(var(--container-wide) + 2 * var(--gutter));
+}
+
+.container--narrow {
+  max-inline-size: calc(var(--container-narrow) + 2 * var(--gutter));
+}
+
+.container--text {
+  max-inline-size: calc(46rem + 2 * var(--gutter));
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section--flush-top {
+  padding-top: 0;
+}
+
+.section--tint {
+  background: var(--c-cream-200);
+}
+
+.section--sage {
+  background: var(--c-sage-100);
+}
+
+.section--dark {
+  background: var(--c-green-900);
+  color: var(--text);
+}
+
+/* Dos secciones del mismo tono seguidas: se separan con una línea suave. */
+.section--tint + .section--tint,
+.section:not([class*="section--"]) + .section:not([class*="section--"]) {
+  border-top: 1px solid var(--line-soft);
+}

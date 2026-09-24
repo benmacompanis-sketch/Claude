@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+paginaId: actividades
+waMensaje: actividades
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Actividades"
+    url: "/actividades/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.actividades %}
+{% set enc = c.encabezado %}
+{% include "partials/page-hero.njk" %}
+
+{% set diaTexto = c.dia %}
+{% include "sections/dia.njk" %}
+
+{# ─────────────── PROPUESTAS ─────────────── #}
+{% set p = c.propuestas %}
+<section class="section section--tint activities" aria-labelledby="propuestas-titulo">
+  <div class="container">
+    <div class="activities__head">
+      {{ encabezado(p.eyebrow, p.titulo, p.bajada, id="propuestas-titulo") }}
+      <p class="activities__note">{% icono "info" %}<span>{{ p.nota | texto }}</span></p>
+    </div>
+    <ul class="activities__grid" role="list">
+      {%- for a in c.lista %}
+      <li class="activity activity--{{ loop.index }}" id="{{ a.id }}" data-reveal style="--i: {{ loop.index0 % 3 }}">
+        <div class="activity__media media">
+          {% foto a.foto, a.alt, { sizes: "(min-width: 64em) 40vw, (min-width: 40em) 50vw, 92vw", anchos: "480,800,1200" } %}
+        </div>
+        <div class="activity__body">
+          <h3 class="activity__title">{% icono a.icono %}<span>{{ a.nombre | texto }}</span></h3>
+          <p class="activity__text">{{ a.texto | texto }}</p>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+{% set cierre = c.cierre %}
+{% set cierreMensaje = "actividades" %}
+{% set cierreCta = { texto: "Coordinar una visita", url: "/contacto/?motivo=visita#formulario" } %}
+{% include "sections/cierre.njk" %}

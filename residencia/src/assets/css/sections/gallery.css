@@ -1,0 +1,303 @@
+/* ==========================================================================
+   INSTALACIONES: recorrido por capítulos
+   Cada espacio es un "capítulo" con su texto y una composición de fotos que
+   cambia según la cantidad de imágenes. Los capítulos alternan de lado.
+   ========================================================================== */
+
+/* ---------- Navegación por espacios ---------- */
+.chips {
+  position: sticky;
+  top: var(--navbar-h);
+  z-index: 40;
+  background: rgb(249 245 238 / 0.96);
+  border-block: 1px solid var(--line-soft);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .chips {
+    background: rgb(249 245 238 / 0.88);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.chips__list {
+  display: flex;
+  gap: 0.5rem;
+  padding-block: 0.7rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, transparent, #000 1rem, #000 calc(100% - 2rem), transparent);
+}
+
+.chips__list::-webkit-scrollbar {
+  display: none;
+}
+
+.chips__list li {
+  scroll-snap-align: start;
+  flex: none;
+}
+
+.chips__list li:first-child {
+  padding-left: 0.25rem;
+}
+
+.chips__list li:last-child {
+  padding-right: 2rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.6rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--c-cream-50);
+  color: var(--heading);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-2),
+    border-color var(--dur-2),
+    color var(--dur-2);
+}
+
+.chip:hover {
+  border-color: rgb(29 40 36 / 0.4);
+}
+
+.chip[aria-current="true"] {
+  background: var(--c-green-800);
+  border-color: var(--c-green-800);
+  color: var(--c-white);
+}
+
+/* ---------- Capítulos ---------- */
+.chapter {
+  padding-block: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
+  scroll-margin-top: calc(var(--navbar-h) + 4rem);
+}
+
+.chapter + .chapter {
+  border-top: 1px solid var(--line-soft);
+}
+
+.chapter__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 64em) {
+  .chapter__grid {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .chapter--reverse .chapter__grid {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  }
+
+  .chapter--reverse .chapter__head {
+    order: 2;
+  }
+
+  .chapter__head {
+    position: sticky;
+    top: calc(var(--navbar-h) + 5.5rem);
+  }
+}
+
+.chapter__num {
+  font-family: var(--font-serif-text);
+  font-size: 1rem;
+  color: var(--accent);
+  font-variant-numeric: lining-nums;
+}
+
+.chapter__title {
+  margin-top: 0.4rem;
+  font-size: var(--fs-2xl);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.chapter__text {
+  margin-top: 1rem;
+  color: var(--muted);
+  max-inline-size: 30rem;
+}
+
+.chapter__details {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.975rem;
+}
+
+.chapter__details li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.chapter__details .icon {
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  margin-top: 0.22rem;
+  color: var(--c-sage-600);
+}
+
+/* ---------- Composiciones de fotos ---------- */
+.chapter__gallery {
+  display: grid;
+  gap: 1rem;
+}
+
+.shot figure {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.shot__button {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  cursor: zoom-in;
+  border-radius: var(--r-lg);
+}
+
+.shot__button img {
+  transition: transform 1.1s var(--ease-out);
+}
+
+.shot__button:hover img {
+  transform: scale(1.035);
+}
+
+.shot__zoom {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  display: grid;
+  place-items: center;
+  inline-size: 2.6rem;
+  block-size: 2.6rem;
+  border-radius: 50%;
+  background: rgb(253 251 247 / 0.92);
+  color: var(--c-green-800);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity var(--dur-3) var(--ease-out),
+    transform var(--dur-3) var(--ease-out);
+}
+
+.shot__zoom .icon {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+
+.shot__button:hover .shot__zoom,
+.shot__button:focus-visible .shot__zoom {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .shot__zoom {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.shot__caption {
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+/* Una foto: ancha. */
+.chapter--solo .shot__button {
+  aspect-ratio: 16 / 10;
+}
+
+/* Dos fotos: una grande y una más angosta. */
+@media (min-width: 40em) {
+  .chapter--duo .chapter__gallery {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+  }
+
+  .chapter--duo .shot--1 .shot__button {
+    aspect-ratio: 4 / 4.2;
+  }
+
+  .chapter--duo .shot--2 .shot__button {
+    aspect-ratio: 4 / 5;
+  }
+
+  .chapter--reverse.chapter--duo .chapter__gallery {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .chapter--reverse.chapter--duo .shot--1 {
+    order: 2;
+  }
+}
+
+/* Tres fotos: una principal y dos apiladas. */
+@media (min-width: 40em) {
+  .chapter--trio .chapter__gallery {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-rows: auto auto;
+  }
+
+  .chapter--trio .shot--1 {
+    grid-row: 1 / 3;
+  }
+
+  .chapter--trio .shot--1 figure {
+    block-size: 100%;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .chapter--trio .shot--1 .shot__button {
+    aspect-ratio: auto;
+    block-size: 100%;
+    min-block-size: 22rem;
+  }
+}
+
+/* Sin fotos todavía: estado vacío prolijo. */
+.chapter__empty {
+  display: grid;
+  justify-items: start;
+  gap: 0.9rem;
+  padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+  border-radius: var(--r-lg);
+  border: 1px dashed var(--c-sand-400);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 16px, rgb(201 184 156 / 0.12) 16px 17px),
+    var(--c-cream-50);
+  color: var(--muted);
+}
+
+.chapter__empty > .icon {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  color: var(--icon);
+}
+
+.chapter__empty strong {
+  color: var(--heading);
+}

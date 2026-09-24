@@ -1,0 +1,180 @@
+/* ==========================================================================
+   BASE: tipografía, enlaces, foco y utilidades
+   ========================================================================== */
+
+html {
+  background: var(--bg);
+  color-scheme: light;
+  scroll-padding-top: calc(var(--navbar-h) + 1.5rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--heading);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+}
+
+h3,
+h4 {
+  font-family: var(--font-serif-text);
+}
+
+p,
+li,
+dd,
+figcaption {
+  text-wrap: pretty;
+}
+
+strong,
+b {
+  font-weight: 650;
+}
+
+em {
+  font-style: italic;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition:
+    color var(--dur-2),
+    text-decoration-color var(--dur-2),
+    text-decoration-thickness var(--dur-2);
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+::selection {
+  background: rgb(228 188 159 / 0.65);
+  color: var(--c-ink);
+}
+
+main:focus {
+  outline: none;
+}
+
+.icon {
+  inline-size: 1.25em;
+  block-size: 1.25em;
+  fill: currentColor;
+  flex: none;
+}
+
+code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.86em;
+  background: rgb(220 207 186 / 0.45);
+  padding: 0.1em 0.35em;
+  border-radius: var(--r-xs);
+  word-break: break-word;
+}
+
+/* Saltar al contenido: visible solo al navegar con teclado. */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--r-pill);
+  background: var(--c-green-800);
+  color: var(--c-white);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Textos provisorios: [así]. En modo borrador se subrayan con puntos. */
+.con-provisorios .ph {
+  text-decoration: underline dotted;
+  text-decoration-color: rgb(192 122 82 / 0.85);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+}
+
+/* Texto largo (párrafos seguidos). */
+.prose > * + * {
+  margin-top: 1em;
+}
+
+.prose p {
+  max-width: 68ch;
+}
+
+.prose h2 {
+  font-size: var(--fs-xl);
+  margin-top: 2.2em;
+}
+
+.prose h3 {
+  font-size: var(--fs-lg);
+  margin-top: 1.8em;
+}
+
+.prose h2 + *,
+.prose h3 + * {
+  margin-top: 0.7em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose li::marker {
+  color: var(--accent-soft);
+}

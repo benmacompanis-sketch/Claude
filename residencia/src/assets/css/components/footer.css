@@ -1,0 +1,189 @@
+/* ==========================================================================
+   PIE DE PÁGINA
+   ========================================================================== */
+
+.site-footer {
+  background: var(--c-green-950);
+  color: var(--text);
+  padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem) 2rem;
+  font-size: 0.96875rem;
+}
+
+.footer__grid {
+  display: grid;
+  gap: 2.75rem 2rem;
+}
+
+@media (min-width: 22em) and (max-width: 39.99em) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.25rem;
+  }
+
+  .footer__brand,
+  .footer__col--contact {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 40em) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 64em) {
+  .footer__grid {
+    grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 0.8fr)) minmax(0, 1.25fr);
+    gap: 3rem;
+  }
+
+  .footer__brand {
+    grid-column: auto;
+  }
+}
+
+.footer__brand {
+  display: grid;
+  justify-items: start;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.footer__about {
+  max-inline-size: 22rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.footer__title {
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.footer__links {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.footer__links a {
+  display: inline-block;
+  padding-block: 0.35rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer__links a:hover {
+  color: var(--heading);
+  text-decoration: underline;
+}
+
+.footer__contact {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.footer__contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  line-height: 1.45;
+}
+
+.footer__contact .icon {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  margin-top: 0.15rem;
+  color: var(--icon);
+}
+
+.footer__contact a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer__contact a:hover {
+  color: var(--heading);
+  text-decoration: underline;
+}
+
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.footer__social a,
+.footer__social li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 2.75rem;
+  padding: 0.4rem 0.95rem 0.4rem 0.75rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.footer__social a:hover {
+  border-color: rgb(247 242 234 / 0.45);
+  color: var(--heading);
+}
+
+.footer__social .icon {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2rem;
+  margin-top: clamp(3rem, 2rem + 3vw, 4.5rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line-soft);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.footer__legal-id {
+  flex: 1 1 auto;
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.footer__legal a {
+  display: inline-block;
+  padding-block: 0.3rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer__legal a:hover {
+  color: var(--heading);
+  text-decoration: underline;
+}
+
+/* Deja lugar para el botón flotante de WhatsApp en celulares. */
+@media (max-width: 47.99em) {
+  .site-footer {
+    padding-bottom: 6rem;
+  }
+}

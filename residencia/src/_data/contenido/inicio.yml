@@ -31,7 +31,7 @@ manifiesto:
   eyebrow: "Nuestra casa"
   cita: "Creemos que esta etapa se vive mejor con cosas simples: sentirse escuchado, comer rico, tener con quién charlar y que te llamen por tu nombre."
   texto: |
-    En {nombre} cada residente tiene su historia, sus costumbres y su manera de hacer las cosas. Nuestro trabajo es acompañarlo con respeto, cuidar su bienestar y su autonomía, y hacer de esta casa un lugar donde se sienta cómodo, seguro y en compañía.
+    En {nombre} cada residente tiene su historia, sus costumbres y su manera de hacer las cosas. Nuestro trabajo es acompañar esa historia con respeto, cuidar el bienestar y la autonomía de cada persona, y hacer de esta casa un lugar donde se sienta cómoda, segura y en compañía.
 
     Por eso prestamos atención a los detalles: los horarios de cada uno, sus comidas preferidas, las charlas de la tarde y la tranquilidad de la noche.
   firma:
@@ -83,8 +83,8 @@ tranquilidad:
   items:
     - titulo: "Vas a saber cómo está."
       texto: "Acordamos juntos la forma y la frecuencia del contacto, y estamos disponibles para cada consulta."
-    - titulo: "Vas a conocer a quienes lo cuidan."
-      texto: "Te presentamos al equipo desde la primera visita: personas que conocen a cada residente por su nombre."
+    - titulo: "Vas a conocer a cada persona del equipo."
+      texto: "Te lo presentamos desde la primera visita: personas que conocen a cada residente por su nombre."
     - titulo: "Vas a encontrar un lugar pensado para cuidar."
       texto: "Espacios seguros y accesibles, higiene en cada sector y un equipo atento en el día a día."
   enlace:

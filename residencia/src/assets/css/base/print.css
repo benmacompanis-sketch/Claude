@@ -1,0 +1,67 @@
+/* ==========================================================================
+   IMPRESIÓN: muchas familias imprimen la información para compartirla.
+   ========================================================================== */
+
+@media print {
+  .site-header,
+  .menu,
+  .wa-float,
+  .chips,
+  .page-index,
+  .closing,
+  .skip-link,
+  .map,
+  .form,
+  .lightbox,
+  .shot__zoom,
+  .hero__actions,
+  .faq-search {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .section,
+  .section--tint,
+  .section--sage,
+  .section--dark,
+  .site-footer {
+    background: none !important;
+    color: #000 !important;
+    padding-block: 1.25rem !important;
+  }
+
+  .section--dark,
+  .site-footer {
+    --heading: #000;
+    --text: #000;
+    --muted: #333;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .acc__a {
+    display: block !important;
+  }
+
+  details.acc > .acc__a {
+    content-visibility: visible;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  img {
+    break-inside: avoid;
+  }
+}

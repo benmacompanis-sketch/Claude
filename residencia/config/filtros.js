@@ -137,3 +137,13 @@ export const dosDigitos = (n) => String(n).padStart(2, '0');
 
 /** Serializa JSON para <script type="application/ld+json"> sin romper el HTML. */
 export const jsonSeguro = (obj) => markSafe(JSON.stringify(obj, null, 0).replace(/</g, '\\u003c'));
+
+/** Marca los [textos provisorios] dentro de un bloque HTML ya renderizado (por ejemplo, Markdown). */
+export function provisorios(html) {
+  return markSafe(
+    String(html ?? '').replace(/>([^<]+)</g, (m, contenido) => `>${contenido.replace(/\[([^\]]+)\]/g, '<span class="ph">[$1]</span>')}<`),
+  );
+}
+
+/** Fecha en formato AAAA-MM-DD (para el sitemap). */
+export const fechaIso = (fecha) => new Date(fecha).toISOString().slice(0, 10);

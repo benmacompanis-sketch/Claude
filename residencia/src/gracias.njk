@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+paginaId: gracias
+permalink: /gracias/
+titulo: "Gracias por tu consulta"
+descripcion: "Recibimos tu consulta. Te vamos a contactar a la brevedad."
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{#- Página de destino cuando el formulario se envía sin JavaScript (por ejemplo, con Netlify Forms). -#}
+{% from "macros/ui.njk" import boton, enlace with context %}
+<section class="section error-page thanks" aria-labelledby="page-title">
+  <div class="container container--text">
+    <span class="thanks__icon">{% icono "check-circle" %}</span>
+    <p class="eyebrow">Consulta enviada</p>
+    <h1 class="page-hero__title" id="page-title">¡Gracias por escribirnos!</h1>
+    <p class="page-hero__lead">Recibimos tu consulta. Te vamos a contactar a la brevedad para responderte y, si querés, coordinar una visita.</p>
+    <div class="thanks__next">
+      <h2 class="thanks__subtitle">Mientras tanto</h2>
+      <ul class="error-page__links" role="list">
+        <li>{{ enlace("Recorré las instalaciones", "/instalaciones/") }}</li>
+        <li>{{ enlace("Leé la guía para familias", "/familias/") }}</li>
+        <li>{{ enlace("Mirá cómo es un día en la residencia", "/actividades/") }}</li>
+      </ul>
+    </div>
+    <div class="thanks__actions">
+      {{ boton("Volver al inicio", "/", "secondary", icono="house-simple") }}
+      {{ boton("Escribir por WhatsApp", site | whatsapp("general"), "primary", icono="whatsapp-logo", externo=true) }}
+    </div>
+  </div>
+</section>

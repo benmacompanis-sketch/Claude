@@ -40,4 +40,5 @@
 <meta property="og:image:alt" content="{{ site.nombre | plano }}, {{ site.descriptor | lower }}">
 <meta name="twitter:card" content="summary_large_image">
 
-<script type="application/ld+json">{{ site | schema({ migas: migas, faq: faqSchema }) }}</script>
+{%- set faqLista = (contenido.faq.grupos | todasLasPreguntas) if paginaId == "preguntas-frecuentes" else [] %}
+<script type="application/ld+json">{{ site | schema({ migas: migas, faq: faqLista }) }}</script>

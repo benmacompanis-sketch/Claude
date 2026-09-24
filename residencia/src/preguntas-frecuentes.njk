@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+paginaId: preguntas-frecuentes
+contenidoId: faq
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Preguntas frecuentes"
+    url: "/preguntas-frecuentes/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.faq %}
+{% set enc = c.encabezado %}
+{% include "partials/page-hero.njk" %}
+
+<section class="section section--flush-top faq-page" aria-label="Preguntas por tema">
+  <div class="container faq-page__grid">
+    <aside class="faq-page__aside">
+      {# Buscador: se muestra solo si el JavaScript está disponible. #}
+      <div class="faq-search" data-faq-search hidden>
+        <label class="faq-search__label" for="faq-buscar">Buscá tu pregunta</label>
+        <div class="faq-search__field">
+          {% icono "magnifying-glass" %}
+          <input class="faq-search__input" id="faq-buscar" type="search" placeholder="Por ejemplo: visitas" autocomplete="off" data-faq-input>
+        </div>
+      </div>
+      <nav class="faq-topics" aria-label="Temas">
+        <p class="faq-topics__title">Temas</p>
+        <ul role="list">
+          {%- for g in c.grupos %}
+          <li><a href="#{{ g.id }}">{{ g.titulo | texto }}<span>{{ g.preguntas.length }}</span></a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+      <div class="faq-help">
+        <p class="faq-help__title">¿No encontrás tu respuesta?</p>
+        <p>Escribinos y te respondemos personalmente.</p>
+        {{ boton("Escribir por WhatsApp", site | whatsapp("general"), "primary", icono="whatsapp-logo", externo=true, tam="sm") }}
+        <a class="faq-help__phone" href="{{ site | telefono }}">{% icono "phone" %}<span>{{ site.contacto.telefono.visible | texto }}</span></a>
+      </div>
+    </aside>
+
+    <div class="faq-page__groups">
+      {%- for g in c.grupos %}
+      <section class="faq-group" id="{{ g.id }}" aria-labelledby="{{ g.id }}-titulo" data-faq-group>
+        <h2 class="faq-group__title" id="{{ g.id }}-titulo">{{ g.titulo | texto }}</h2>
+        {% set preguntasLista = g.preguntas %}
+        {% set acordeonId = g.id %}
+        {% include "sections/acordeon.njk" %}
+      </section>
+      {%- endfor %}
+      <div class="faq-empty" data-faq-empty hidden>
+        {% icono "chat-circle-text" %}
+        <p><strong>No encontramos preguntas con esas palabras.</strong><br>Probá con otra búsqueda o escribinos: te respondemos personalmente.</p>
+      </div>
+      <p class="visually-hidden" aria-live="polite" data-faq-status></p>
+    </div>
+  </div>
+</section>
+
+{% set cierre = { titulo: "¿Preferís conversarlo?", texto: "Muchas dudas se resuelven mejor en persona. Coordinamos una visita o una charla telefónica cuando te quede cómodo." } %}
+{% set cierreMensaje = "general" %}
+{% include "sections/cierre.njk" %}

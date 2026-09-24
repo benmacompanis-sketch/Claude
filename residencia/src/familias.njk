@@ -1,0 +1,86 @@
+---
+layout: layouts/base.njk
+paginaId: familias
+waMensaje: visita
+migas:
+  - texto: "Inicio"
+    url: "/"
+  - texto: "Familias"
+    url: "/familias/"
+---
+{% from "macros/ui.njk" import boton, enlace, encabezado with context %}
+{% set c = contenido.familias %}
+{% set enc = c.encabezado %}
+{% include "partials/page-hero.njk" %}
+
+{# ─────────────── EL CAMINO DEL INGRESO ─────────────── #}
+<section class="section journey" aria-labelledby="pasos-titulo">
+  <div class="container journey__grid">
+    <div class="journey__intro">
+      {{ encabezado(c.pasos.eyebrow, c.pasos.titulo, c.pasos.bajada, id="pasos-titulo") }}
+      <div class="journey__actions">
+        {{ boton("Pedir una entrevista", "/contacto/?motivo=visita#formulario", "primary", iconoFin="arrow-right") }}
+      </div>
+    </div>
+    {% set pasosVariante = "detallada" %}
+    {% include "sections/pasos.njk" %}
+  </div>
+</section>
+
+{# ─────────────── PREGUNTAS CLAVE ─────────────── #}
+<section class="section section--tint answers" aria-labelledby="respuestas-titulo">
+  <div class="container">
+    {{ encabezado(c.preguntas.eyebrow, c.preguntas.titulo, "", id="respuestas-titulo") }}
+    <div class="answers__grid">
+      {%- for item in c.preguntas.items %}
+      <article class="answer" data-reveal style="--i: {{ loop.index0 % 2 }}">
+        <h3 class="answer__q">{{ item.pregunta | texto }}</h3>
+        <div class="answer__a prose">{{ item.respuesta | parrafos }}</div>
+      </article>
+      {%- endfor %}
+    </div>
+    <p class="answers__more">¿Tenés otra duda? {{ enlace("Ver todas las preguntas frecuentes", "/preguntas-frecuentes/") }}</p>
+  </div>
+</section>
+
+{# ─────────────── SEGURIDAD Y TRANQUILIDAD ─────────────── #}
+{% set tq = c.tranquilidad %}
+<section class="section section--sage safety" id="tranquilidad" aria-labelledby="tranquilidad-titulo">
+  <div class="container">
+    {{ encabezado(tq.eyebrow, tq.titulo, tq.bajada, id="tranquilidad-titulo") }}
+    <ul class="safety__grid" role="list">
+      {%- for item in tq.items %}
+      <li class="safety__item" data-reveal style="--i: {{ loop.index0 % 3 }}">
+        <span class="safety__icon">{% icono item.icono %}</span>
+        <h3 class="safety__title">{{ item.titulo | texto }}</h3>
+        <p class="safety__text">{{ item.texto | texto }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+    <p class="safety__note">{% icono "info" %}<span>{{ tq.nota | texto }}</span></p>
+  </div>
+</section>
+
+{# ─────────────── DOCUMENTACIÓN ─────────────── #}
+{% set doc = c.documentacion %}
+<section class="section documents" aria-labelledby="documentacion-titulo">
+  <div class="container documents__grid">
+    <div class="documents__intro">
+      <h2 class="section-title" id="documentacion-titulo">{{ doc.titulo | texto }}</h2>
+      <p class="section-lead">{{ doc.bajada | texto }}</p>
+    </div>
+    <div class="documents__card" data-reveal>
+      <ul class="checklist checklist--large" role="list">
+        {%- for item in doc.items %}<li>{% icono "check" %}<span>{{ item | texto }}</span></li>{%- endfor %}
+      </ul>
+      <p class="documents__note">{{ doc.nota | texto }}</p>
+    </div>
+  </div>
+</section>
+
+{% set testimoniosTexto = { eyebrow: "Otras familias", titulo: "La voz de las familias" } %}
+{% include "sections/testimonios.njk" %}
+
+{% set cierre = c.cierre %}
+{% set cierreMensaje = "visita" %}
+{% include "sections/cierre.njk" %}

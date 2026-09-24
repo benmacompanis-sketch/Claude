@@ -1,0 +1,68 @@
+/* ==========================================================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================================================== */
+
+.wa-float {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-inline-size: 3.5rem;
+  block-size: 3.5rem;
+  padding: 0;
+  border-radius: var(--r-pill);
+  background: var(--c-green-800);
+  color: var(--c-white);
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgb(20 35 30 / 0.2), 0 14px 30px -12px rgb(20 35 30 / 0.5);
+  transition:
+    transform var(--dur-3) var(--ease-out),
+    opacity var(--dur-3) var(--ease-out),
+    background-color var(--dur-2),
+    visibility var(--dur-3);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wa-float .icon {
+  inline-size: 1.7rem;
+  block-size: 1.7rem;
+}
+
+.wa-float__label {
+  display: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.wa-float:hover {
+  background: var(--c-green-900);
+  transform: translateY(-2px);
+}
+
+.wa-float.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem) scale(0.96);
+  pointer-events: none;
+}
+
+@media (min-width: 48em) {
+  .wa-float {
+    padding-inline: 1.05rem 1.3rem;
+  }
+
+  .wa-float__label {
+    display: inline;
+  }
+}
+
+@media print {
+  .wa-float {
+    display: none;
+  }
+}

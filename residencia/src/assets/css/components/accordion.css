@@ -1,0 +1,120 @@
+/* ==========================================================================
+   PREGUNTAS DESPLEGABLES (details / summary)
+   Funcionan sin JavaScript y son accesibles con teclado y lectores de pantalla.
+   ========================================================================== */
+
+.accordion {
+  border-top: 1px solid var(--line);
+}
+
+.acc {
+  border-bottom: 1px solid var(--line);
+}
+
+.acc__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.3rem;
+  list-style: none;
+  cursor: pointer;
+  color: var(--heading);
+  font-size: var(--fs-md);
+  font-weight: 550;
+  line-height: 1.4;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.acc__q::-webkit-details-marker {
+  display: none;
+}
+
+.acc__q::marker {
+  content: "";
+}
+
+.acc__q:focus-visible {
+  outline-offset: 6px;
+}
+
+.acc__icon {
+  position: relative;
+  flex: none;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--heading);
+  transition:
+    background-color var(--dur-3) var(--ease-out),
+    border-color var(--dur-3) var(--ease-out),
+    color var(--dur-3) var(--ease-out);
+}
+
+.acc__icon::before,
+.acc__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  inline-size: 0.8rem;
+  block-size: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  translate: -50% -50%;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.acc__icon::after {
+  transform: rotate(90deg);
+}
+
+.acc__q:hover .acc__icon {
+  border-color: rgb(29 40 36 / 0.45);
+}
+
+.acc[open] .acc__icon {
+  background: var(--c-green-800);
+  border-color: var(--c-green-800);
+  color: var(--c-white);
+}
+
+.acc[open] .acc__icon::after {
+  transform: rotate(0deg);
+}
+
+.acc__a {
+  padding: 0 3.75rem 1.6rem 0;
+  color: var(--muted);
+  max-inline-size: 46rem;
+}
+
+.acc__a p + p {
+  margin-top: 0.8em;
+}
+
+@media (max-width: 39.99em) {
+  .acc__a {
+    padding-right: 0;
+  }
+}
+
+/* Apertura suave donde el navegador lo permite. */
+@supports (interpolate-size: allow-keywords) {
+  .accordion {
+    interpolate-size: allow-keywords;
+  }
+
+  .acc::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size var(--dur-3) var(--ease-out),
+      content-visibility var(--dur-3) allow-discrete;
+  }
+
+  .acc[open]::details-content {
+    block-size: auto;
+  }
+}

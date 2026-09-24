@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+paginaId: legal
+---
+<section class="page-hero page-hero--compact" aria-labelledby="page-title">
+  <div class="container container--text">
+    <nav class="breadcrumbs" aria-label="Estás en">
+      <ol role="list">
+        <li><a href="/">Inicio</a></li>
+        <li><span aria-current="page">{{ titulo }}</span></li>
+      </ol>
+    </nav>
+    <p class="eyebrow">Información legal</p>
+    <h1 class="page-hero__title" id="page-title">{{ titulo }}</h1>
+    <p class="legal__updated">Última actualización: {{ actualizado | texto }}</p>
+  </div>
+</section>
+
+<div class="section section--flush-top legal">
+  <div class="container container--text">
+    <aside class="note note--warning" aria-label="Aviso importante">
+      <span class="note__icon">{% icono "warning-circle" %}</span>
+      <div>
+        <p class="note__title">Texto orientativo, pendiente de revisión</p>
+        <p>Este contenido es un borrador de referencia y no constituye asesoramiento legal. Antes de publicarlo, debe ser revisado y adaptado por un profesional, y completado con los datos reales de la residencia.</p>
+      </div>
+    </aside>
+    <div class="prose prose--legal">
+      {{ content | provisorios }}
+    </div>
+    <nav class="legal__nav" aria-label="Otros textos legales">
+      <ul role="list">
+        {%- for item in navegacion.legales %}{% if item.url != page.url %}
+        <li><a class="link-arrow" href="{{ item.url }}"><span>{{ item.texto }}</span>{% icono "arrow-right" %}</a></li>
+        {%- endif %}{% endfor %}
+      </ul>
+    </nav>
+  </div>
+</div>

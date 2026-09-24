@@ -1,0 +1,307 @@
+/* ==========================================================================
+   ENCABEZADO
+   La franja superior (solo en computadoras) se desplaza con la página y
+   la barra principal queda fija arriba.
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: calc(var(--topbar-h) * -1);
+  z-index: 60;
+  view-transition-name: encabezado;
+}
+
+/* ---------- Franja superior ---------- */
+.topbar {
+  display: none;
+}
+
+@media (min-width: 64em) {
+  .topbar {
+    display: block;
+    block-size: var(--topbar-h);
+    background: var(--c-cream-200);
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  block-size: 100%;
+}
+
+.topbar__place {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar__place .icon,
+.topbar__links .icon {
+  inline-size: 1rem;
+  block-size: 1rem;
+  color: var(--icon);
+}
+
+.topbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  white-space: nowrap;
+}
+
+.topbar__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.topbar__links a:hover,
+.topbar__links a[aria-current="page"] {
+  color: var(--heading);
+}
+
+/* ---------- Barra principal ---------- */
+.navbar {
+  block-size: var(--navbar-h);
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--dur-3) var(--ease-out),
+    box-shadow var(--dur-3) var(--ease-out),
+    background-color var(--dur-3) var(--ease-out);
+}
+
+.site-header.is-scrolled .navbar {
+  background: var(--c-cream-50);
+  border-bottom-color: var(--line-soft);
+  box-shadow: 0 12px 30px -22px rgb(45 35 22 / 0.35);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  block-size: 100%;
+}
+
+/* ---------- Marca ---------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-right: auto;
+  color: var(--c-green-800);
+  text-decoration: none;
+  flex: none;
+  min-block-size: 2.75rem;
+}
+
+.brand__mark {
+  display: block;
+  inline-size: 2rem;
+  block-size: 2.4rem;
+  flex: none;
+}
+
+.brand__mark svg {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand__name {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+}
+
+.brand__tag {
+  margin-top: 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 29.99em) {
+  .brand__tag {
+    display: none;
+  }
+}
+
+@media (min-width: 64em) {
+  .brand__mark {
+    inline-size: 2.25rem;
+    block-size: 2.7rem;
+  }
+
+  .brand__name {
+    font-size: 1.5rem;
+  }
+}
+
+.brand--light {
+  color: var(--c-cream-100);
+}
+
+/* ---------- Navegación de escritorio ---------- */
+.nav {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 0.1rem + 1.1vw, 1.75rem);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.6rem;
+  color: var(--heading);
+  font-size: 0.96875rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0.3rem;
+  block-size: 1.5px;
+  background: var(--accent-soft);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-3) var(--ease-out);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav__link[aria-current="page"] {
+  color: var(--c-green-800);
+}
+
+/* ---------- Acciones ---------- */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+}
+
+.navbar__cta {
+  display: none;
+}
+
+.navbar__cta-full {
+  display: none;
+}
+
+@media (min-width: 30em) {
+  .navbar__cta {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 40em) {
+  .navbar__cta-full {
+    display: inline;
+  }
+
+  .navbar__cta-short {
+    display: none;
+  }
+}
+
+@media (min-width: 75em) {
+  .nav {
+    display: block;
+  }
+
+  .navbar__inner {
+    gap: clamp(1rem, 0.2rem + 1.5vw, 2.5rem);
+  }
+
+  .navbar__cta {
+    margin-left: 0.25rem;
+  }
+}
+
+/* ---------- Botón "Menú" (celulares y tablets) ---------- */
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  block-size: 2.75rem;
+  padding-inline: 0.95rem 1.05rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--c-cream-50);
+  color: var(--heading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--dur-2), border-color var(--dur-2);
+}
+
+.menu-toggle:hover {
+  border-color: rgb(29 40 36 / 0.35);
+}
+
+.menu-toggle__bars {
+  position: relative;
+  display: inline-block;
+  inline-size: 1.125rem;
+  block-size: 0.7rem;
+}
+
+.menu-toggle__bars span {
+  position: absolute;
+  left: 0;
+  inline-size: 100%;
+  block-size: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.menu-toggle__bars span:first-child {
+  top: 0;
+}
+
+.menu-toggle__bars span:last-child {
+  bottom: 0;
+  inline-size: 70%;
+}
+
+@media (min-width: 75em) {
+  .menu-toggle,
+  .navbar__call {
+    display: none;
+  }
+}

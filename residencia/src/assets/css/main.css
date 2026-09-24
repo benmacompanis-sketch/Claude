@@ -1,1 +1,36 @@
-/* stub */ body{margin:0}
+/* ==========================================================================
+   HOJA DE ESTILOS PRINCIPAL
+   Importa los módulos en orden. Al compilar, Lightning CSS los une en un solo
+   archivo minificado (ver config/assets.js).
+
+   base/        variables, tipografías, reset, estilos generales, movimiento
+   components/  piezas reutilizables (botones, encabezado, menú, formulario…)
+   sections/    secciones y páginas
+   ========================================================================== */
+
+@import "base/tokens.css";
+@import "base/fonts.css";
+@import "base/reset.css";
+@import "base/base.css";
+@import "base/layout.css";
+
+@import "components/buttons.css";
+@import "components/header.css";
+@import "components/menu.css";
+@import "components/section.css";
+@import "components/media.css";
+@import "components/accordion.css";
+@import "components/forms.css";
+@import "components/misc.css";
+@import "components/whatsapp.css";
+@import "components/lightbox.css";
+@import "components/footer.css";
+
+@import "sections/home.css";
+@import "sections/day.css";
+@import "sections/pages.css";
+@import "sections/gallery.css";
+@import "sections/contact.css";
+
+@import "base/motion.css";
+@import "base/print.css";
