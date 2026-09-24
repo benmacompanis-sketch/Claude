@@ -1,5 +1,7 @@
 {#- Botón flotante de WhatsApp. Se activa o desactiva en site.yml (whatsapp.botonFlotante). -#}
-<a class="wa-float" href="{{ site | whatsapp(waMensaje or 'general') }}" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" data-wa-float>
-  {% icono "whatsapp-logo" %}
-  <span class="wa-float__label" aria-hidden="true">¿Tenés dudas? <strong>Escribinos</strong></span>
-</a>
+<aside class="wa-float-zona" aria-label="Contacto rápido">
+  <a class="wa-float" href="{{ site | whatsapp(waMensaje or 'general') }}" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp" data-wa-float>
+    {% icono "whatsapp-logo" %}
+    <span class="wa-float__label" aria-hidden="true">¿Tenés dudas? <strong>Escribinos</strong></span>
+  </a>
+</aside>

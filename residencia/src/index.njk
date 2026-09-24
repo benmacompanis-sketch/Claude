@@ -11,7 +11,7 @@ permalink: /
 <section class="hero" aria-labelledby="hero-titulo">
   <div class="container hero__grid">
     <div class="hero__content">
-      <p class="eyebrow hero__eyebrow">{{ h.eyebrow | texto }}</p>
+      <p class="eyebrow hero__eyebrow">{{ h.eyebrow | texto | replace(" · ", '<span class="eyebrow__sep"> · </span>') | safe }}</p>
       <h1 class="hero__title" id="hero-titulo">{{ h.titulo | texto }}</h1>
       <p class="hero__lead">{{ h.bajada | texto }}</p>
       <div class="hero__actions">

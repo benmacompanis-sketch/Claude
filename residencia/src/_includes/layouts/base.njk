@@ -10,7 +10,7 @@
     {{ content | safe }}
   </main>
   {% include "partials/footer.njk" %}
-  {% if site.whatsapp.botonFlotante %}{% include "partials/whatsapp-flotante.njk" %}{% endif %}
+  {% if site.whatsapp.botonFlotante and not sinFlotante %}{% include "partials/whatsapp-flotante.njk" %}{% endif %}
   <script type="module" src="{% asset 'js' %}"></script>
 </body>
 </html>

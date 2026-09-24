@@ -201,10 +201,11 @@ Después de publicar, cambiá `url` en `site.yml` por el dominio definitivo (se 
 
 **Rendimiento.**
 - HTML estático generado con [Eleventy](https://www.11ty.dev): no hay framework en el navegador.
-- ~6 KB de JavaScript inicial (comprimido); galería, formulario, mapa y buscador se descargan solo en las páginas que los usan.
+- Unos 4 KB de JavaScript inicial (menos de 2 KB comprimido); galería, formulario, mapa y buscador se descargan solo en las páginas que los usan.
 - Un solo CSS minificado; tipografías propias recortadas (≈ 90 KB en total) con métricas de respaldo para evitar saltos.
 - Imágenes AVIF/WebP responsivas con ancho y alto explícitos y carga diferida; la de portada tiene prioridad alta.
 - Mapa de Google solo a pedido. Sin cookies de terceros al cargar.
+- En la revisión final, Lighthouse (celular con conexión lenta simulada, servidor local) dio 98–100 en rendimiento y 100 en accesibilidad, buenas prácticas y SEO. Con fotos reales conviene volver a medir.
 
 **Accesibilidad.** HTML semántico, un solo `h1` por página y títulos en orden, enlace "Saltar al contenido", foco visible, contraste AA, botones de al menos 44 px, formularios con etiquetas y errores anunciados, preguntas desplegables nativas, visor de fotos con teclado, menú que funciona sin JavaScript y respeto por "reducir movimiento".
 

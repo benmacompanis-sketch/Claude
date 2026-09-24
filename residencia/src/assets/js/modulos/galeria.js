@@ -133,23 +133,32 @@ function iniciarChips() {
   const lista = barra.querySelector('.chips__list');
   const chips = new Map([...barra.querySelectorAll('[data-chip]')].map((chip) => [chip.dataset.chip, chip]));
 
+  const suave = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
   const activar = (id) => {
     chips.forEach((chip, clave) => {
       if (clave === id) chip.setAttribute('aria-current', 'true');
       else chip.removeAttribute('aria-current');
     });
     const chip = chips.get(id);
-    if (chip && lista) {
-      const destino = chip.offsetLeft - lista.clientWidth / 2 + chip.clientWidth / 2;
-      lista.scrollTo({ left: Math.max(0, destino), behavior: 'smooth' });
-    }
+    if (!lista) return;
+    const destino = chip ? chip.offsetLeft - lista.clientWidth / 2 + chip.clientWidth / 2 : 0;
+    lista.scrollTo({ left: Math.max(0, destino), behavior: suave });
   };
 
+  const visibles = new Set();
   const observador = new IntersectionObserver(
     (entradas) => {
       for (const entrada of entradas) {
-        if (entrada.isIntersecting) activar(entrada.target.id);
+        if (entrada.isIntersecting) {
+          visibles.add(entrada.target);
+          activar(entrada.target.id);
+        } else {
+          visibles.delete(entrada.target);
+        }
       }
+      // Por encima del primer espacio (arriba de todo) no hay ninguno marcado.
+      if (!visibles.size && capitulos[0].getBoundingClientRect().top > window.innerHeight * 0.4) activar(null);
     },
     { rootMargin: '-40% 0px -55% 0px' },
   );

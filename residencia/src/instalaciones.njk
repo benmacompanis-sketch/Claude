@@ -21,7 +21,7 @@ migas:
   <div class="container">
     <ul class="chips__list" role="list">
       {%- for e in c.espacios %}
-      <li><a class="chip" href="#{{ e.id }}" data-chip="{{ e.id }}">{{ e.nombre | plano }}</a></li>
+      <li><a class="chip" href="#{{ e.id }}" data-chip="{{ e.id }}">{{ (e.corto or e.nombre) | plano }}</a></li>
       {%- endfor %}
     </ul>
   </div>

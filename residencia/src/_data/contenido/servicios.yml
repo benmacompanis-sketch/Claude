@@ -107,6 +107,19 @@ grupos:
         texto: "Contamos a la familia cómo está su ser querido y acordamos juntos los canales de contacto."
         incluye:
           - "[Canales: llamados, mensajes, reuniones periódicas]"
+      - id: "ingreso"
+        icono: "door-open"
+        titulo: "Acompañamiento en el ingreso"
+        texto: "Te guiamos desde la primera consulta: la visita, la entrevista, la documentación y los primeros días de adaptación."
+        enlace:
+          texto: "Ver la guía para familias"
+          url: "/familias/"
+      - id: "visitas"
+        icono: "calendar-check"
+        titulo: "Visitas coordinadas"
+        texto: "Organizamos las visitas para que puedan compartir tiempo con su familiar con comodidad y tranquilidad."
+        incluye:
+          - "[Días y horarios de visita: confirmar]"
 
 salud:
   titulo: "Sobre la atención de salud"
@@ -154,4 +167,4 @@ alimentacion:
 
 cierre:
   titulo: "¿Querés saber si podemos acompañar a tu familiar?"
-  texto: "Contanos su situación y te orientamos, sin compromiso."
+  texto: "Te escuchamos, te orientamos y, si hace falta, coordinamos una visita. Sin compromiso."

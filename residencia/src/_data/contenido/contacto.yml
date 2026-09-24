@@ -2,7 +2,7 @@
 
 seo:
   titulo: "Contacto · {nombre}"
-  descripcion: "Consultá disponibilidad o coordiná una visita a {nombre}, residencia para adultos mayores en {ciudad}. Teléfono, WhatsApp, email, dirección y horarios."
+  descripcion: "Consultá disponibilidad o coordiná una visita a {nombre}, en {ciudad}. Teléfono, WhatsApp, email, dirección y horarios de atención."
 
 encabezado:
   eyebrow: "Contacto"

@@ -5,7 +5,7 @@
 
 seo:
   titulo: "Preguntas frecuentes · {nombre}"
-  descripcion: "Respuestas sobre el ingreso, las visitas, la documentación, la disponibilidad y la vida diaria en {nombre}, residencia para adultos mayores en {ciudad}."
+  descripcion: "Respuestas claras sobre el ingreso, las visitas, la documentación, la disponibilidad y la vida diaria en {nombre}, {ciudad}."
 
 encabezado:
   eyebrow: "Preguntas frecuentes"
@@ -19,7 +19,7 @@ grupos:
       - pregunta: "¿Qué incluye la residencia?"
         destacada: true
         respuesta: |
-          La estadía incluye alojamiento, alimentación, asistencia en la vida diaria, higiene y confort, actividades recreativas y comunicación permanente con la familia.
+          La estadía incluye alojamiento, alimentación, asistencia en la vida diaria, higiene y confort, actividades recreativas y comunicación con la familia.
 
           [Completar con el detalle de lo que incluye la cuota y los servicios que se abonan aparte.]
       - pregunta: "¿Hay habitaciones individuales?"

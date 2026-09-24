@@ -34,7 +34,7 @@ export default function iniciarFormulario() {
       if (campo.tagName === 'SELECT') return 'Elegí el motivo de tu consulta.';
       return `Completá tu ${etiqueta}.`;
     }
-    if (campo.name === 'telefono') return 'Revisá el teléfono: escribilo con característica, por ejemplo 11 2345-6789.';
+    if (campo.name === 'telefono') return 'Revisá el teléfono: escribilo con característica, por ejemplo 11\u00a02345\u00a06789.';
     if (campo.type === 'email') return 'Revisá el email: parece que le falta algo (por ejemplo, nombre@correo.com).';
     if (campo.name === 'edad') return 'Ingresá la edad en años, solo con números.';
     if (v.tooLong) return `Es un poco largo: hasta ${campo.maxLength} caracteres.`;
@@ -50,6 +50,10 @@ export default function iniciarFormulario() {
   function validar(campo, mostrar = true) {
     let personalizado = '';
     if (campo.name === 'telefono' && campo.value && campo.value.replace(/\D/g, '').length < 8) personalizado = 'corto';
+    // El navegador acepta «nombre@gmail» (sin .com); casi siempre es un error de tipeo.
+    if (campo.type === 'email' && campo.value && !/^[^\s@]+@[^\s@]+\.[^\s@.]{2,}$/.test(campo.value.trim())) {
+      personalizado = 'incompleto';
+    }
     // Un campo obligatorio no se da por completo con solo espacios.
     if ((campo.type === 'text' || campo.tagName === 'TEXTAREA') && campo.required && campo.value && !campo.value.trim()) {
       personalizado = 'vacío';

@@ -95,12 +95,14 @@ migas:
       {%- for m in contenido.equipo %}{% if not loop.first %}
       <li class="member" data-reveal style="--i: {{ (loop.index0 - 1) % 3 }}">
         <div class="member__media media">
-          {% foto m.foto, ("" if (m.foto | fotoProvisional) else ("Retrato de " ~ m.nombre ~ ", " ~ m.area)), { sizes: "(min-width: 64em) 26vw, (min-width: 40em) 45vw, 90vw", anchos: "480,800" } %}
+          {% foto m.foto, ("" if (m.foto | fotoProvisional) else ("Retrato de " ~ m.nombre ~ ", " ~ m.area)), { sizes: "(min-width: 64em) 26vw, (min-width: 40em) 45vw, 34vw", anchos: "480,800" } %}
         </div>
-        <p class="member__area">{{ m.area | texto }}</p>
-        <h3 class="member__name">{{ m.nombre | texto }}</h3>
-        <p class="member__role">{{ m.cargo | texto }}</p>
-        <p class="member__text">{{ m.texto | texto }}</p>
+        <div class="member__body">
+          <p class="member__area">{{ m.area | texto }}</p>
+          <h3 class="member__name">{{ m.nombre | texto }}</h3>
+          <p class="member__role">{{ m.cargo | texto }}</p>
+          <p class="member__text">{{ m.texto | texto }}</p>
+        </div>
       </li>
       {%- endif %}{% endfor %}
     </ul>

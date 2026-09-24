@@ -9,7 +9,8 @@
   position: fixed;
   inset: 0 0 0 auto;
   z-index: 100;
-  inline-size: min(26rem, 100%);
+  /* Deja siempre una franja de la página a la vista: tocarla cierra el menú. */
+  inline-size: min(26rem, 100% - 3.25rem);
   block-size: 100%;
   block-size: 100dvh;
   margin: 0;
@@ -32,9 +33,9 @@
 .menu {
   transform: translateX(100%);
   transition:
-    transform 260ms var(--ease-out),
-    overlay 260ms allow-discrete,
-    display 260ms allow-discrete;
+    transform 200ms var(--ease-out),
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
 }
 
 .menu:popover-open,
@@ -51,9 +52,9 @@
 .menu::backdrop {
   background: rgb(20 32 28 / 0);
   transition:
-    background-color 260ms var(--ease-out),
-    overlay 260ms allow-discrete,
-    display 260ms allow-discrete;
+    background-color 200ms var(--ease-out),
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
 }
 
 .menu:popover-open::backdrop {

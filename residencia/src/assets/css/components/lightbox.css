@@ -14,7 +14,7 @@
   margin: 0;
   padding: 0;
   border: 0;
-  background: rgb(14 24 21 / 0.96);
+  background: rgb(14 24 21 / 0.975);
   color: var(--c-cream-100);
   overscroll-behavior: contain;
 }
@@ -53,6 +53,8 @@
 
 .lightbox__stage {
   display: grid;
+  /* Área de tamaño fijo: así la foto entra completa sin desbordar la pantalla. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   min-block-size: 0;
   padding: 4.5rem 1rem 0.5rem;
@@ -69,7 +71,12 @@
   display: contents;
 }
 
+.lightbox__stage source {
+  display: none;
+}
+
 .lightbox__stage img {
+  grid-area: 1 / 1;
   max-inline-size: 100%;
   max-block-size: 100%;
   inline-size: auto;

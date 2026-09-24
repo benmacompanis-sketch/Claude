@@ -5,6 +5,9 @@
 .eyebrow {
   display: block;
   margin-bottom: 1.1rem;
+  /* Sangría francesa: si el texto ocupa dos líneas, la segunda queda alineada con la primera y no con la rayita. */
+  padding-inline-start: 2.5rem;
+  text-indent: -2.5rem;
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   font-weight: 650;
@@ -46,6 +49,11 @@
 .section-head--center {
   margin-inline: auto;
   text-align: center;
+}
+
+.section-head--center .eyebrow {
+  padding-inline-start: 0;
+  text-indent: 0;
 }
 
 .section-head--center .eyebrow::after {

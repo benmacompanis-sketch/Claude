@@ -161,6 +161,12 @@
   border-radius: var(--r-lg);
 }
 
+.member__body {
+  display: grid;
+  align-content: start;
+  gap: 0.3rem;
+}
+
 .member__area {
   font-size: var(--fs-xs);
   font-weight: 650;
@@ -236,6 +242,39 @@
   .team__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 3.5rem 2rem;
+  }
+}
+
+/* En celulares, el equipo se muestra en fichas horizontales: foto chica al costado. */
+@media (max-width: 39.99em) {
+  .team__grid {
+    gap: 1.75rem;
+  }
+
+  .team__grid .member {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.1rem;
+  }
+
+  .team__grid .member__media {
+    flex: 0 0 7.25rem;
+    margin-bottom: 0;
+    border-radius: var(--r-md);
+  }
+
+  .team__grid .member__name {
+    font-size: 1.1875rem;
+  }
+
+  .team__grid .member__text {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 47.99em) {
+  .member--featured .member__media {
+    aspect-ratio: 5 / 4;
   }
 }
 
@@ -500,6 +539,45 @@
   text-align: center;
 }
 
+/* En celulares, el menú se lee en filas: foto chica al costado del plato. */
+@media (max-width: 39.99em) {
+  .food__media {
+    max-inline-size: 16rem;
+  }
+
+  .menu-card__list {
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .meal {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    column-gap: 1rem;
+    row-gap: 0.3rem;
+  }
+
+  .meal__media {
+    grid-row: 1 / span 2;
+    inline-size: 5.5rem;
+    margin: 0;
+  }
+
+  .meal__time {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    justify-content: flex-start;
+  }
+
+  .meal__dish {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    font-size: 1.0625rem;
+    text-align: left;
+  }
+}
+
 /* ---------- Actividades ---------- */
 .activities__head {
   display: grid;
@@ -558,14 +636,13 @@
     grid-column: span 5;
   }
 
+  /* En las filas de dos, ambas fotos tienen la misma altura para que los títulos queden alineados. */
   .activity--1 .activity__media,
-  .activity--7 .activity__media {
-    aspect-ratio: 16 / 10;
-  }
-
   .activity--2 .activity__media,
-  .activity--6 .activity__media {
-    aspect-ratio: 4 / 3.66;
+  .activity--6 .activity__media,
+  .activity--7 .activity__media {
+    aspect-ratio: auto;
+    block-size: clamp(20rem, 10rem + 16vw, 28rem);
   }
 }
 
@@ -677,10 +754,31 @@
   }
 }
 
+@media (min-width: 40em) and (max-width: 63.99em) {
+  .safety__item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tres por fila; si la cantidad no cierra, la última fila se reparte para no dejar una tarjeta sola. */
 @media (min-width: 64em) {
   .safety__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 1.25rem;
+  }
+
+  .safety__item {
+    grid-column: span 4;
+  }
+
+  .safety__item:first-child:nth-last-child(3n + 1) ~ .safety__item:nth-last-child(-n + 4),
+  .safety__item:first-child:nth-last-child(4) {
+    grid-column: span 3;
+  }
+
+  .safety__item:first-child:nth-last-child(3n + 2) ~ .safety__item:nth-last-child(-n + 2),
+  .safety__item:first-child:nth-last-child(2) {
+    grid-column: span 6;
   }
 }
 

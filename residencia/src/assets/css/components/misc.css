@@ -15,6 +15,21 @@
   max-inline-size: 52rem;
 }
 
+/* Los contenedores de íconos no se achican dentro de filas flexibles. */
+.note__icon,
+.value__icon,
+.modality__icon,
+.service__icon,
+.safety__icon,
+.form-result__icon,
+.thanks__icon {
+  flex: none;
+}
+
+.note__icon {
+  padding-top: 0.05rem;
+}
+
 .note__icon .icon {
   inline-size: 1.4rem;
   block-size: 1.4rem;
